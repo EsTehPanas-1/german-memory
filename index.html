@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mit Präpositionen</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap">
+<style>
+/* Layout: one ruled notebook sheet; mode chips on top, one working area below */
+:root{
+  --paper:#f7f5fb; --sheet:#fdfcff; --ink:#35205f; --soft:#6b5b94; --rule:#e3ddf0;
+  --margin:#d9475c; --accent:#6a3fd1; --accent-ink:#fff; --ok:#1d7a4a; --bad:#c23a3a; --note:#d6457f;
+  --hl:#efe7ff; --learn:#c98a12;
+  --hand:'Patrick Hand','Segoe Print','Comic Sans MS',system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#14111d; --sheet:#1c1829; --ink:#e6deff; --soft:#a597cc; --rule:#2b2540;
+    --margin:#e0607a; --accent:#9b7bf0; --accent-ink:#14111d; --ok:#5fd199; --bad:#ff8585; --note:#ff8fbe;
+    --hl:#2c2447; --learn:#e8b54a; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14111d; --sheet:#1c1829; --ink:#e6deff; --soft:#a597cc; --rule:#2b2540;
+  --margin:#e0607a; --accent:#9b7bf0; --accent-ink:#14111d; --ok:#5fd199; --bad:#ff8585; --note:#ff8fbe;
+  --hl:#2c2447; --learn:#e8b54a; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{overflow-wrap:anywhere;margin:0;background:var(--paper);color:var(--ink);font-family:var(--hand);font-size:20px;line-height:1.4}
+.sheet{position:relative;margin:20px auto;min-height:calc(100vh - 40px);background:var(--sheet);
+  background-image:repeating-linear-gradient(transparent 0 35px,var(--rule) 35px 36px);
+  border:1px solid var(--rule);border-radius:6px;padding:20px 20px 28px 64px;max-width:min(720px,100% - 24px)}
+.sheet::before{content:"";position:absolute;left:44px;top:0;bottom:0;width:2px;background:var(--margin);opacity:.7}
+h1{font-size:30px;font-weight:400;margin:0 0 8px;letter-spacing:.3px}
+h2{font-size:25px;font-weight:400;margin:22px 0 6px;color:var(--accent);border-bottom:2px solid var(--rule)}
+h2 small{font-size:16px;color:var(--soft)}
+.ver{font-size:16px;vertical-align:middle;color:var(--accent);border:2px solid var(--accent);border-radius:12px;padding:0 9px;margin-left:6px}
+.today{font-size:16px;color:var(--soft);margin:0 0 4px;display:flex;flex-wrap:wrap;gap:4px 14px}
+.today b{color:var(--ink);font-weight:400}
+.gbar{height:5px;background:var(--rule);border-radius:3px;overflow:hidden;margin-bottom:12px}
+.gbar i{display:block;height:100%;width:0;background:var(--ok);transition:width .3s}
+.tabs{display:flex;flex-wrap:wrap;gap:2px 6px;margin-bottom:8px}
+button.tab{border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;color:var(--soft);min-height:44px;padding:4px 12px;font-size:23px}
+button.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+button.fchip{min-height:38px;padding:2px 14px;font-size:18px;border-radius:19px;border:2px solid var(--rule);color:var(--soft)}
+button.fchip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+button.fchip:disabled{opacity:.35;cursor:not-allowed}
+#views button.fchip{font-size:19px}
+details.fbox{margin:0 0 12px;border:2px dashed var(--rule);border-radius:10px;padding:4px 12px}
+details.fbox summary{cursor:pointer;color:var(--soft);font-size:18px;min-height:36px;display:flex;align-items:center}
+details.fbox[open]{padding-bottom:10px}
+.tools{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;color:var(--soft);font-size:17px;margin:8px 0 12px}
+label{display:flex;gap:6px;align-items:center;min-width:0;max-width:100%}
+select{font:inherit;color:var(--ink);background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:4px 8px;max-width:100%;min-width:0}
+#scopeBox label{flex:1 1 100%}
+#scopeBox select{flex:1}
+.bar{height:6px;background:var(--rule);border-radius:3px;overflow:hidden;margin-bottom:18px}
+#fill{height:100%;width:0;background:var(--accent);transition:width .25s}
+.count{margin:0;color:var(--soft);font-size:17px}
+.playhead{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+#timer{font-size:26px;color:var(--accent);font-variant-numeric:tabular-nums}
+.kind{display:inline-block;font-size:15px;color:var(--accent);border:1.5px solid var(--accent);border-radius:10px;padding:0 8px;margin:6px 0 0}
+.kind.new{color:var(--learn);border-color:var(--learn)}
+.meaning{font-size:34px;line-height:1.25;margin:6px 0 4px}
+.note{color:var(--note);margin:0 0 10px;min-height:1.4em}
+.reveal{background:var(--hl);border-radius:10px;padding:10px 14px;margin:6px 0 12px}
+.reveal .answer{margin:0}
+.mask{font-size:30px;letter-spacing:2px;color:var(--soft);margin:2px 0 10px}
+.cloze{font-size:28px;line-height:1.35;margin:8px 0}
+.cloze .gap{display:inline-block;min-width:70px;border-bottom:2px solid var(--accent);color:var(--accent);text-align:center}
+.german{font-size:32px;margin:8px 0}
+input[type=text]{width:100%;font:inherit;font-size:26px;color:var(--ink);background:transparent;border:0;border-bottom:2px solid var(--accent);padding:8px 2px;outline:none}
+input[type=text]:focus-visible{border-bottom-width:4px}
+input[type=text]::placeholder{color:var(--soft);opacity:.55}
+.keys{display:flex;gap:8px;margin-top:10px}
+button.key{min-width:46px;min-height:44px;padding:0;font-size:24px;border-width:2px;border-color:var(--rule)}
+.tip{font-size:15px;color:var(--soft);margin:8px 0 14px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button{font:inherit;font-size:20px;min-height:46px;padding:6px 22px;border-radius:8px;cursor:pointer;border:2px solid var(--accent);background:transparent;color:var(--ink)}
+button.primary{background:var(--accent);color:var(--accent-ink)}
+button.link{border:0;padding:4px 6px;min-height:36px;color:var(--soft);text-decoration:underline;font-size:17px}
+button.mini{min-height:36px;font-size:16px;padding:2px 12px;border-color:var(--rule);color:var(--soft)}
+button:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.opts{display:grid;gap:10px;margin:10px 0 14px}
+.opts button{text-align:left;font-size:22px;border-color:var(--rule);display:flex;gap:12px;align-items:center;padding:8px 14px}
+.opts button .n{font-size:15px;color:var(--soft);border:1.5px solid var(--rule);border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+.opts button.right{border-color:var(--ok);color:var(--ok);background:var(--hl)}
+.opts button.wrong{border-color:var(--bad);color:var(--bad)}
+.opts button:disabled{cursor:default}
+#fb{margin-top:14px;min-height:60px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.chip{padding:2px 12px;border-radius:14px;border:2px solid;font-size:17px}
+.chip.y{color:var(--ok);border-color:var(--ok)}
+.chip.n{color:var(--bad);border-color:var(--bad)}
+.verdict{font-size:26px;margin:0}
+.verdict.y{color:var(--ok)} .verdict.n{color:var(--bad)}
+.answer{font-size:26px;margin:6px 0}
+.small{font-size:17px;color:var(--soft);margin:4px 0}
+.ex{font-size:20px;margin:6px 0;display:flex;gap:8px;align-items:flex-start}
+.ex b,.rv .ex b{color:var(--accent);font-weight:400;border-bottom:2px solid var(--accent)}
+.rule{font-size:17px;color:var(--soft);margin:4px 0;border-left:3px solid var(--accent);padding-left:10px}
+.trap{font-size:17px;color:var(--note);margin:6px 0}
+.trick{font-size:18px;margin:6px 0;color:var(--learn)}
+.trickedit{display:flex;gap:8px;align-items:center;margin-top:6px}
+.trickedit input[type=text]{font-size:18px;padding:4px 2px;border-bottom-width:1px}
+.big{font-size:64px;margin:6px 0}
+button.spk{min-height:34px;min-width:34px;padding:0 6px;border:1.5px solid var(--rule);border-radius:17px;color:var(--soft);display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:8px 0 12px}
+.tile{border:2px solid var(--rule);border-radius:10px;padding:6px 12px;background:var(--sheet)}
+.tile b{display:block;font-size:34px;font-weight:400;line-height:1.1;font-variant-numeric:tabular-nums}
+.tile span{font-size:16px;color:var(--soft)}
+.tile.new b{color:var(--soft)} .tile.due b{color:var(--note)} .tile.lrn b{color:var(--learn)} .tile.mst b{color:var(--ok)}
+.mbar{display:flex;height:12px;border-radius:6px;overflow:hidden;background:var(--rule);margin:4px 0 12px}
+.mbar i{display:block;height:100%}
+.mbar .m{background:var(--ok)} .mbar .l{background:var(--learn)}
+.badge{font-size:14px;border:1.5px solid;border-radius:10px;padding:0 7px;margin-left:8px;vertical-align:middle;white-space:nowrap}
+.badge.new{color:var(--soft)} .badge.lrn{color:var(--learn)} .badge.mst{color:var(--ok)} .badge.trp{color:var(--note)}
+.rv{padding:6px 0;border-bottom:1px dashed var(--rule)}
+.rv .de{font-size:22px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.rv .id{color:var(--soft);font-size:19px}
+.rv .ex{font-size:18px;color:var(--ink)}
+.box{border:2px solid var(--rule);border-radius:10px;padding:8px 14px;margin:10px 0;background:var(--sheet)}
+.box p{margin:4px 0}
+.box ul{margin:4px 0;padding-left:20px}
+.acc{display:grid;grid-template-columns:minmax(0,1fr) 110px;gap:4px 12px;align-items:center;font-size:18px}
+.acc .t{height:10px;background:var(--rule);border-radius:5px;overflow:hidden}
+.acc .t i{display:block;height:100%;background:var(--bad)}
+.acc .t i.ok{background:var(--ok)} .acc .t i.mid{background:var(--learn)}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.mcol{display:grid;gap:8px;align-content:start;min-width:0}
+.mcol button{font-size:18px;text-align:left;border-color:var(--rule);padding:6px 10px;min-width:0}
+.mcol button.sel{border-color:var(--accent);background:var(--hl)}
+.mcol button.bad{border-color:var(--bad);color:var(--bad)}
+.mcol button.gone{opacity:.25;border-style:dashed}
+textarea{width:100%;font:inherit;font-size:18px;color:var(--ink);background:transparent;border:2px solid var(--rule);border-radius:8px;padding:8px;resize:vertical}
+textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+input[type=text].sm,input[type=number].sm{font:inherit;font-size:18px;color:var(--ink);background:transparent;border:2px solid var(--rule);border-radius:8px;padding:4px 8px;width:auto;flex:1 1 130px;min-width:110px}
+input[type=number].sm{flex:0 0 auto;min-width:0}
+select.mv{font-size:16px;padding:4px}
+.bh{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:20px;padding-top:10px;border-top:3px solid var(--rule)}
+.sh{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0 2px 14px}
+.srow{display:flex;gap:8px;margin:8px 0 0 14px}
+.log{margin-top:32px;color:var(--soft);font-size:17px}
+.log summary{cursor:pointer}
+.log p{margin:6px 0}
+.how{margin-top:16px;color:var(--soft);font-size:17px}
+.how summary{cursor:pointer}
+.how ol{padding-left:22px;margin:6px 0}
+[hidden]{display:none!important}
+@media (max-width:480px){
+  button.tab{padding:4px 8px;font-size:20px}
+  .sheet{padding:16px 14px 24px 46px;margin:8px auto;max-width:calc(100% - 16px)}.sheet::before{left:32px}
+  .meaning{font-size:28px} input[type=text]{font-size:22px} .german{font-size:26px} .cloze{font-size:23px}
+  .opts button{font-size:19px} .mcol button{font-size:16px}
+}
+@media (prefers-reduced-motion:reduce){#fill,.gbar i{transition:none}}
+</style>
+</head>
+<body>
+
+<main class="sheet">
+  <h1>Mit Präpositionen <span class="ver">v12</span></h1>
+  <p class="today" id="today"></p>
+  <div class="gbar" aria-hidden="true"><i id="goalFill"></i></div>
+
+  <div class="tabs" role="tablist" aria-label="Word list">
+    <button type="button" role="tab" class="tab" data-m="verb" aria-selected="true">Verben</button>
+    <button type="button" role="tab" class="tab" data-m="adj" aria-selected="false">Adjektive</button>
+    <button type="button" role="tab" class="tab" data-m="all" aria-selected="false">Alles</button>
+    <button type="button" role="tab" class="tab" data-m="mine" aria-selected="false">Meine Wörter</button>
+  </div>
+  <div class="filter" id="scopeBox" hidden><label>Practise <select id="scope" aria-label="Which block to practise"></select></label></div>
+
+  <div class="filter" id="views" role="group" aria-label="Mode">
+    <button type="button" class="fchip" data-v="learn" aria-pressed="true">Learn</button>
+    <button type="button" class="fchip" data-v="drill" aria-pressed="false">Drill</button>
+    <button type="button" class="fchip" data-v="sprint" aria-pressed="false">Sprint</button>
+    <button type="button" class="fchip" data-v="match" aria-pressed="false">Match</button>
+    <button type="button" class="fchip" data-v="review" aria-pressed="false">Review</button>
+    <button type="button" class="fchip" data-v="stats" aria-pressed="false">Stats</button>
+    <button type="button" class="fchip" data-v="manage" aria-pressed="false">+ Words</button>
+  </div>
+
+  <details class="fbox" id="filterBox">
+    <summary id="filterSum">Filter: all prepositions, any case</summary>
+    <div class="filter" id="cases" role="group" aria-label="Case">
+      <button type="button" class="fchip" data-c="any" aria-pressed="true">Any case</button>
+      <button type="button" class="fchip" data-c="A" aria-pressed="false">Akkusativ</button>
+      <button type="button" class="fchip" data-c="D" aria-pressed="false">Dativ</button>
+    </div>
+    <div class="filter" id="filter" role="group" aria-label="Prepositions"></div>
+    <p class="small" id="hint" aria-live="polite"></p>
+  </details>
+  <p class="small" id="wkwarn" hidden>Saving is blocked in this browser, so progress only lasts until you close the page.</p>
+
+  <!-- LEARN HOME -->
+  <section id="learnHome">
+    <div class="tiles">
+      <div class="tile new"><b id="tNew">0</b><span>new</span></div>
+      <div class="tile due"><b id="tDue">0</b><span>due now</span></div>
+      <div class="tile lrn"><b id="tLrn">0</b><span>learning</span></div>
+      <div class="tile mst"><b id="tMst">0</b><span>mastered</span></div>
+    </div>
+    <div class="mbar" aria-hidden="true"><i class="m" id="mbM"></i><i class="l" id="mbL"></i></div>
+    <p class="small" id="learnMsg"></p>
+    <div class="row">
+      <button class="primary" id="startLearn">Start round</button>
+      <button id="cram">Cram weakest</button>
+    </div>
+    <div class="tools">
+      <label>New words per round <select id="newN"><option>5</option><option>8</option><option>12</option><option>20</option></select></label>
+      <label><input type="checkbox" id="sound"> Read answers aloud</label>
+    </div>
+    <details class="how" open>
+      <summary>Plan for tonight</summary>
+      <ol>
+        <li><b>Learn</b> rounds until “new” is 0. Each new word goes: copy it → fill in with a hint → write from memory.</li>
+        <li>Keep doing rounds. Words come back after 5 min, 30 min, 3 h, 12 h. A word is <b>mastered</b> after 3 correct comebacks.</li>
+        <li><b>Review</b> → read the trap pairs and the case rules once.</li>
+        <li><b>Drill</b> → Type, source “Not mastered”. That is closest to the exam.</li>
+        <li>Tomorrow morning: one round of Learn (due words), then a 2-minute Sprint.</li>
+      </ol>
+      <p>Short sessions with breaks beat one long session. Sleep helps lock it in.</p>
+    </details>
+  </section>
+
+  <!-- DRILL OPTIONS -->
+  <section id="drillOpts">
+    <div class="filter" id="dType" role="group" aria-label="Drill type">
+      <button type="button" class="fchip" data-d="mix">Mix</button>
+      <button type="button" class="fchip" data-d="type">Type (exam)</button>
+      <button type="button" class="fchip" data-d="pick">Pick</button>
+      <button type="button" class="fchip" data-d="gap">Preposition only</button>
+      <button type="button" class="fchip" data-d="cloze">Sentence</button>
+      <button type="button" class="fchip" data-d="reverse">Meaning</button>
+      <button type="button" class="fchip" data-d="listen" id="dListen">Listen</button>
+    </div>
+    <div class="filter" id="dSrc" role="group" aria-label="Which words">
+      <button type="button" class="fchip" data-s="all">All</button>
+      <button type="button" class="fchip" data-s="weak">Not mastered</button>
+      <button type="button" class="fchip" data-s="missed">Missed before</button>
+      <button type="button" class="fchip" data-s="traps">Trap pairs</button>
+    </div>
+    <div class="tools"><label><input type="checkbox" id="shuffle" checked> Shuffle</label><span id="poolCount"></span></div>
+  </section>
+
+  <!-- SPRINT HOME -->
+  <section id="sprintHome">
+    <p class="answer">Tap the right answer as fast as you can.</p>
+    <div class="filter" id="sDur" role="group" aria-label="Duration">
+      <button type="button" class="fchip" data-t="1">1 min</button>
+      <button type="button" class="fchip" data-t="2">2 min</button>
+      <button type="button" class="fchip" data-t="3">3 min</button>
+      <button type="button" class="fchip" data-t="5">5 min</button>
+    </div>
+    <p class="small" id="sBest"></p>
+    <div class="row"><button class="primary" id="sStart">Start sprint</button></div>
+    <p class="small">Keys 1–4 work on a keyboard.</p>
+  </section>
+
+  <div class="bar" id="pbar" aria-hidden="true"><div id="fill"></div></div>
+
+  <!-- PLAY -->
+  <section id="play" hidden>
+    <div class="playhead"><p class="count" id="count"></p><span id="timer"></span></div>
+    <span class="kind" id="kind"></span>
+    <div id="prompt"></div>
+    <div id="typeBox">
+      <input type="text" id="ans" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Your answer">
+      <div class="keys" role="group" aria-label="Insert special characters">
+        <button type="button" class="key" data-ch="ä" aria-label="Insert ä">ä</button>
+        <button type="button" class="key" data-ch="ö" aria-label="Insert ö">ö</button>
+        <button type="button" class="key" data-ch="ü" aria-label="Insert ü">ü</button>
+        <button type="button" class="key" data-ch="ß" aria-label="Insert ß">ß</button>
+      </div>
+      <p class="tip" id="tip"></p>
+    </div>
+    <div class="opts" id="optBox"></div>
+    <div class="row">
+      <button class="primary" id="check">Check</button>
+      <button id="skip">Show answer</button>
+      <button class="link" id="know" hidden>I already know this one</button>
+    </div>
+    <div id="fb" aria-live="polite"></div>
+    <div class="row" style="margin-top:16px"><button class="link" id="quit">End session</button></div>
+  </section>
+
+  <section id="done" hidden>
+    <p class="count" id="doneTitle">Finished</p>
+    <p class="big" id="score"></p>
+    <p class="small" id="scoreNote"></p>
+    <div class="row" id="doneBtns"></div>
+  </section>
+
+  <section id="match" hidden>
+    <p class="small" id="matchMsg">Tap a German phrase, then its meaning.</p>
+    <div class="mgrid"><div class="mcol" id="mL"></div><div class="mcol" id="mR"></div></div>
+    <div class="row"><button class="primary" id="mNext" hidden>Next board</button><button class="mini" id="mNew">New board</button></div>
+  </section>
+
+  <section id="empty" hidden>
+    <p class="count">Meine Wörter</p>
+    <p class="answer" id="emptyMsg"></p>
+    <div class="row"><button class="primary" id="emptyAdd">+ Add words</button></div>
+  </section>
+
+  <section id="review" hidden>
+    <div class="box">
+      <p><b>Case rules that cover most of the list</b></p>
+      <ul>
+        <li><b>aus, bei, mit, nach, von, zu</b> → always Dativ.</li>
+        <li><b>für, um, gegen</b> → always Akkusativ.</li>
+        <li><b>auf, über</b> with these verbs → Akkusativ.</li>
+        <li><b>vor, in, unter</b> with these verbs → Dativ.</li>
+        <li><b>an</b> is the tricky one: thinking words take A (<i>denken, sich erinnern, glauben, sich gewöhnen</i>), everything else takes D.</li>
+      </ul>
+    </div>
+    <div id="trapBox"></div>
+    <div class="row" style="margin-top:10px"><button class="primary" id="rvStart">Learn these now</button></div>
+    <div id="rvlist"></div>
+  </section>
+
+  <section id="stats" hidden>
+    <div class="tiles">
+      <div class="tile"><b id="sToday">0</b><span>answers today</span></div>
+      <div class="tile"><b id="sAcc">–</b><span>accuracy today</span></div>
+      <div class="tile"><b id="sStreak">0</b><span>day streak</span></div>
+      <div class="tile mst"><b id="sMst">0</b><span>mastered (Alles)</span></div>
+    </div>
+    <h2>Hardest preposition + case <small>· all time, worst first</small></h2>
+    <div class="acc" id="accList"></div>
+    <h2>Words you miss most</h2>
+    <div id="hardList"></div>
+    <div class="row" style="margin-top:10px"><button id="drillMissed">Drill missed words</button></div>
+    <h2>Settings</h2>
+    <div class="tools">
+      <label>Daily goal <select id="goal"><option>50</option><option>100</option><option>150</option><option>250</option><option>400</option></select> answers</label>
+    </div>
+    <h2>Backup</h2>
+    <p class="small">Your progress lives in this browser only. Copy this text somewhere safe, or paste it on another device.</p>
+    <div class="row"><button class="mini" id="expBtn">Show backup text</button><button class="mini" id="copyBtn" hidden>Copy</button></div>
+    <textarea id="expTxt" rows="3" readonly hidden aria-label="Backup text"></textarea>
+    <textarea id="impTxt" rows="3" placeholder="Paste backup text here" aria-label="Paste backup text" style="margin-top:10px"></textarea>
+    <div class="row" style="margin-top:6px"><button class="mini" id="impBtn">Import backup</button><button class="mini" id="resetBtn">Reset all progress</button></div>
+    <p class="small" id="bkMsg" aria-live="polite"></p>
+  </section>
+
+  <section id="manage" hidden>
+    <p class="count">Add your own words – one per line</p>
+    <p class="small"><b>German = Indonesian</b>, e.g. <i>neugierig = kepo</i><br>
+    Verb with preposition: <i>warten + (auf + A) = menunggu</i><br>
+    Adjective: <i>neugierig + sein + (auf + A) = kepo akan</i> or <i>behilflich + sein + D = membantu</i><br>
+    Optional example sentence as a third part: <i>warten + (auf + A) = menunggu = Ich warte auf den Bus.</i></p>
+    <div class="tools">
+      <label>Add to <select id="tgtBlock" aria-label="Block"></select></label>
+      <label><select id="tgtSub" aria-label="Sub-block"></select></label>
+      <label><input type="checkbox" id="autoSplit"> auto-split into parts of <input type="number" id="splitN" class="sm" min="3" max="30" value="10" style="width:64px"></label>
+    </div>
+    <textarea id="bulk" rows="5" spellcheck="false" aria-label="Words to add, one per line" placeholder="neugierig = kepo&#10;warten + (auf + A) = menunggu = Ich warte auf den Bus."></textarea>
+    <div class="tools">
+      <label>Lines are <select id="order" aria-label="Line format"><option value="de">German = Indonesian</option><option value="id">Indonesian = German</option></select></label>
+    </div>
+    <div class="row"><button class="primary" id="addBtn">Add</button><button id="cancelEdit" hidden>Cancel</button></div>
+    <p class="small" id="addMsg" aria-live="polite"></p>
+    <p class="count" style="margin-top:22px">Blocks &amp; sub-blocks</p>
+    <p class="small">A block is a topic (e.g. “Kapitel 3”); its sub-blocks are small parts of about 10 words.</p>
+    <div class="row"><input type="text" id="newBlock" class="sm" maxlength="40" placeholder="New block, e.g. Kapitel 3" aria-label="New block name"><button type="button" class="mini" id="mkBlock">New block</button></div>
+    <p class="count" id="myCount" style="margin-top:18px"></p>
+    <div id="mylist"></div>
+  </section>
+
+  <details class="log">
+    <summary>Version history</summary>
+    <p><b>v12</b> – Built for fast memorising. <b>Learn</b>: spaced repetition (words return after 5 min, 30 min, 3 h, 12 h, 2 days) and a 3-step ladder for new words (copy → hint → recall); missed words come back a few cards later in the same session. <b>Drill</b>: Type, Pick (tap), Preposition only, Sentence (cloze with example sentences for every built-in word), Meaning (reverse) and Listen, from all / not mastered / missed / trap pairs. <b>Sprint</b> (timed tapping) and <b>Match</b> boards. <b>Review</b> shows case rules, trap pairs, examples and status. Memory tricks per word, read-aloud, daily goal, streak, accuracy per preposition, backup and import. The old weak list is moved into the new system.</p>
+    <p><b>v11</b> – Blocks and sub-blocks for Meine Wörter.</p>
+    <p><b>v10</b> – “+ Add words” for your own words.</p>
+    <p><b>v9</b> – Saved weak list.</p>
+    <p><b>v8</b> – “Alles” tab.</p>
+    <p><b>v7</b> – “Review first” view.</p>
+    <p><b>v6</b> – Case filter.</p>
+    <p><b>v5</b> – Adjektive tab.</p>
+    <p><b>v4</b> – Indonesian meanings.</p>
+    <p><b>v3</b> – ä ö ü ß buttons.</p>
+    <p><b>v2</b> – Several prepositions at once.</p>
+    <p><b>v1</b> – 71 verbs, typed answers, per-part feedback.</p>
+  </details>
+</main>
+
+<script>
+// verb | object (A/D) | prepositions | meaning | note
+const RAW = `erkennen|A|an D|Recognize / mengenali seseorang dari apanya…
+leiden||an D|Menderita akan (penyakit)
+leiden||unter D|Menderita akan (kondisi)
+sterben||an D|Meninggal karena
+teilnehmen||an D|Ikut serta pada
+zweifeln||an D|Ragu akan
+denken||an A|Think about / memikirkan tentang…
+sich erinnern||an A|Remember about… / mengingat akan…
+sich gewöhnen||an A|Membiasakan diri pada…
+glauben||an A|Believe in… / percaya akan…
+achten||auf A|Memberikan perhatian akan…
+antworten||auf A|Memberikan jawaban akan…
+sich freuen||auf A|Menantikan sesuatu|belum terjadi
+sich freuen||über A|Senang akan|hal sudah terjadi
+hoffen||auf A|Berharap akan
+sich konzentrieren||auf A|Mengkonsentrasikan diri akan
+sich spezialisieren||auf A|Menspesialisasikan diri akan
+sich verlassen||auf A|Mengandalkan sesuatu / count on
+verzichten||auf A|Berpantang akan
+sich vorbereiten||auf A|Mempersiapkan diri menghadapi
+warten||auf A|Waiting for… / menunggu…
+bestehen||aus D|Terdiri dari…
+sich bedanken||bei D,für A|Berterimakasih pada … untuk hal…
+sich beschweren||über A|Complain about / mengajukan keluhan tentang…
+sich entschuldigen||bei D,für A|Minta maaf pada … untuk hal…
+danken|D|für A|Berterimakasih pada si (D) untuk hal…
+sich entscheiden||für A|Mengambil keputusan untuk…
+halten|A|für A|Menganggap si (Akk) sebagai…
+sich interessieren||für A|Tertarik akan…
+kämpfen||für A|Berjuang untuk
+sorgen||für A|Memberikan perawatan untuk…
+kämpfen||gegen|Berjuang melawan
+protestieren||gegen|Memberikan protes melawan
+sich irren||in D|Keliru dalam hal
+anfangen||mit D|Mulai dengan
+aufhören||mit D|Berhenti dengan
+sich befassen||mit D|Menyibukkan diri dengan
+beginnen||mit D|Mulai dengan
+sich beschäftigen||mit D|Menyibukkan diri dengan
+vergleichen|A|mit D|Membandingkan sesuatu dengan
+verwechseln|A|mit D|Ketukar sesuatu dengan
+zusammenstoßen||mit D|Tabrakan dengan
+fragen|A|nach D|Mengajukan pertanyaan pada … tentang…
+sich ärgern||über A|Marah akan
+sich aufregen||über A|Kesal akan
+berichten||über A|Memberitakan tentang
+diskutieren||mit D,über A|Berdiskusi dengan … tentang…
+sich informieren||über A|Mencari informasi tentang…
+klagen||über A|Mengeluh akan
+lachen||über A|Tertawa tentang
+nachdenken||über A|Memikirkan kembali tentang
+sprechen||mit D,über A|Berbicara dengan … tentang
+sich unterhalten||mit D,über A|Ngobrol dengan … tentang…
+sich wundern||über A|Amaze about / heran akan…
+sich bemühen||um A|Berusaha keras untuk
+sich bewerben||um A|Mendaftarkan diri untuk
+bitten|A|um A|Memohon seseorang atas
+sich sorgen||um A|Mengkhawatirkan…
+trauern||um A|Bersedih / berduka akan
+abhängen||von D|Tergantung pada / depend on
+sich trennen||von D|Memisahkan diri dari
+sich unterscheiden||von D|Membedakan diri dari
+sich verabschieden||von D|Pamit diri dari
+fliehen||vor D|Kabur dari
+sich fürchten||vor D|Cemas akan
+schützen|A|vor D|Melindungi sesuatu dari
+warnen|A|vor D|Mewarning seseorang akan
+sich entschließen||zu D|Mengambil keputusan untuk
+gehören||zu D|Part of / termasuk bagian dari…
+gratulieren|D|zu D|Memberi selamat pada si (D) akan…
+überreden|A|zu D|Membujuk seseorang untuk…`;
+
+const ADJ = `abhängig||von D|Tergantung pada
+angewiesen||auf A|Tergantung pada
+arm||an D|Minim akan / lacks of
+bekannt||mit D|Kenal dengan
+beliebt||bei D|Disukai pada
+berechtigt||zu D|Berhak untuk
+bereit||zu D|Ready untuk / siap untuk
+besorgt||um A|Khawatir akan
+bezeichnend||für A|Ciri-ciri untuk
+charakteristisch||für A|Ciri-ciri untuk
+einverstanden||mit D|Setuju dengan
+entschlossen||zu D|Memutuskan untuk
+entsetzt||über A|Sangat sedih akan
+erfreut||über A|Senang akan
+erstaunt||über A|Amaze akan / takjub akan
+fähig||zu D|Mampu untuk
+fertig||mit D|Selesai dengan
+frei||von D|Free of / bebas dari
+freundlich||zu D|Ramah pada
+froh||über A|Senang akan
+geeignet||für A|Cocok untuk
+geeignet||zu D|Cocok untuk
+gespannt||auf A|Penasaran akan
+neugierig||auf A|Kepo akan
+glücklich||über A|Senang akan
+interessant||für A|Menarik buat si…
+interessiert||an D|Tertarik akan
+müde||von D|Capek akan / gara-gara
+neidisch||auf A|Iri akan
+nützlich||für A|Berguna untuk
+reich||an D|Kaya akan
+schädlich||für A|Bersifat merusak untuk
+schuld||an D|Bersalah akan
+stolz||auf A|Proud of / bangga akan
+traurig||über A|Sedih akan
+überzeugt||von D|Yakin akan
+vergleichbar||mit D|Bisa dibandingkan dengan
+verwandt||mit D|Bersaudara dengan|relative
+zufrieden||mit D|Puas dengan`;
+
+// example sentences, keyed "word|prepositions"; [ ] marks the preposition
+const EX = {
+'erkennen|an D':'Ich erkenne ihn [an] seiner Stimme.',
+'leiden|an D':'Er leidet [an] einer Grippe.',
+'leiden|unter D':'Viele Menschen leiden [unter] der Hitze.',
+'sterben|an D':'Er ist [an] einer Krankheit gestorben.',
+'teilnehmen|an D':'Ich nehme [an] der Konferenz teil.',
+'zweifeln|an D':'Ich zweifle [an] seiner Ehrlichkeit.',
+'denken|an A':'Ich denke oft [an] meine Familie.',
+'sich erinnern|an A':'Ich erinnere mich gern [an] den Urlaub.',
+'sich gewöhnen|an A':'Ich gewöhne mich langsam [an] das Wetter.',
+'glauben|an A':'Sie glaubt [an] die Liebe.',
+'achten|auf A':'Bitte achte [auf] den Verkehr.',
+'antworten|auf A':'Er antwortet nicht [auf] meine Frage.',
+'sich freuen|auf A':'Ich freue mich [auf] das Wochenende.',
+'sich freuen|über A':'Ich freue mich [über] das Geschenk.',
+'hoffen|auf A':'Wir hoffen [auf] besseres Wetter.',
+'sich konzentrieren|auf A':'Ich konzentriere mich [auf] die Prüfung.',
+'sich spezialisieren|auf A':'Die Ärztin spezialisiert sich [auf] Kinderheilkunde.',
+'sich verlassen|auf A':'Du kannst dich [auf] mich verlassen.',
+'verzichten|auf A':'Ich verzichte heute [auf] den Nachtisch.',
+'sich vorbereiten|auf A':'Ich bereite mich [auf] die Prüfung vor.',
+'warten|auf A':'Ich warte [auf] den Bus.',
+'bestehen|aus D':'Das Team besteht [aus] fünf Personen.',
+'sich bedanken|bei D,für A':'Ich bedanke mich [bei] dir [für] die Hilfe.',
+'sich beschweren|über A':'Er beschwert sich [über] den Lärm.',
+'sich entschuldigen|bei D,für A':'Ich entschuldige mich [bei] ihr [für] den Fehler.',
+'danken|für A':'Ich danke dir [für] deine Hilfe.',
+'sich entscheiden|für A':'Sie entscheidet sich [für] das rote Kleid.',
+'halten|für A':'Ich halte ihn [für] einen guten Lehrer.',
+'sich interessieren|für A':'Ich interessiere mich [für] Musik.',
+'kämpfen|für A':'Sie kämpfen [für] ihre Rechte.',
+'sorgen|für A':'Die Mutter sorgt [für] die Kinder.',
+'kämpfen|gegen':'Die Ärzte kämpfen [gegen] die Krankheit.',
+'protestieren|gegen':'Die Studenten protestieren [gegen] die Reform.',
+'sich irren|in D':'Du irrst dich [in] diesem Punkt.',
+'anfangen|mit D':'Wir fangen [mit] der Arbeit an.',
+'aufhören|mit D':'Er hört [mit] dem Rauchen auf.',
+'sich befassen|mit D':'Das Buch befasst sich [mit] der Geschichte Berlins.',
+'beginnen|mit D':'Wir beginnen [mit] dem Unterricht.',
+'sich beschäftigen|mit D':'Ich beschäftige mich [mit] der Grammatik.',
+'vergleichen|mit D':'Man kann Äpfel nicht [mit] Birnen vergleichen.',
+'verwechseln|mit D':'Ich verwechsle ihn immer [mit] seinem Bruder.',
+'zusammenstoßen|mit D':'Das Auto ist [mit] einem Bus zusammengestoßen.',
+'fragen|nach D':'Der Tourist fragt mich [nach] dem Weg.',
+'sich ärgern|über A':'Ich ärgere mich [über] den Stau.',
+'sich aufregen|über A':'Sie regt sich [über] alles auf.',
+'berichten|über A':'Die Zeitung berichtet [über] den Unfall.',
+'diskutieren|mit D,über A':'Wir diskutieren [mit] den Kollegen [über] das Projekt.',
+'sich informieren|über A':'Ich informiere mich [über] die Kurse.',
+'klagen|über A':'Der Patient klagt [über] Kopfschmerzen.',
+'lachen|über A':'Alle lachen [über] den Witz.',
+'nachdenken|über A':'Ich denke [über] dein Angebot nach.',
+'sprechen|mit D,über A':'Ich spreche [mit] meinem Chef [über] den Urlaub.',
+'sich unterhalten|mit D,über A':'Wir unterhalten uns [mit] den Nachbarn [über] das Wetter.',
+'sich wundern|über A':'Ich wundere mich [über] seine Antwort.',
+'sich bemühen|um A':'Er bemüht sich [um] eine gute Note.',
+'sich bewerben|um A':'Sie bewirbt sich [um] eine Stelle.',
+'bitten|um A':'Ich bitte dich [um] einen Gefallen.',
+'sich sorgen|um A':'Die Eltern sorgen sich [um] ihren Sohn.',
+'trauern|um A':'Die Familie trauert [um] den Großvater.',
+'abhängen|von D':'Das hängt [von] deiner Entscheidung ab.',
+'sich trennen|von D':'Sie trennt sich [von] ihrem Freund.',
+'sich unterscheiden|von D':'Er unterscheidet sich stark [von] seiner Schwester.',
+'sich verabschieden|von D':'Ich verabschiede mich [von] meinen Freunden.',
+'fliehen|vor D':'Die Menschen fliehen [vor] dem Krieg.',
+'sich fürchten|vor D':'Das Kind fürchtet sich [vor] dem Hund.',
+'schützen|vor D':'Die Creme schützt die Haut [vor] der Sonne.',
+'warnen|vor D':'Ich warne dich [vor] dem Hund.',
+'sich entschließen|zu D':'Er entschließt sich [zu] einer Reise.',
+'gehören|zu D':'Das gehört [zu] meinen Aufgaben.',
+'gratulieren|zu D':'Ich gratuliere dir [zu] deinem Erfolg.',
+'überreden|zu D':'Sie überredet mich [zu] einem Ausflug.',
+'abhängig|von D':'Er ist finanziell [von] seinen Eltern abhängig.',
+'angewiesen|auf A':'Ich bin [auf] deine Hilfe angewiesen.',
+'arm|an D':'Das Essen ist arm [an] Vitaminen.',
+'bekannt|mit D':'Ich bin gut [mit] ihm bekannt.',
+'beliebt|bei D':'Der Lehrer ist [bei] den Schülern beliebt.',
+'berechtigt|zu D':'Du bist [zu] einer Pause berechtigt.',
+'bereit|zu D':'Ich bin [zu] allem bereit.',
+'besorgt|um A':'Sie ist [um] ihre Gesundheit besorgt.',
+'bezeichnend|für A':'Diese Antwort ist bezeichnend [für] ihn.',
+'charakteristisch|für A':'Das Klima ist charakteristisch [für] die Region.',
+'einverstanden|mit D':'Ich bin [mit] dem Vorschlag einverstanden.',
+'entschlossen|zu D':'Er ist [zu] allem entschlossen.',
+'entsetzt|über A':'Wir sind entsetzt [über] die Nachricht.',
+'erfreut|über A':'Sie ist erfreut [über] den Besuch.',
+'erstaunt|über A':'Ich bin erstaunt [über] seine Leistung.',
+'fähig|zu D':'Er ist [zu] allem fähig.',
+'fertig|mit D':'Bist du schon [mit] den Hausaufgaben fertig?',
+'frei|von D':'Das Getränk ist frei [von] Zucker.',
+'freundlich|zu D':'Sie ist immer freundlich [zu] allen.',
+'froh|über A':'Ich bin froh [über] die gute Nachricht.',
+'geeignet|für A':'Das Buch ist [für] Anfänger geeignet.',
+'geeignet|zu D':'Er ist [zu] dieser Arbeit nicht geeignet.',
+'gespannt|auf A':'Ich bin gespannt [auf] das Ergebnis.',
+'neugierig|auf A':'Ich bin neugierig [auf] den neuen Film.',
+'glücklich|über A':'Sie ist glücklich [über] das Geschenk.',
+'interessant|für A':'Das Thema ist interessant [für] mich.',
+'interessiert|an D':'Ich bin [an] einer Reise interessiert.',
+'müde|von D':'Ich bin müde [von] der Arbeit.',
+'neidisch|auf A':'Er ist neidisch [auf] seinen Bruder.',
+'nützlich|für A':'Das Wörterbuch ist nützlich [für] die Prüfung.',
+'reich|an D':'Orangen sind reich [an] Vitamin C.',
+'schädlich|für A':'Rauchen ist schädlich [für] die Gesundheit.',
+'schuld|an D':'Wer ist schuld [an] der Verspätung?',
+'stolz|auf A':'Die Eltern sind stolz [auf] ihre Tochter.',
+'traurig|über A':'Er ist traurig [über] den Abschied.',
+'überzeugt|von D':'Ich bin [von] der Idee überzeugt.',
+'vergleichbar|mit D':'Dieses Auto ist [mit] meinem alten Auto vergleichbar.',
+'verwandt|mit D':'Ich bin [mit] ihr verwandt.',
+'zufrieden|mit D':'Der Chef ist [mit] meiner Arbeit zufrieden.'
+};
+
+// one-line rule of thumb per preposition + case
+const RULES = {
+'an|A':'an + A = thoughts pointing at something: denken, sich erinnern, glauben, sich gewöhnen.',
+'an|D':'an + D = a state or condition: leiden, sterben, zweifeln, teilnehmen, interessiert, reich/arm, schuld.',
+'auf|A':'auf + A = looking ahead / aiming: warten, hoffen, sich freuen (future), sich vorbereiten, stolz, neugierig.',
+'aus|D':'aus is always Dativ: bestehen aus = made of.',
+'bei|D':'bei is always Dativ: the person you thank or apologise to, or who likes you (beliebt bei).',
+'für|A':'für is always Akkusativ: danken, sich interessieren, sich entscheiden, halten … für.',
+'gegen|A':'gegen is always Akkusativ: kämpfen, protestieren.',
+'in|D':'in + D here: sich irren in (wrong about).',
+'mit|D':'mit is always Dativ: anfangen, aufhören, sprechen, vergleichen, einverstanden, zufrieden.',
+'nach|D':'nach is always Dativ: fragen nach = ask about.',
+'über|A':'über + A = a topic or a feeling about something: sprechen, lachen, sich ärgern, sich freuen (already happened), froh, traurig.',
+'um|A':'um is always Akkusativ: asking or striving for something, worrying about someone.',
+'unter|D':'unter + D: leiden unter = suffer under conditions.',
+'von|D':'von is always Dativ: abhängen, sich trennen, sich verabschieden, überzeugt, müde, frei.',
+'vor|D':'vor + D = fear and protection: fliehen, sich fürchten, schützen, warnen.',
+'zu|D':'zu is always Dativ: gratulieren, sich entschließen, gehören, überreden, bereit, fähig.'
+};
+
+const $ = id => document.getElementById(id);
+const rnd = n => Math.floor(Math.random()*n);
+const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm = s => s.toLowerCase().replace(/ß/g,'ss').replace(/ä|ae/g,'a').replace(/ö|oe/g,'o').replace(/ü|ue/g,'u').trim();
+const CASES = {a:'A',akk:'A',akkusativ:'A',d:'D',dat:'D',dativ:'D'};
+const CN = {A:'Akkusativ',D:'Dativ'};
+function shuffled(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
+
+const MODES = {
+  verb:{ph:'anfangen + (mit + D)',tip:'Verb + preposition + case, e.g. <i>anfangen mit D</i>. “+” and brackets are optional; ae/oe/ue works for ä/ö/ü.'},
+  mine:{ph:'neugierig',tip:'Type the word as you saved it. For verbs and adjectives add preposition and case, e.g. <i>warten auf A</i>.'},
+  all:{ph:'anfangen + (mit + D)',tip:'Verb: <i>anfangen mit D</i>. Adjective: <i>abhängig <b>sein</b> von D</i> – add <b>sein</b> for adjectives.'},
+  adj:{ph:'abhängig + sein + (von + D)',tip:'Adjective + <b>sein</b> + preposition + case, e.g. <i>abhängig sein von D</i>.'}
+};
+const mkey=(m,n)=>(m+'|'+n).toLowerCase().replace(/[^\p{L}\p{N}| ]/gu,'').replace(/\s+/g,' ').trim();
+// questions with the same meaning are merged; any of their answers is accepted
+function parse(sources){
+  const groups=new Map();
+  sources.forEach(([raw,adj])=>raw.split('\n').forEach(l=>{
+    if(!l.trim()) return;
+    const [verb,obj,pp,meaning,note='',sb='',ex=''] = l.split('|');
+    const preps = pp ? pp.split(',').map(x=>{const [p,c]=x.trim().split(' ');return {p,c:c||null}}) : [];
+    const k=mkey(meaning,note);
+    if(!groups.has(k)) groups.set(k,{key:k,meaning,note,items:[]});
+    const e = ex || EX[verb+'|'+pp] || '';
+    groups.get(k).items.push({verb,obj,preps,adj,plain:!pp&&!obj,sb,ex:/\[[^\]]+\]/.test(e)?e:''});
+  }));
+  return [...groups.values()];
+}
+const SETS={verb:parse([[RAW,false]]),adj:parse([[ADJ,true]]),all:parse([[RAW,false],[ADJ,true]])};
+let mode='verb', DATA=SETS.verb;
+const PREPS = new Set(Object.values(SETS).flat().flatMap(g=>g.items.flatMap(it=>it.preps.map(x=>norm(x.p)))));
+const PDISP={};
+Object.values(SETS).flat().forEach(g=>g.items.forEach(it=>it.preps.forEach(x=>{PDISP[norm(x.p)]=x.p})));
+
+// ---------- storage ----------
+let canSave=true;
+function lsGet(k,d){ try{ const r=localStorage.getItem(k); return r?JSON.parse(r):d; }catch(e){ canSave=false; return d; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){ canSave=false; } }
+const CK='vq_custom_v1', BK='vq_blocks_v1', SRK='vq_srs_v1', STK='vq_stats_v1', TK='vq_tricks_v1', SETK='vq_set_v1', WK='vq_weak_v1';
+const MAXC=300, MAXB=30, MAXS=60, TYPE={word:'word',verb:'verb',adj:'adjective'};
+let custom=[], blocks=[], scope='all', KEYS=new Set(), TRAP=new Map();
+const cleanTxt=x=>String(x).replace(/[|\n\r]/g,' ').replace(/\s+/g,' ').trim();
+function okEntry(e){
+  return !!e && typeof e==='object' && ['word','verb','adj'].includes(e.t) && typeof e.id==='string'
+    && typeof e.de==='string' && cleanTxt(e.de) && e.de.length<=60
+    && typeof e.meaning==='string' && cleanTxt(e.meaning) && e.meaning.length<=80
+    && Array.isArray(e.preps) && e.preps.length<=2
+    && e.preps.every(x=>x && PDISP[norm(String(x.p))]===x.p && (x.c==='A'||x.c==='D'))
+    && (e.obj===''||e.obj==='A'||e.obj==='D')
+    && (e.sb===undefined || typeof e.sb==='string')
+    && (e.ex===undefined || (typeof e.ex==='string' && e.ex.length<=200))
+    && (e.t==='word' ? (!e.preps.length && !e.obj) : (e.preps.length>0 || e.obj!==''));
+}
+function cleanBlocks(o){
+  const out=[], seen=new Set();
+  (Array.isArray(o)?o:[]).slice(0,MAXB).forEach(b=>{
+    if(!b || typeof b!=='object' || typeof b.id!=='string' || typeof b.name!=='string' || !Array.isArray(b.subs) || seen.has(b.id)) return;
+    const nm=cleanTxt(b.name).slice(0,40); if(!nm) return;
+    seen.add(b.id); const subs=[];
+    b.subs.slice(0,MAXS).forEach(x=>{
+      if(x && typeof x.id==='string' && typeof x.name==='string' && !seen.has(x.id)){
+        const sn=cleanTxt(x.name).slice(0,40); if(sn){ seen.add(x.id); subs.push({id:x.id,name:sn}); }
+      }
+    });
+    out.push({id:b.id,name:nm,subs});
+  });
+  return out;
+}
+function cleanCustom(o, bl){
+  if(!Array.isArray(o)) o=[];
+  // v10 saved newest first and had no sub-blocks; keep words in the order they were added
+  if(o.length && !o.some(e=>e && typeof e==='object' && 'sb' in e)) o=o.slice().reverse();
+  const subIds=new Set(bl.flatMap(b=>b.subs.map(x=>x.id)));
+  return o.filter(okEntry).slice(0,MAXC).map(e=>({id:e.id,t:e.t,de:cleanTxt(e.de),meaning:cleanTxt(e.meaning),preps:e.preps.map(x=>({p:x.p,c:x.c})),obj:e.obj,note:'',sb:subIds.has(e.sb)?e.sb:'',ex:cleanTxt(e.ex||'').slice(0,200)}));
+}
+function cleanSrs(o){
+  const out={};
+  if(o && typeof o==='object' && !Array.isArray(o)) Object.keys(o).forEach(k=>{
+    const s=o[k]; if(!s || typeof s!=='object') return;
+    const b=Math.max(0,Math.min(5,Math.floor(+s.b||0)));
+    out[k]={b,due:+s.due||0,r:Math.max(0,+s.r||0),w:Math.max(0,+s.w||0)};
+  });
+  return out;
+}
+function cleanStats(o){
+  const st={days:{},pp:{},best:{}};
+  if(!o || typeof o!=='object') return st;
+  if(o.days && typeof o.days==='object') Object.keys(o.days).filter(k=>/^\d{4}-\d\d-\d\d$/.test(k)).sort().slice(-90).forEach(k=>{ const d=o.days[k]; if(d) st.days[k]={n:+d.n||0,ok:+d.ok||0}; });
+  if(o.pp && typeof o.pp==='object') Object.keys(o.pp).forEach(k=>{ const d=o.pp[k]; if(d && k.length<30) st.pp[k]={r:+d.r||0,w:+d.w||0}; });
+  if(o.best && typeof o.best==='object') Object.keys(o.best).forEach(k=>{ if(k.length<20) st.best[k]=+o.best[k]||0; });
+  return st;
+}
+function cleanTricks(o){ const out={}; if(o && typeof o==='object' && !Array.isArray(o)) Object.keys(o).forEach(k=>{ if(typeof o[k]==='string' && o[k].trim()) out[k]=cleanTxt(o[k]).slice(0,160); }); return out; }
+
+blocks=cleanBlocks(lsGet(BK,[]));
+custom=cleanCustom(lsGet(CK,[]),blocks);
+let srs=cleanSrs(lsGet(SRK,{}));
+let stats=cleanStats(lsGet(STK,{}));
+let tricks=cleanTricks(lsGet(TK,{}));
+let set=Object.assign({sound:false,newN:8,goal:150,dur:2,drill:'mix',src:'all'},lsGet(SETK,{}));
+const saveBlocks=()=>lsSet(BK,blocks), saveCustom=()=>lsSet(CK,custom), saveSrs=()=>lsSet(SRK,srs),
+      saveStats=()=>lsSet(STK,stats), saveTricks=()=>lsSet(TK,tricks), saveSet=()=>lsSet(SETK,set);
+
+const entryLine=e=>[e.de,e.obj,e.preps.map(x=>x.p+' '+x.c).join(','),e.meaning,e.note,e.sb||'',e.ex||''].join('|');
+function scopeSubs(){
+  if(scope==='all') return null;
+  if(scope==='u') return new Set(['']);
+  const id=scope.slice(2);
+  if(scope[0]==='s') return new Set([id]);
+  const b=blocks.find(x=>x.id===id); return new Set(b ? b.subs.map(x=>x.id) : []);
+}
+function dataFor(m){
+  const d=SETS[m]; if(m!=='mine') return d;
+  const ss=scopeSubs(); return ss ? d.filter(g=>g.items.some(it=>ss.has(it.sb||''))) : d;
+}
+function buildTraps(){
+  TRAP=new Map(); const by=new Map();
+  SETS.all.forEach(g=>g.items.forEach(it=>{
+    if(it.plain) return;
+    const b=norm(it.verb).replace(/^sich /,'')+(it.adj?'#a':'');
+    if(!by.has(b)) by.set(b,new Set()); by.get(b).add(g);
+  }));
+  by.forEach(s=>{ if(s.size<2) return; s.forEach(g=>{
+    const m=TRAP.get(g.key)||new Map(); s.forEach(o=>{ if(o.key!==g.key) m.set(o.key,o); }); TRAP.set(g.key,m);
+  }); });
+}
+function buildSets(){
+  const src=e=>[entryLine(e),e.t==='adj'];
+  SETS.verb=parse([[RAW,false],...custom.filter(e=>e.t==='verb').map(src)]);
+  SETS.adj=parse([[ADJ,true],...custom.filter(e=>e.t==='adj').map(src)]);
+  SETS.all=parse([[RAW,false],[ADJ,true],...custom.map(src)]);
+  SETS.mine=parse(custom.map(src));
+  DATA=dataFor(mode);
+  KEYS=new Set(SETS.all.map(g=>g.key));
+  buildTraps();
+}
+// "German = Indonesian [= example]" line -> entry
+const CASE_END=/\+\s*(akkusativ|dativ|akk|dat|a|d)\s*$/i;
+function buildEntry(deRaw, meaning){
+  const tk=x=>x.replace(/[+()]/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);
+  const findPrep=t=>{ for(let k=1;k<t.length-1;k++) if(PREPS.has(norm(t[k])) && CASES[norm(t[k+1])]) return k; return -1; };
+  let toks=tk(deRaw), j=findPrep(toks), obj='';
+  if(j<0){ const m=CASE_END.exec(deRaw); if(m){ obj=CASES[norm(m[1])]; toks=tk(deRaw.replace(CASE_END,'')); } }
+  const head=j>=0 ? toks.slice(0,j) : toks.slice(), rest=j>=0 ? toks.slice(j) : [];
+  if(j>=0 && head.length>=2 && CASES[norm(head[head.length-1])]) obj=CASES[norm(head.pop())];
+  const hasLink = j>=0 || !!obj;
+  let adj=false;
+  if(hasLink && head.length>=2 && norm(head[head.length-1])==='sein'){ adj=true; head.pop(); }
+  const word=head.join(' ');
+  if(!word) return {err:'no German word found'};
+  const preps=[];
+  for(let k=0;k<rest.length;){
+    const pn=norm(rest[k]), c=CASES[norm(rest[k+1]||'')];
+    if(PREPS.has(pn) && c){ preps.push({p:PDISP[pn],c}); k+=2; }
+    else return {err:'cannot read “'+rest.slice(k).join(' ')+'” – use “preposition + A/D”'};
+  }
+  if(preps.length>2) return {err:'at most two prepositions'};
+  return {e:{t:adj?'adj':(hasLink?'verb':'word'),de:word,meaning,preps,obj,note:'',ex:''}};
+}
+function markEx(ex, preps){
+  if(!ex || /\[[^\]]+\]/.test(ex)) return ex;
+  let out=ex;
+  preps.forEach(x=>{
+    const re=new RegExp('(^|[^\\p{L}])('+x.p+')(?![\\p{L}])','iu');
+    out=out.replace(re,'$1[$2]');
+  });
+  return out;
+}
+function parseLine(line, order){
+  const parts=line.split('=');
+  if(parts.length<2) return {err:'missing “=”'};
+  if(parts.length>3) return {err:'too many “=”'};
+  const a=parts[0].trim(), b=parts[1].trim(), exRaw=cleanTxt(parts[2]||'');
+  const de=cleanTxt(order==='de'?a:b), mean=cleanTxt(order==='de'?b:a);
+  if(!de||!mean) return {err:'one side is empty'};
+  if(de.length>60||mean.length>80||exRaw.length>200) return {err:'too long'};
+  const r=buildEntry(de,mean);
+  if(r.e) r.e.ex=markEx(exRaw,r.e.preps);
+  return r;
+}
+const sig=e=>[e.t,norm(e.de),e.preps.map(x=>x.p+x.c).join(),e.obj,norm(e.meaning)].join('|');
+
+// migrate the v9–v11 weak list into spaced repetition
+(function migrateWeak(){
+  const w=lsGet(WK,null); if(!w || typeof w!=='object') return;
+  const now=Date.now();
+  Object.keys(w).forEach(k=>{ if(!srs[k]) srs[k]={b:1,due:now,r:0,w:+(w[k]&&w[k].n)||1}; });
+  saveSrs(); try{ localStorage.removeItem(WK); }catch(e){}
+})();
+buildSets();
+
+// ---------- formatting & grading ----------
+function fmt(it){
+  if(it.plain) return it.verb;
+  const pp=it.preps.map(x=>'('+x.p+(x.c?' + '+x.c:'')+')').join(' + ');
+  if(it.adj) return it.verb+' + sein'+(pp?' + '+pp:(it.obj?' + '+it.obj:''));
+  return it.verb+(pp ? (it.obj?' '+it.obj:'')+' + '+pp : (it.obj?' + '+it.obj:''));
+}
+const flat=s=>norm(s).replace(/[^\p{L}\p{N} ]/gu,' ').replace(/\s+/g,' ').trim();
+function grade(g, raw){
+  const t = norm(raw).replace(/[+()=,.…\/:;-]/g,' ').split(/\s+/).filter(Boolean);
+  const hasSich = t.includes('sich'), hasSein = t.includes('sein');
+  const toks = t.filter(x=>x!=='sich' && x!=='sein');
+  const lead = [], got = []; let gotObj = null, leadDone = false;
+  for(let i=0;i<toks.length;i++){
+    const tk = toks[i];
+    if(i>0 && PREPS.has(tk)){
+      const nx = toks[i+1];
+      const c = nx && CASES[nx] ? CASES[nx] : null;
+      got.push({p:tk,c}); leadDone = true; if(c) i++;
+    } else if(i>0 && CASES[tk]){ gotObj = CASES[tk]; leadDone = true; }
+    else if(!leadDone) lead.push(tk);
+  }
+  const typedFlat = flat(raw);
+  const rs = g.items.map((it,idx)=>{
+    if(it.plain){
+      const eq = typedFlat === flat(it.verb);
+      return {idx,adj:false,plain:true,noPrep:true,verbOK:eq,prepOK:true,caseOK:true,seinOK:true,ok:eq,needSich:false};
+    }
+    const verbOK = lead.join(' ') === norm(it.verb).replace(/^sich /,'');
+    const exp = it.preps.map(x=>({p:norm(x.p),c:x.c}));
+    const prepOK = exp.length===new Set(got.map(x=>x.p)).size && exp.every(e=>got.some(x=>x.p===e.p));
+    const objOK = it.preps.length>0 || !it.obj || gotObj===it.obj;
+    const caseOK = exp.every(e=>!e.c || got.some(x=>x.p===e.p && x.c===e.c)) && objOK;
+    const seinOK = !it.adj || hasSein;
+    return {idx,adj:it.adj,plain:false,noPrep:!it.preps.length,verbOK,prepOK,caseOK,seinOK,ok:verbOK&&prepOK&&caseOK&&seinOK,needSich:norm(it.verb).startsWith('sich ')&&!hasSich};
+  });
+  return rs.find(r=>r.ok) || rs.find(r=>r.verbOK) || rs[0];
+}
+const csOf=x=>x.none?'-':(x.c||'A'); // gegen has no case in the notes; it always takes Akkusativ
+const pairsOf=it=>it.preps.length ? it.preps : (it.obj ? [{p:'',c:it.obj}] : [{p:'',c:'',none:true}]);
+const headText=(p,c)=>p ? p+' + '+CN[c] : (c==='-' ? 'Words' : CN[c]+' · no preposition');
+const ruleFor=it=>it.preps.map(x=>RULES[x.p+'|'+csOf(x)]).filter(Boolean);
+const mask=s=>s.replace(/\p{L}+/gu,w=>{ if(w==='sein'||w==='sich') return w; if(w==='A'||w==='D') return '?'; return w[0]+'_'.repeat(w.length-1); });
+const exHtml=s=>esc(s).replace(/\[([^\]]+)\]/g,'<b>$1</b>');
+const exPlain=s=>s.replace(/[\[\]]/g,'');
+const label=g=>g.meaning+(g.note?' ('+g.note+')':'');
+
+// ---------- speech ----------
+const canSpeak = typeof window.speechSynthesis!=='undefined' && typeof window.SpeechSynthesisUtterance!=='undefined';
+let deVoice=null;
+function pickVoice(){ try{ const v=speechSynthesis.getVoices(); deVoice=v.find(x=>/^de[-_]DE/i.test(x.lang))||v.find(x=>/^de/i.test(x.lang))||null; }catch(e){} }
+if(canSpeak){ pickVoice(); try{ speechSynthesis.onvoiceschanged=pickVoice; }catch(e){} }
+function say(t){ if(!canSpeak||!t) return; try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(t); u.lang='de-DE'; if(deVoice) u.voice=deVoice; u.rate=.9; speechSynthesis.speak(u); }catch(e){} }
+const spoken=it=>[it.verb, it.adj?'sein':'', ...it.preps.map(x=>x.p)].filter(Boolean).join(' ');
+const sayItem=it=>say(spoken(it)+(it.ex?'. '+exPlain(it.ex):''));
+const SPK='<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a4.5 4.5 0 0 1 0 7M18.5 6a8 8 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+function spkBtn(text,lbl){ const b=document.createElement('button'); b.type='button'; b.className='spk'; b.innerHTML=SPK; b.dataset.say=text; b.setAttribute('aria-label',lbl||'Read aloud'); if(!canSpeak) b.hidden=true; return b; }
+document.addEventListener('click',e=>{ const b=e.target.closest('button.spk'); if(b) say(b.dataset.say); });
+
+// ---------- spaced repetition ----------
+const IV=[0,5,30,180,720,2880]; // minutes until the word comes back, per box
+const boxOf=k=>srs[k]?srs[k].b:0;
+const isDue=(k,now)=>!!srs[k] && srs[k].b>0 && srs[k].due<=now;
+const status=k=>{ const b=boxOf(k); return b===0?'new':(b<3?'lrn':'mst'); };
+const STL={new:'New',lrn:'Learning',mst:'Mastered'};
+function srsResult(k, ok){
+  const now=Date.now(), s=srs[k]||(srs[k]={b:0,due:0,r:0,w:0});
+  if(ok){ s.r++; if(s.b===0){ s.b=1; s.due=now+IV[1]*6e4; } else if(s.due<=now){ s.b=Math.min(5,s.b+1); s.due=now+IV[s.b]*6e4; } }
+  else { s.w++; s.b=1; s.due=now+IV[1]*6e4; }
+  saveSrs();
+}
+function srsSet(k,b){ const s=srs[k]||(srs[k]={b:0,due:0,r:0,w:0}); s.b=b; s.due=Date.now()+IV[b]*6e4; saveSrs(); }
+function pruneSrs(){ let ch=false; Object.keys(srs).forEach(k=>{ if(!KEYS.has(k)){ delete srs[k]; ch=true; } }); Object.keys(tricks).forEach(k=>{ if(!KEYS.has(k)) delete tricks[k]; }); if(ch) saveSrs(); }
+const fmtWait=ms=>{ const m=Math.max(1,Math.round(ms/6e4)); return m<60 ? m+' min' : (m<1440 ? Math.round(m/60)+' h' : Math.round(m/1440)+' d'); };
+
+// ---------- stats ----------
+const dayKey=(t=new Date())=>t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');
+function streak(){ let n=0; const d=new Date(); if(!(stats.days[dayKey(d)]||{}).n) d.setDate(d.getDate()-1); while((stats.days[dayKey(d)]||{}).n){ n++; d.setDate(d.getDate()-1); } return n; }
+function record(g,ok){
+  const k=dayKey(), d=stats.days[k]||(stats.days[k]={n:0,ok:0}); d.n++; if(ok) d.ok++;
+  const seen=new Set();
+  g.items.forEach(it=>pairsOf(it).forEach(x=>{
+    if(x.none) return; const pk=(x.p||'')+'|'+csOf(x); if(seen.has(pk)) return; seen.add(pk);
+    const s=stats.pp[pk]||(stats.pp[pk]={r:0,w:0}); ok?s.r++:s.w++;
+  }));
+  saveStats(); updateTop();
+}
+function updateTop(){
+  const d=stats.days[dayKey()]||{n:0,ok:0}, now=Date.now(), st=streak();
+  const due=DATA.filter(g=>isDue(g.key,now)).length;
+  $('today').innerHTML='<span>Today <b>'+d.n+'</b> / '+set.goal+' answers</span>'+(st?'<span>Streak <b>'+st+'</b> day'+(st>1?'s':'')+'</span>':'')+'<span><b>'+due+'</b> due now</span>';
+  $('goalFill').style.width=Math.min(100,d.n/set.goal*100)+'%';
+  $('wkwarn').hidden=canSave;
+}
+
+// ---------- selection (deck, scope, prepositions, case) ----------
+const sel=new Set(); let cf='any', dropped='';
+const filt=$('filter');
+const casesOf=p=>{const c=new Set();DATA.forEach(g=>g.items.forEach(it=>it.preps.forEach(x=>{if(x.p===p)c.add(csOf(x))})));return c};
+const countFor=p=>DATA.filter(g=>g.items.some(it=>pairsOf(it).some(x=>(!p||x.p===p)&&(cf==='any'||csOf(x)===cf)))).length;
+function pool(){
+  return (sel.size||cf!=='any') ? DATA.filter(g=>g.items.some(it=>pairsOf(it).some(x=>(!sel.size||sel.has(x.p)) && (cf==='any'||csOf(x)===cf)))) : DATA;
+}
+function addChip(lbl,key,n){
+  const b=document.createElement('button'); b.type='button'; b.className='fchip'; b.dataset.k=key; b.textContent=lbl;
+  if(key!=='all' && n===0) b.disabled=true; filt.appendChild(b);
+}
+function buildChips(){
+  filt.innerHTML='';
+  addChip('All ('+countFor('')+')','all',1);
+  [...new Set(DATA.flatMap(g=>g.items.flatMap(it=>it.preps.map(x=>x.p))))].sort((a,b)=>a.localeCompare(b,'de')).forEach(p=>{
+    const cs=[...casesOf(p)].sort(), n=countFor(p);
+    addChip(p+' · '+(cs.length===1?'only '+cs[0]:cs.join('/'))+' ('+n+')',p,n);
+  });
+}
+function sync(){
+  filt.querySelectorAll('.fchip').forEach(b=>{ const k=b.dataset.k; b.setAttribute('aria-pressed', k==='all' ? sel.size===0 : sel.has(k)); });
+  document.querySelectorAll('#cases .fchip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.c===cf));
+  const notes=[]; if(dropped) notes.push(dropped);
+  [...sel].forEach(p=>{
+    const cs=[...casesOf(p)].sort();
+    notes.push(cs.length===1 ? p+' only takes '+CN[cs[0]]+' here.' : p+' takes '+cs.map(c=>CN[c]).join(' or ')+(cf==='any'?' – use the case buttons to practise just one.':'.'));
+  });
+  if(!sel.size && cf!=='any') notes.push('All prepositions that take '+CN[cf]+'.');
+  $('hint').textContent=notes.join(' ');
+  const n=pool().length;
+  $('filterSum').textContent='Filter: '+(sel.size?[...sel].join(', '):'all prepositions')+', '+(cf==='any'?'any case':CN[cf])+' · '+n+' word'+(n===1?'':'s');
+}
+filt.addEventListener('click',e=>{
+  const b=e.target.closest('.fchip'); if(!b||b.disabled) return;
+  const k=b.dataset.k; dropped='';
+  if(k==='all') sel.clear(); else if(sel.has(k)) sel.delete(k); else sel.add(k);
+  sync(); refresh();
+});
+$('cases').addEventListener('click',e=>{
+  const b=e.target.closest('.fchip'); if(!b) return;
+  cf=b.dataset.c; dropped='';
+  const gone=[...sel].filter(p=>countFor(p)===0);
+  if(gone.length) dropped=gone.map(p=>p+' only takes '+CN[[...casesOf(p)][0]]).join('; ')+' – removed from your selection.';
+  gone.forEach(p=>sel.delete(p));
+  buildChips(); sync(); refresh();
+});
+function setMode(m,quiet){
+  mode=m; DATA=dataFor(m); sel.clear(); dropped=''; renderScope();
+  document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.m===m));
+  buildChips(); sync(); updateTop(); if(!quiet) refresh();
+}
+document.querySelector('.tabs').addEventListener('click',e=>{
+  const b=e.target.closest('.tab'); if(!b) return;
+  if(view==='manage' || view==='stats') view='learn';
+  if(b.dataset.m!==mode) setMode(b.dataset.m,true);
+  setView(view);
+});
+
+// ---------- views ----------
+const SECTIONS=['learnHome','drillOpts','sprintHome','play','done','match','review','stats','manage','empty'];
+function showOnly(...ids){ SECTIONS.forEach(s=>{ $(s).hidden=!ids.includes(s); }); $('pbar').hidden=!ids.includes('play'); }
+let view='learn';
+function setView(v){
+  view=v; stopRun();
+  document.querySelectorAll('#views .fchip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===v));
+  $('filterBox').hidden = v==='manage' || v==='stats';
+  renderScope(); refresh();
+}
+$('views').addEventListener('click',e=>{ const b=e.target.closest('.fchip'); if(b) setView(b.dataset.v); });
+function refresh(){
+  stopRun();
+  if(view==='manage'){ showOnly('manage'); renderMyList(); return; }
+  if(view==='stats'){ showOnly('stats'); renderStats(); return; }
+  if(!DATA.length){ showEmpty(); return; }
+  if(view==='learn') learnHome();
+  else if(view==='drill') startDrill();
+  else if(view==='sprint') sprintHome();
+  else if(view==='match') startMatch();
+  else if(view==='review') renderReview();
+}
+function showEmpty(){
+  showOnly('empty');
+  $('emptyMsg').textContent = custom.length ? 'This block has no words yet. Add some under “+ Words”, or choose another block above.' : 'You haven’t added any words yet. Tap “+ Add words” and type one per line, like: neugierig = kepo';
+}
+$('emptyAdd').onclick=()=>setView('manage');
+
+// ---------- learn home ----------
+function counts(P){
+  const now=Date.now(); let n=0,d=0,l=0,m=0;
+  P.forEach(g=>{ const s=status(g.key); if(s==='new') n++; else if(s==='lrn') l++; else m++; if(isDue(g.key,now)) d++; });
+  return {n,d,l,m,t:P.length};
+}
+function learnHome(){
+  showOnly('learnHome');
+  const P=pool(), c=counts(P), now=Date.now();
+  $('tNew').textContent=c.n; $('tDue').textContent=c.d; $('tLrn').textContent=c.l; $('tMst').textContent=c.m;
+  $('mbM').style.width=(c.t?c.m/c.t*100:0)+'%'; $('mbL').style.width=(c.t?c.l/c.t*100:0)+'%';
+  const nn=Math.min(c.n,set.newN), dd=Math.min(c.d,20);
+  let msg;
+  if(nn||dd){ msg='Next round: '+(dd?dd+' due':'')+(dd&&nn?' + ':'')+(nn?nn+' new':'')+'.'; $('startLearn').disabled=false; }
+  else{
+    const next=P.map(g=>srs[g.key]).filter(s=>s&&s.b>0).map(s=>s.due).sort((a,b)=>a-b)[0];
+    msg = c.m===c.t ? 'Everything here is mastered. Use Drill → Type to test yourself exam-style.' : 'Nothing due right now'+(next?' – next word in '+fmtWait(next-now):'')+'. Use “Cram weakest” to keep going.';
+    $('startLearn').disabled=true;
+  }
+  $('learnMsg').textContent=msg;
+  $('cram').disabled=!P.some(g=>boxOf(g.key)>0 && boxOf(g.key)<5);
+  $('newN').value=String(set.newN); $('sound').checked=!!set.sound;
+}
+$('newN').onchange=()=>{ set.newN=+$('newN').value||8; saveSet(); learnHome(); };
+$('sound').onchange=()=>{ set.sound=$('sound').checked; saveSet(); if(set.sound) say('Los geht’s'); };
+function mkCard(g,k,isNew){
+  let ii=rnd(g.items.length);
+  return {g,k,isNew,ii,first:true,wrong:false,known:false};
+}
+function startLearn(){
+  const now=Date.now(), P=pool();
+  const due=P.filter(g=>isDue(g.key,now)).sort((a,b)=>srs[a.key].due-srs[b.key].due).slice(0,20).map(g=>mkCard(g,'type',false));
+  const fresh=P.filter(g=>boxOf(g.key)===0);
+  const news=($('shuffle').checked?shuffled(fresh):fresh).slice(0,set.newN).map(g=>mkCard(g,'show',true));
+  const cards=[]; let a=0,b=0;
+  while(a<news.length||b<due.length){ if(a<news.length) cards.push(news[a++]); for(let k=0;k<2&&b<due.length;k++) cards.push(due[b++]); }
+  if(!cards.length){ learnHome(); return; }
+  newRun('learn',cards);
+}
+function startCram(){
+  const P=pool().filter(g=>boxOf(g.key)>0 && boxOf(g.key)<5)
+    .sort((a,b)=>boxOf(a.key)-boxOf(b.key) || srs[b.key].w-srs[a.key].w).slice(0,20);
+  if(!P.length){ learnHome(); return; }
+  newRun('learn',shuffled(P).map(g=>mkCard(g,'type',false)));
+}
+$('startLearn').onclick=startLearn; $('cram').onclick=startCram;
+
+// ---------- drill ----------
+function drillSource(){
+  const P=pool();
+  if(set.src==='weak') return P.filter(g=>status(g.key)!=='mst');
+  if(set.src==='missed') return P.filter(g=>srs[g.key] && srs[g.key].w>0).sort((a,b)=>srs[b.key].w-srs[a.key].w);
+  if(set.src==='traps'){
+    const T=P.filter(g=>TRAP.has(g.key));
+    const base=g=>{ const it=g.items.find(i=>!i.plain)||g.items[0]; return norm(it.verb).replace(/^sich /,''); };
+    const byB=new Map(); T.forEach(g=>{ const b=base(g); if(!byB.has(b)) byB.set(b,[]); byB.get(b).push(g); });
+    return shuffled([...byB.values()]).flat();
+  }
+  return P;
+}
+function syncDrillChips(){
+  document.querySelectorAll('#dType .fchip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.d===set.drill));
+  document.querySelectorAll('#dSrc .fchip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.s===set.src));
+  $('dListen').hidden=!canSpeak;
+}
+function startDrill(){
+  syncDrillChips();
+  let list=drillSource();
+  if(set.src!=='traps' && $('shuffle').checked) list=shuffled(list);
+  $('poolCount').textContent=list.length+' word'+(list.length===1?'':'s');
+  if(!list.length){
+    showOnly('drillOpts','done');
+    $('doneTitle').textContent='Drill'; $('score').textContent='';
+    $('scoreNote').textContent = set.src==='missed' ? 'No missed words yet in this selection.' : set.src==='weak' ? 'Everything in this selection is mastered.' : 'No trap pairs in this selection. Try “Alles” with all prepositions.';
+    $('doneBtns').innerHTML='';
+    return;
+  }
+  newRun('drill',list.map(g=>mkCard(g,set.drill,false)),['drillOpts']);
+}
+$('dType').addEventListener('click',e=>{ const b=e.target.closest('.fchip'); if(!b) return; set.drill=b.dataset.d; saveSet(); startDrill(); });
+$('dSrc').addEventListener('click',e=>{ const b=e.target.closest('.fchip'); if(!b) return; set.src=b.dataset.s; saveSet(); startDrill(); });
+$('shuffle').onchange=()=>{ if(view==='drill') startDrill(); };
+
+// ---------- sprint ----------
+function sprintHome(){
+  showOnly('sprintHome');
+  document.querySelectorAll('#sDur .fchip').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.t===set.dur));
+  const best=stats.best[mode+set.dur];
+  $('sBest').textContent=best ? 'Your best for '+set.dur+' min here: '+best+' correct.' : 'No sprint yet for '+set.dur+' min here.';
+}
+$('sDur').addEventListener('click',e=>{ const b=e.target.closest('.fchip'); if(!b) return; set.dur=+b.dataset.t; saveSet(); sprintHome(); });
+$('sStart').onclick=()=>{
+  const P=pool(); if(!P.length) return;
+  newRun('sprint',shuffled(P).map(g=>mkCard(g,Math.random()<.25?'reverse':'pick',false)));
+  run.end=Date.now()+set.dur*6e4; run.wrongN=0;
+  run.tick=setInterval(()=>{
+    if(!run) return;
+    const left=run.end-Date.now();
+    if(left<=0){ finish(); return; }
+    const s=Math.ceil(left/1000); $('timer').textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+    $('fill').style.width=(100-left/(set.dur*6e4)*100)+'%';
+  },250);
+};
+
+// ---------- the session engine ----------
+let run=null;
+function stopRun(){ if(run){ clearInterval(run.tick); clearTimeout(run.auto); run.over=true; } run=null; $('timer').textContent=''; }
+function newRun(type,cards,extra=[]){
+  stopRun();
+  run={type,cards,i:0,done:0,total:cards.length,firstOk:0,firstN:0,missed:[],answered:false,extra};
+  showOnly('play',...extra);
+  show();
+}
+function resolve(c){
+  const g=c.g; let k=c.k;
+  if(k==='mix'){ const opts=['type','pick','gap','cloze','reverse']; if(canSpeak) opts.push('listen'); k=opts[rnd(opts.length)]; }
+  if(k==='listen' && !canSpeak) k='type';
+  if(k==='cloze'){ const w=g.items.map((it,i)=>it.ex?i:-1).filter(i=>i>=0); if(w.length) c.ii=w[rnd(w.length)]; else k='gap'; }
+  if(k==='gap' && g.items[c.ii].plain) k='pick';
+  if((k==='pick'||k==='reverse') && (run.type!=='sprint') && (DATA.length<4 && SETS.all.length<4)) k='type';
+  return k;
+}
+function show(){
+  if(!run||run.over) return;
+  if(run.type==='sprint' && run.i>=run.cards.length-1) run.cards.push(...shuffled(pool()).map(g=>mkCard(g,Math.random()<.25?'reverse':'pick',false)));
+  if(run.i>=run.cards.length) return finish();
+  const c=run.cur=run.cards[run.i]; c.kk=resolve(c);
+  run.answered=false;
+  const g=c.g, it=g.items[c.ii];
+  $('fb').innerHTML=''; $('ans').value=''; $('ans').readOnly=false;
+  const P=$('prompt'); P.innerHTML='';
+  if(run.type==='sprint') $('count').textContent=run.firstOk+' correct · '+run.wrongN+' wrong';
+  else{ $('count').textContent=(run.type==='learn'?'Learned ':'Done ')+run.done+' / '+run.total+(run.cards.length-run.i-1>0?' · '+(run.cards.length-run.i-1)+' cards left':''); $('fill').style.width=(run.done/run.total*100)+'%'; }
+  const K=$('kind');
+  const kl={show:'New word · step 1 of 3 · copy it once',hint:'New word · step 2 of 3 · fill in the gaps',type:c.isNew?'New word · step 3 of 3 · from memory':(run.type==='learn'?'Review · '+STL[status(g.key)]:'Type the full answer'),
+    pick:'Pick the right one',gap:'Preposition + case only',cloze:'Fill in the sentence',reverse:'What does it mean?',listen:'Listen and write it'}[c.kk];
+  K.textContent=(c.wrong&&!c.isNew?'Again · ':'')+kl; K.className='kind'+(c.isNew?' new':'');
+  const meaning=()=>{ const m=document.createElement('p'); m.className='meaning'; m.textContent=g.meaning; P.appendChild(m);
+    const n=document.createElement('p'); n.className='note'; n.textContent=g.note?'('+g.note+')':''; P.appendChild(n); };
+  let typed=true, ph=MODES[mode].ph, tip=MODES[mode].tip;
+  if(c.kk==='show'){
+    meaning();
+    const r=document.createElement('div'); r.className='reveal';
+    const a=document.createElement('p'); a.className='answer'; a.textContent=fmt(it); r.appendChild(a);
+    if(g.items.length>1){ const o=document.createElement('p'); o.className='small'; o.textContent='Also accepted: '+g.items.filter((_,i)=>i!==c.ii).map(fmt).join('  ·  '); r.appendChild(o); }
+    addDetails(r,g,it,{rules:true}); P.appendChild(r);
+    ph='Type it exactly once'; tip='Copy it once. Writing it yourself makes it stick much better than reading.';
+    if(set.sound) sayItem(it);
+  } else if(c.kk==='hint'){
+    meaning();
+    const m=document.createElement('p'); m.className='mask'; m.textContent=mask(fmt(it)); P.appendChild(m);
+    ph='Fill in the whole thing';
+  } else if(c.kk==='type'){
+    meaning();
+  } else if(c.kk==='listen'){
+    const row=document.createElement('div'); row.className='row';
+    const b=document.createElement('button'); b.type='button'; b.className='primary'; b.innerHTML=SPK+' Play again'; b.onclick=()=>say(spoken(it)); row.appendChild(b);
+    P.appendChild(row); setTimeout(()=>say(spoken(it)),150);
+    ph='What you hear + the case, e.g. warten auf A';
+    tip='You hear the word and preposition. Write them and add the case (A or D)'+(it.adj?', plus <b>sein</b>.':'.');
+  } else if(c.kk==='gap'){
+    meaning();
+    const q=document.createElement('p'); q.className='german';
+    q.textContent=gapPrefix(it)+' + ( ___ + ? )'+(it.preps.length>1?' + ( ___ + ? )':'');
+    if(!it.preps.length) q.textContent=gapPrefix(it)+' + ?';
+    P.appendChild(q);
+    ph=it.preps.length?'auf A':'D'; tip='Type only the preposition and the case, e.g. <i>auf A</i>'+(it.preps.length>1?' – both prepositions, e.g. <i>mit D über A</i>.':'.');
+  } else if(c.kk==='cloze'){
+    const s=document.createElement('p'); s.className='cloze';
+    s.innerHTML=esc(it.ex).replace(/\[([^\]]+)\]/g,'<span class="gap">?</span>'); P.appendChild(s);
+    const m=document.createElement('p'); m.className='small'; m.textContent=it.verb+' · '+g.meaning; P.appendChild(m);
+    ph='missing word(s)'; tip='Type only the missing preposition'+(clozeAns(it).length>1?'s, in order.':'.');
+  } else if(c.kk==='pick'||c.kk==='reverse'){
+    typed=false;
+    if(c.kk==='pick') meaning();
+    else{ const q=document.createElement('p'); q.className='german'; q.textContent=fmt(it); P.appendChild(q); }
+    const O=$('optBox'); O.innerHTML='';
+    const opts=c.kk==='pick'?pickOptions(g,it):reverseOptions(g);
+    opts.forEach((o,i)=>{ const b=document.createElement('button'); b.type='button';
+      b.innerHTML='<span class="n">'+(i+1)+'</span><span></span>'; b.lastChild.textContent=o.text; b.dataset.ok=o.ok?'1':'';
+      b.onclick=()=>{ if(run.answered) return; O.querySelectorAll('button').forEach(x=>{ x.disabled=true; if(x.dataset.ok) x.classList.add('right'); }); if(!o.ok) b.classList.add('wrong'); answer(o.ok,null); };
+      O.appendChild(b); });
+  }
+  $('typeBox').hidden=!typed; $('optBox').hidden=typed;
+  $('ans').placeholder=ph; $('tip').innerHTML=tip;
+  $('check').hidden=!typed; $('check').textContent='Check'; $('skip').hidden=run.type==='sprint'; $('know').hidden=c.kk!=='show';
+  if(typed) $('ans').focus({preventScroll:true});
+}
+const gapPrefix=it=>it.verb+(it.adj?' + sein':'')+(it.obj&&it.preps.length?' '+it.obj:'');
+const clozeAns=it=>[...it.ex.matchAll(/\[([^\]]+)\]/g)].map(m=>m[1]);
+const CONF={an:['auf','uber','in','vor'],auf:['an','uber','fur','zu'],uber:['von','auf','um','an'],fur:['um','zu','auf','gegen'],um:['fur','nach','uber'],von:['vor','aus','uber','mit'],vor:['von','an','fur'],aus:['von','mit'],mit:['bei','von','zu'],bei:['mit','von','zu'],zu:['fur','nach','an'],nach:['zu','um','von'],in:['an','auf','uber'],unter:['an','uber','vor'],gegen:['fur','um','vor']};
+const flip=c=>c==='D'?'A':'D';
+function mutate(it){
+  const c={...it,preps:it.preps.map(x=>({...x}))};
+  if(c.preps.length){
+    const x=c.preps[rnd(c.preps.length)], r=Math.random();
+    if(r<.4) x.c=flip(x.c);
+    else{
+      const near=(CONF[norm(x.p)]||[]).map(n=>PDISP[n]).filter(Boolean), all=Object.values(PDISP);
+      x.p=(near.length&&Math.random()<.75)?near[rnd(near.length)]:all[rnd(all.length)];
+      if(!x.c) x.c='A'; if(r>.8) x.c=flip(x.c);
+    }
+  } else if(c.obj){
+    const all=Object.values(PDISP);
+    if(Math.random()<.5) c.obj=flip(c.obj); else { c.preps=[{p:all[rnd(all.length)],c:Math.random()<.5?'A':'D'}]; c.obj=''; }
+  }
+  return c;
+}
+function pickOptions(g,it){
+  const right=fmt(it), seen=new Set([flat(right)]), out=[];
+  const src=DATA.length>=4?DATA:SETS.all;
+  for(let t=0;t<60 && out.length<3;t++){
+    let s;
+    if(it.plain || t>=40){ const o=src[rnd(src.length)]; if(o.key===g.key) continue; s=fmt(o.items[rnd(o.items.length)]); }
+    else s=fmt(mutate(it));
+    if(seen.has(flat(s)) || grade(g,s).ok) continue;
+    seen.add(flat(s)); out.push(s);
+  }
+  return shuffled([{text:right,ok:true},...out.map(t=>({text:t,ok:false}))]);
+}
+function reverseOptions(g){
+  const src=DATA.length>=4?DATA:SETS.all, right=label(g), seen=new Set([right]), out=[];
+  const myP=new Set(g.items.flatMap(it=>it.preps.map(x=>x.p)));
+  const near=shuffled(src.filter(o=>o.key!==g.key && o.items.some(it=>it.preps.some(x=>myP.has(x.p)))));
+  const rest=shuffled(src.filter(o=>o.key!==g.key));
+  [...near.slice(0,2),...rest].forEach(o=>{ const l=label(o); if(out.length<3 && !seen.has(l)){ seen.add(l); out.push(l); } });
+  return shuffled([{text:right,ok:true},...out.map(t=>({text:t,ok:false}))]);
+}
+function check(){
+  if(!run) return;
+  if(run.answered){ next(); return; }
+  const raw=$('ans').value; if(!raw.trim()){ $('ans').focus(); return; }
+  const c=run.cur, g=c.g, it=g.items[c.ii];
+  let r=null, ok=false;
+  if(c.kk==='cloze'){
+    const exp=clozeAns(it).map(norm).join(' '), got=norm(raw).replace(/[^\p{L} ]/gu,' ').replace(/\s+/g,' ').trim();
+    ok=exp===got;
+  } else if(c.kk==='gap'){
+    const first=norm(it.verb).replace(/^sich /,'').split(' ')[0];
+    const full=norm(raw).replace(/^sich /,'').startsWith(first) ? raw : gapPrefix(it).replace(/ \+ /g,' ')+' '+raw;
+    r=grade(g,full); ok=r.ok;
+  } else { r=grade(g,raw); ok=r.ok; }
+  answer(ok,r);
+}
+function skip(){ if(run && !run.answered) answer(false,null); }
+function reinsert(c,gap){ const pos=Math.min(run.cards.length,run.i+1+gap); run.cards.splice(pos,0,c); }
+function answer(ok,r){
+  const c=run.cur, k=c.g.key;
+  run.answered=true;
+  if(c.kk!=='show') record(c.g,ok);
+  let srsNote='';
+  if(run.type==='learn'){
+    if(c.isNew){
+      if(ok){
+        if(c.kk==='show'){ c.k='hint'; reinsert(c,2); }
+        else if(c.kk==='hint'){ c.k='type'; reinsert(c,3); }
+        else { if(c.known && !c.wrong) srsSet(k,2); else srsSet(k,1); run.done++; srsNote='Learned. It comes back in '+fmtWait(IV[boxOf(k)]*6e4)+'.'; }
+      } else { c.wrong=true; c.k=c.kk==='type'?'hint':'show'; reinsert(c,2); }
+    } else {
+      if(c.first){ c.first=false; run.firstN++; srsResult(k,ok); if(ok) run.firstOk++; else run.missed.push(c.g); }
+      if(ok){ run.done++; srsNote=STL[status(k)]+' · next time in '+fmtWait(srs[k].due-Date.now())+'.'; }
+      else { c.wrong=true; reinsert(c,3); srsNote='It comes back in a few cards.'; }
+    }
+  } else if(run.type==='drill'){
+    if(c.first){ c.first=false; run.firstN++; srsResult(k,ok); if(ok) run.firstOk++; else run.missed.push(c.g); }
+    if(ok) run.done++; else { c.wrong=true; reinsert(c,3+rnd(3)); srsNote='It comes back in a few cards.'; }
+  } else {
+    if(ok) run.firstOk++; else { run.wrongN++; srsResult(k,false); reinsert(c,4); }
+  }
+  feedback(c,ok,r,srsNote);
+  if(run.type==='sprint'){ $('check').hidden=true; run.auto=setTimeout(next, ok?450:1600); return; }
+  $('ans').readOnly=true; $('check').hidden=false; $('check').textContent='Next'; $('skip').hidden=true; $('know').hidden=true;
+  $('check').focus({preventScroll:true});
+  if(set.sound && c.kk!=='show' && c.kk!=='listen') sayItem(c.g.items[r?r.idx:c.ii]);
+  if(set.sound && c.kk==='listen') sayItem(c.g.items[c.ii]);
+}
+function next(){ if(!run||run.over) return; clearTimeout(run.auto); run.i++; show(); }
+function chip(lbl,ok){ const s=document.createElement('span'); s.className='chip '+(ok?'y':'n'); s.textContent=(ok?'✓ ':'✗ ')+lbl; return s; }
+function addDetails(box,g,it,o={}){
+  if(it.ex){ const e=document.createElement('p'); e.className='ex'; e.appendChild(spkBtn(exPlain(it.ex),'Read the example')); const s=document.createElement('span'); s.innerHTML=exHtml(it.ex); e.appendChild(s); box.appendChild(e); }
+  if(o.rules) ruleFor(it).forEach(t=>{ const p=document.createElement('p'); p.className='rule'; p.textContent=t; box.appendChild(p); });
+  const tr=TRAP.get(g.key);
+  if(tr) tr.forEach(o2=>{ const p=document.createElement('p'); p.className='trap'; p.textContent='Don’t mix up: '+o2.items.map(fmt).join(' / ')+' = '+label(o2); box.appendChild(p); });
+  trickUI(box,g);
+}
+function trickUI(box,g){
+  const wrap=document.createElement('div');
+  const draw=()=>{
+    wrap.innerHTML='';
+    if(tricks[g.key]){ const p=document.createElement('p'); p.className='trick'; p.textContent='Your trick: '+tricks[g.key]; wrap.appendChild(p); }
+    const b=document.createElement('button'); b.type='button'; b.className='link'; b.textContent=tricks[g.key]?'Edit memory trick':'+ Add a memory trick';
+    b.onclick=()=>{
+      wrap.innerHTML=''; const row=document.createElement('div'); row.className='trickedit';
+      const i=document.createElement('input'); i.type='text'; i.id='trickIn'; i.maxLength=160; i.value=tricks[g.key]||''; i.placeholder='e.g. warten auf = wait ON the bus'; i.setAttribute('aria-label','Memory trick');
+      const s=document.createElement('button'); s.type='button'; s.className='mini'; s.textContent='Save';
+      const save=()=>{ const v=cleanTxt(i.value).slice(0,160); if(v) tricks[g.key]=v; else delete tricks[g.key]; saveTricks(); draw(); };
+      s.onclick=save; i.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); e.stopPropagation(); save(); } });
+      row.append(i,s); wrap.appendChild(row); i.focus();
+    };
+    wrap.appendChild(b);
+  };
+  draw(); box.appendChild(wrap);
+}
+function feedback(c,ok,r,srsNote){
+  const g=c.g, fb=$('fb'); fb.innerHTML='';
+  const v=document.createElement('p'); v.className='verdict '+(ok?'y':'n');
+  v.textContent = ok ? (c.kk==='show'?'Good – now it’s in your hand.':'Richtig!') : (r?'Not quite':'Answer'); fb.appendChild(v);
+  if(r && !ok){
+    const ch=document.createElement('div'); ch.className='chips';
+    if(r.plain) ch.appendChild(chip('Word',r.verbOK));
+    else{
+      if(c.kk!=='gap') ch.appendChild(chip(r.adj?'Adjective':'Verb',r.verbOK));
+      if(r.adj && c.kk!=='gap') ch.appendChild(chip('sein',r.seinOK));
+      if(!r.noPrep) ch.appendChild(chip('Preposition',r.prepOK));
+      ch.appendChild(chip('Case',r.caseOK));
+    }
+    fb.appendChild(ch);
+  }
+  const first=r?r.idx:c.ii, it=g.items[first];
+  if(c.kk==='reverse'){ const m=document.createElement('p'); m.className='answer'; m.textContent=fmt(it)+' = '+label(g); fb.appendChild(m); }
+  else if(c.kk!=='show'){
+    const a=document.createElement('p'); a.className='answer'; a.textContent=fmt(it); fb.appendChild(a);
+    const others=g.items.filter((_,i)=>i!==first);
+    if(others.length){ const n=document.createElement('p'); n.className='small'; n.textContent='Also accepted: '+others.map(fmt).join('  ·  '); fb.appendChild(n); }
+  }
+  if(run.type==='sprint') return;
+  if(c.kk==='listen'){ const m=document.createElement('p'); m.className='small'; m.textContent='= '+label(g); fb.appendChild(m); }
+  if(r && r.needSich){ const n=document.createElement('p'); n.className='small'; n.textContent='Remember: this verb is reflexive (sich).'; fb.appendChild(n); }
+  if(c.kk!=='show') addDetails(fb,g,it,{rules:!ok});
+  if(srsNote){ const n=document.createElement('p'); n.className='small'; n.textContent=srsNote; fb.appendChild(n); }
+}
+function finish(){
+  if(!run) return;
+  const r=run; clearInterval(r.tick); clearTimeout(r.auto); r.over=true;
+  showOnly('done',...r.extra); $('fill').style.width='100%'; $('timer').textContent='';
+  const B=$('doneBtns'); B.innerHTML='';
+  const btn=(t,f,p)=>{ const b=document.createElement('button'); b.type='button'; b.textContent=t; if(p) b.className='primary'; b.onclick=f; B.appendChild(b); return b; };
+  if(r.type==='sprint'){
+    const key=mode+set.dur, best=stats.best[key]||0;
+    if(r.firstOk>best){ stats.best[key]=r.firstOk; saveStats(); }
+    $('doneTitle').textContent='Sprint over'; $('score').textContent=r.firstOk+' correct';
+    $('scoreNote').textContent=r.wrongN+' wrong. '+(r.firstOk>best?'New best!':'Best: '+best+'.')+(r.wrongN?' Wrong ones are now due in Learn.':'');
+    btn('Sprint again',()=>{ setView('sprint'); $('sStart').click(); },true); btn('Learn round',()=>setView('learn'));
+  } else if(r.type==='learn'){
+    const nNew=r.cards.filter((c,i,a)=>c.isNew && a.indexOf(c)===i).length;
+    $('doneTitle').textContent='Round done';
+    $('score').textContent=r.firstN ? r.firstOk+' / '+r.firstN : nNew+' new';
+    $('scoreNote').textContent=(r.firstN?'Reviews right on the first try. ':'')+(nNew?nNew+' new word'+(nNew>1?'s':'')+' learned. ':'')+'Take a short break, then do the next round.';
+    run=null; const c=counts(pool());
+    if(c.n||c.d) btn('Next round',startLearn,true);
+    btn('Back to overview',()=>setView('learn'),!(c.n||c.d));
+  } else {
+    $('doneTitle').textContent='Drill done';
+    $('score').textContent=r.firstOk+' / '+r.firstN;
+    $('scoreNote').textContent=r.missed.length ? r.missed.length+' missed on the first try – they are now due in Learn.' : 'Perfect – every one right on the first try.';
+    if(r.missed.length) btn('Drill the missed ones',()=>newRun('drill',shuffled(r.missed).map(g=>mkCard(g,set.drill,false)),['drillOpts']),true);
+    btn('Start over',startDrill,!r.missed.length);
+  }
+  window.scrollTo(0,0); updateTop();
+}
+$('check').onclick=check; $('skip').onclick=skip;
+$('know').onclick=()=>{ if(!run||run.answered) return; const c=run.cur; c.k='type'; c.known=true; show(); };
+$('quit').onclick=()=>{ if(!run) return; if(run.type==='learn'||run.type==='drill'){ finish(); } else refresh(); };
+$('ans').addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); check(); } });
+document.addEventListener('keydown',e=>{
+  if(!run || run.over || $('play').hidden) return;
+  if(e.target.matches && e.target.matches('input,textarea,select')) return;
+  if(!run.answered && !$('optBox').hidden && /^[1-4]$/.test(e.key)){ const b=$('optBox').querySelectorAll('button')[+e.key-1]; if(b){ e.preventDefault(); b.click(); } }
+});
+const keys=document.querySelector('.keys');
+keys.addEventListener('mousedown',e=>e.preventDefault());
+keys.addEventListener('click',e=>{ const b=e.target.closest('button[data-ch]'), a=$('ans'); if(!b||a.readOnly) return; a.setRangeText(b.dataset.ch,a.selectionStart,a.selectionEnd,'end'); a.focus(); });
+
+// ---------- match ----------
+let M=null;
+function startMatch(){
+  showOnly('match');
+  const P=shuffled(pool()).slice(0,6);
+  if(P.length<2){ $('matchMsg').textContent='Choose at least 2 words to play Match.'; $('mL').innerHTML=''; $('mR').innerHTML=''; return; }
+  M={set:P,a:null,ok:0,miss:0,t0:Date.now()};
+  const L=$('mL'), R=$('mR'); L.innerHTML=''; R.innerHTML='';
+  shuffled(P).forEach(g=>{ const b=document.createElement('button'); b.type='button'; b.dataset.key=g.key; b.dataset.side='L'; b.textContent=fmt(g.items[rnd(g.items.length)]); L.appendChild(b); });
+  shuffled(P).forEach(g=>{ const b=document.createElement('button'); b.type='button'; b.dataset.key=g.key; b.dataset.side='R'; b.textContent=label(g); R.appendChild(b); });
+  $('matchMsg').textContent='Tap a German phrase, then its meaning.'; $('mNext').hidden=true;
+}
+$('match').addEventListener('click',e=>{
+  const b=e.target.closest('.mcol button'); if(!b||!M||b.classList.contains('gone')) return;
+  if(!M.a || M.a.dataset.side===b.dataset.side){ if(M.a) M.a.classList.remove('sel'); M.a=b; b.classList.add('sel'); return; }
+  const a=M.a; M.a=null; a.classList.remove('sel');
+  const g=M.set.find(x=>x.key===(a.dataset.side==='L'?a:b).dataset.key);
+  if(a.dataset.key===b.dataset.key){
+    [a,b].forEach(x=>{ x.classList.add('gone'); x.disabled=true; }); M.ok++; record(g,true);
+    if(set.sound) sayItem(g.items[0]);
+    if(M.ok===M.set.length){ $('matchMsg').textContent='Board cleared in '+Math.round((Date.now()-M.t0)/1000)+' s with '+M.miss+' mistake'+(M.miss===1?'':'s')+'.'; $('mNext').hidden=false; $('mNext').focus(); }
+  } else {
+    M.miss++; record(g,false); [a,b].forEach(x=>x.classList.add('bad')); setTimeout(()=>[a,b].forEach(x=>x.classList.remove('bad')),600);
+  }
+});
+$('mNext').onclick=startMatch; $('mNew').onclick=startMatch;
+
+// ---------- review ----------
+function renderReview(){
+  showOnly('review');
+  const P=pool(), box=$('rvlist'); box.innerHTML='';
+  // trap pairs
+  const tb=$('trapBox'); tb.innerHTML=''; const done=new Set(), lines=[];
+  P.forEach(g=>{ const tr=TRAP.get(g.key); if(!tr) return;
+    const grp=[g,...[...tr.values()].filter(o=>P.some(x=>x.key===o.key))]; if(grp.length<2) return;
+    const id=grp.map(x=>x.key).sort().join('#'); if(done.has(id)) return; done.add(id); lines.push(grp); });
+  if(lines.length){
+    const b=document.createElement('div'); b.className='box';
+    b.innerHTML='<p><b>Trap pairs</b> – same word, different preposition. Learn them side by side.</p>';
+    lines.forEach(grp=>{ const p=document.createElement('p'); p.textContent=grp.map(x=>x.items.map(fmt).join(' / ')+' = '+label(x)).join('   ↔   '); b.appendChild(p); });
+    tb.appendChild(b);
+  }
+  const pairs=new Map();
+  P.forEach(g=>{ const seen=new Set();
+    g.items.forEach(it=>pairsOf(it).forEach(x=>{ const c=csOf(x), k=x.p+'|'+c;
+      if((sel.size && !sel.has(x.p)) || (cf!=='any' && c!==cf) || seen.has(k)) return; seen.add(k);
+      if(!pairs.has(k)) pairs.set(k,[]); pairs.get(k).push(g); })); });
+  [...pairs.keys()].sort((a,b)=>a.localeCompare(b,'de')).forEach(k=>{
+    const [p,c]=k.split('|'), list=pairs.get(k);
+    const h=document.createElement('h2'); h.textContent=headText(p,c)+' ('+list.length+') ';
+    if(p && casesOf(p).size===1){ const t=document.createElement('small'); t.textContent='· only '+CN[c]; h.appendChild(t); }
+    box.appendChild(h);
+    if(RULES[k]){ const r=document.createElement('p'); r.className='rule'; r.textContent=RULES[k]; box.appendChild(r); }
+    list.forEach(g=>{
+      const r=document.createElement('div'); r.className='rv';
+      const de=document.createElement('div'); de.className='de';
+      const t=document.createElement('span'); t.textContent=g.items.map(fmt).join('  ·  '); de.appendChild(t);
+      de.appendChild(spkBtn(g.items.map(spoken).join('. ')));
+      const st=status(g.key), bd=document.createElement('span'); bd.className='badge '+st; bd.textContent=STL[st]; de.appendChild(bd);
+      if(TRAP.has(g.key)){ const b2=document.createElement('span'); b2.className='badge trp'; b2.textContent='trap'; de.appendChild(b2); }
+      const id=document.createElement('div'); id.className='id'; id.textContent=label(g);
+      r.append(de,id);
+      g.items.forEach(it=>{ if(it.ex){ const e=document.createElement('div'); e.className='ex'; e.innerHTML=exHtml(it.ex); r.appendChild(e); } });
+      if(tricks[g.key]){ const tk=document.createElement('div'); tk.className='trick'; tk.textContent='Your trick: '+tricks[g.key]; r.appendChild(tk); }
+      box.appendChild(r);
+    });
+  });
+}
+$('rvStart').onclick=()=>{ setView('learn'); if(!$('startLearn').disabled) startLearn(); };
+
+// ---------- stats ----------
+function renderStats(){
+  const d=stats.days[dayKey()]||{n:0,ok:0};
+  $('sToday').textContent=d.n; $('sAcc').textContent=d.n?Math.round(d.ok/d.n*100)+'%':'–';
+  $('sStreak').textContent=streak(); $('sMst').textContent=SETS.all.filter(g=>status(g.key)==='mst').length+' / '+SETS.all.length;
+  const A=$('accList'); A.innerHTML='';
+  const rows=Object.entries(stats.pp).map(([k,v])=>({k,t:v.r+v.w,a:v.r/Math.max(1,v.r+v.w)})).filter(x=>x.t>=3).sort((a,b)=>a.a-b.a).slice(0,10);
+  if(!rows.length){ const p=document.createElement('p'); p.className='small'; p.textContent='Answer a few questions first – this fills up as you practise.'; A.appendChild(p); }
+  rows.forEach(x=>{ const [p,c]=x.k.split('|');
+    const l=document.createElement('div'); l.textContent=headText(p,c)+' – '+Math.round(x.a*100)+'% of '+x.t;
+    const t=document.createElement('div'); t.className='t'; const i=document.createElement('i'); i.style.width=Math.max(4,x.a*100)+'%'; i.className=x.a>=.85?'ok':(x.a>=.6?'mid':''); t.appendChild(i);
+    A.append(l,t); });
+  const H=$('hardList'); H.innerHTML='';
+  const hard=SETS.all.filter(g=>srs[g.key] && srs[g.key].w>0).sort((a,b)=>srs[b.key].w-srs[a.key].w).slice(0,8);
+  if(!hard.length){ const p=document.createElement('p'); p.className='small'; p.textContent='No missed words yet.'; H.appendChild(p); }
+  hard.forEach(g=>{ const r=document.createElement('div'); r.className='rv';
+    const de=document.createElement('div'); de.className='de'; de.textContent=g.items.map(fmt).join('  ·  ');
+    const bd=document.createElement('span'); bd.className='badge lrn'; bd.textContent='missed '+srs[g.key].w+'×'; de.appendChild(bd);
+    const id=document.createElement('div'); id.className='id'; id.textContent=label(g); r.append(de,id); H.appendChild(r); });
+  $('drillMissed').hidden=!hard.length;
+  $('goal').value=String(set.goal);
+  $('expTxt').hidden=true; $('copyBtn').hidden=true; $('bkMsg').textContent='';
+}
+$('drillMissed').onclick=()=>{ set.src='missed'; saveSet(); if(mode!=='all'){ mode='all'; DATA=dataFor('all'); document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.m==='all')); sel.clear(); buildChips(); sync(); } setView('drill'); };
+$('goal').onchange=()=>{ set.goal=+$('goal').value||150; saveSet(); updateTop(); };
+$('expBtn').onclick=()=>{ $('expTxt').value=JSON.stringify({app:'mit-praep',v:12,srs,tricks,stats,custom,blocks}); $('expTxt').hidden=false; $('copyBtn').hidden=false; $('expTxt').select(); };
+$('copyBtn').onclick=()=>{
+  const t=$('expTxt'); const fallback=()=>{ t.focus(); t.select(); $('bkMsg').textContent='Selected – copy it with your keyboard or long-press.'; };
+  try{ navigator.clipboard.writeText(t.value).then(()=>{ $('bkMsg').textContent='Copied.'; },fallback); }catch(e){ fallback(); }
+};
+function arm(b,lbl,fn){
+  if(!b.dataset.armed){ b.dataset.armed='1'; b.textContent='Tap again to confirm'; setTimeout(()=>{ if(b.isConnected){ delete b.dataset.armed; b.textContent=lbl; } },3000); return; }
+  delete b.dataset.armed; b.textContent=lbl; fn();
+}
+$('impBtn').onclick=()=>{
+  let o; try{ o=JSON.parse($('impTxt').value.trim()); }catch(e){ $('bkMsg').textContent='That text is not a backup from this page.'; return; }
+  if(!o || o.app!=='mit-praep'){ $('bkMsg').textContent='That text is not a backup from this page.'; return; }
+  arm($('impBtn'),'Import backup',()=>{
+    blocks=cleanBlocks(o.blocks); custom=cleanCustom(o.custom,blocks); srs=cleanSrs(o.srs); stats=cleanStats(o.stats); tricks=cleanTricks(o.tricks);
+    saveBlocks(); saveCustom(); saveSrs(); saveStats(); saveTricks(); afterCustomChange();
+    $('impTxt').value=''; renderStats(); $('bkMsg').textContent='Backup imported.';
+  });
+};
+$('resetBtn').onclick=()=>arm($('resetBtn'),'Reset all progress',()=>{ srs={}; stats=cleanStats({}); saveSrs(); saveStats(); updateTop(); renderStats(); $('bkMsg').textContent='Progress reset. Your own words are kept.'; });
+
+// ---------- own words: blocks, add / edit / delete ----------
+let editId=null;
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const asItem=e=>({verb:e.de,obj:e.obj,preps:e.preps,adj:e.t==='adj',plain:e.t==='word'});
+const entryText=(e,order)=>{ const l=fmt(asItem(e)); return (order==='de' ? l+' = '+e.meaning : e.meaning+' = '+l)+(e.ex?' = '+exPlain(e.ex):''); };
+const cnt=sid=>custom.filter(e=>(e.sb||'')===sid).length;
+function scopeValid(){
+  if(scope==='all') return true;
+  if(scope==='u') return cnt('')>0;
+  const id=scope.slice(2);
+  return scope[0]==='b' ? blocks.some(b=>b.id===id) : blocks.some(b=>b.subs.some(x=>x.id===id));
+}
+function renderScope(){
+  $('scopeBox').hidden = !(mode==='mine' && view!=='manage' && view!=='stats');
+  const o=[['all','All my words ('+custom.length+')']];
+  blocks.forEach(b=>{
+    o.push(['b:'+b.id, b.name+' – whole block ('+b.subs.reduce((a,x)=>a+cnt(x.id),0)+')']);
+    b.subs.forEach(x=>o.push(['s:'+x.id,'   ↳ '+x.name+' ('+cnt(x.id)+')']));
+  });
+  if(blocks.length && cnt('')) o.push(['u','Unsorted ('+cnt('')+')']);
+  const sc=$('scope'); sc.innerHTML=''; o.forEach(([v,l])=>sc.add(new Option(l,v)));
+  sc.value=o.some(x=>x[0]===scope) ? scope : 'all';
+}
+$('scope').onchange=()=>{ scope=$('scope').value; DATA=dataFor(mode); sel.clear(); dropped=''; buildChips(); sync(); updateTop(); refresh(); };
+function afterCustomChange(){
+  if(!scopeValid()) scope='all';
+  buildSets(); pruneSrs();
+  [...sel].forEach(p=>{ if(!countFor(p)) sel.delete(p); });
+  buildChips(); sync(); updateTop(); renderScope(); if(view==='manage') renderMyList();
+}
+function endEdit(){ editId=null; $('addBtn').textContent='Add'; $('cancelEdit').hidden=true; $('bulk').value=''; }
+function fillSub(prev){
+  const ts=$('tgtSub'), b=blocks.find(x=>x.id===$('tgtBlock').value);
+  ts.innerHTML='';
+  if(b){
+    b.subs.forEach(x=>ts.add(new Option(x.name,x.id)));
+    if(!b.subs.length) ts.add(new Option('(a new “Teil 1” will be created)',''));
+    ts.value=b.subs.some(x=>x.id===prev) ? prev : (b.subs[0] ? b.subs[0].id : '');
+  } else ts.add(new Option('—',''));
+  ts.disabled=!b; $('autoSplit').disabled=!b; if(!b) $('autoSplit').checked=false;
+}
+function renderTargets(){
+  const tb=$('tgtBlock'), pb=tb.value, ps=$('tgtSub').value;
+  tb.innerHTML=''; tb.add(new Option('Unsorted (no block)','')); blocks.forEach(b=>tb.add(new Option(b.name,b.id)));
+  tb.value=blocks.some(b=>b.id===pb) ? pb : '';
+  fillSub(ps);
+}
+function mkBtn(lbl,act,id){ const b=document.createElement('button'); b.type='button'; b.className='mini'; b.textContent=lbl; b.dataset.act=act; b.dataset.id=id; return b; }
+function nameInput(kind,id,val){
+  const i=document.createElement('input'); i.type='text'; i.className='sm'; i.maxLength=40; i.value=val;
+  i.dataset.act='rename'; i.dataset.kind=kind; i.dataset.id=id; i.setAttribute('aria-label','Name'); return i;
+}
+function small(t){ const m=document.createElement('span'); m.className='small'; m.textContent=t; return m; }
+function entryRow(e){
+  const r=document.createElement('div'); r.className='rv';
+  const de=document.createElement('div'); de.className='de'; de.textContent=fmt(asItem(e));
+  const id=document.createElement('div'); id.className='id'; id.textContent=e.meaning+' · '+TYPE[e.t];
+  r.append(de,id);
+  if(e.ex){ const x=document.createElement('div'); x.className='ex'; x.innerHTML=exHtml(e.ex); r.appendChild(x); }
+  const row=document.createElement('div'); row.className='row'; row.style.marginTop='6px';
+  row.append(mkBtn('Edit','edit',e.id), mkBtn('Delete','del',e.id));
+  if(blocks.some(b=>b.subs.length)){
+    const mv=document.createElement('select'); mv.className='mv'; mv.dataset.act='move'; mv.dataset.id=e.id; mv.setAttribute('aria-label','Move to');
+    mv.add(new Option('Move to…','#')); mv.add(new Option('Unsorted',''));
+    blocks.forEach(b=>b.subs.forEach(x=>mv.add(new Option(b.name+' › '+x.name,x.id))));
+    mv.value='#'; row.appendChild(mv);
+  }
+  r.appendChild(row); return r;
+}
+function renderMyList(){
+  renderTargets();
+  const box=$('mylist'); box.innerHTML='';
+  $('myCount').textContent=custom.length+' own word'+(custom.length===1?'':'s');
+  blocks.forEach(b=>{
+    const h=document.createElement('div'); h.className='bh';
+    h.append(nameInput('b',b.id,b.name), small(b.subs.reduce((a,x)=>a+cnt(x.id),0)+' words'), mkBtn('Practise','prB',b.id), mkBtn('Delete block','delB',b.id));
+    box.appendChild(h);
+    const add=document.createElement('div'); add.className='srow';
+    const si=document.createElement('input'); si.type='text'; si.className='sm'; si.maxLength=40; si.id='ns-'+b.id;
+    si.placeholder='New sub-block, e.g. Teil '+(b.subs.length+1); si.setAttribute('aria-label','New sub-block name');
+    add.append(si,mkBtn('Add sub-block','mkS',b.id)); box.appendChild(add);
+    b.subs.forEach(x=>{
+      const sh=document.createElement('div'); sh.className='sh';
+      sh.append(nameInput('s',x.id,x.name), small(cnt(x.id)+' words'), mkBtn('Practise','prS',x.id), mkBtn('Delete','delS',x.id));
+      box.appendChild(sh);
+      custom.filter(e=>e.sb===x.id).forEach(e=>box.appendChild(entryRow(e)));
+    });
+  });
+  const un=custom.filter(e=>!e.sb);
+  if(un.length){
+    const h=document.createElement('div'); h.className='bh'; h.appendChild(small(blocks.length ? 'Unsorted ('+un.length+')' : 'Your words ('+un.length+')'));
+    box.appendChild(h); un.forEach(e=>box.appendChild(entryRow(e)));
+  }
+}
+function addWords(){
+  const order=$('order').value, msg=$('addMsg'), lines=$('bulk').value.split('\n');
+  if(editId){
+    const one=lines.filter(l=>l.trim());
+    if(one.length!==1){ msg.textContent='While editing, keep exactly one line.'; return; }
+    const r=parseLine(one[0],order);
+    if(r.err){ msg.textContent='Cannot save: '+r.err+'.'; return; }
+    const i=custom.findIndex(x=>x.id===editId);
+    if(i<0){ endEdit(); msg.textContent='That word no longer exists.'; return; }
+    if(custom.some(x=>x.id!==editId && sig(x)===sig(r.e))){ msg.textContent='You already have exactly that word.'; return; }
+    r.e.id=editId; r.e.sb=custom[i].sb; custom[i]=r.e; endEdit(); saveCustom(); afterCustomChange(); msg.textContent='Saved changes.'; return;
+  }
+  const notes=[], keep=[], fresh=[]; let seen=false;
+  lines.forEach((ln,idx)=>{
+    if(!ln.trim()) return; seen=true;
+    const r=parseLine(ln,order);
+    if(r.err){ notes.push('Line '+(idx+1)+': '+r.err); keep.push(ln); return; }
+    if(custom.concat(fresh).some(x=>sig(x)===sig(r.e))){ notes.push('Line '+(idx+1)+': already added'); return; }
+    if(custom.length+fresh.length>=MAXC){ notes.push('limit of '+MAXC+' own words reached'); keep.push(ln); return; }
+    r.e.id=uid(); r.e.sb=''; fresh.push(r.e);
+  });
+  let where='';
+  if(fresh.length){
+    const bl=blocks.find(b=>b.id===$('tgtBlock').value);
+    if(bl){
+      if($('autoSplit').checked){
+        const n=Math.min(30,Math.max(3,parseInt($('splitN').value,10)||10));
+        if(bl.subs.length+Math.ceil(fresh.length/n)>MAXS){ msg.textContent='That would be more than '+MAXS+' sub-blocks in one block.'; return; }
+        fresh.forEach((e,i)=>{ if(i%n===0) bl.subs.push({id:uid(),name:'Teil '+(bl.subs.length+1)}); e.sb=bl.subs[bl.subs.length-1].id; });
+      } else {
+        let sub=bl.subs.find(x=>x.id===$('tgtSub').value) || bl.subs[0];
+        if(!sub){ sub={id:uid(),name:'Teil 1'}; bl.subs.push(sub); }
+        fresh.forEach(e=>e.sb=sub.id);
+      }
+      where=' to '+bl.name;
+    }
+    custom.push(...fresh); saveBlocks(); saveCustom(); afterCustomChange();
+  }
+  $('bulk').value=keep.join('\n');
+  msg.textContent = !seen ? 'Type a line like: neugierig = kepo'
+    : (fresh.length ? 'Added '+fresh.length+where+'. ' : '') + notes.slice(0,5).join(' · ') + (notes.length>5 ? ' · …' : '');
+}
+$('addBtn').onclick=addWords;
+$('cancelEdit').onclick=()=>{ endEdit(); $('addMsg').textContent=''; };
+$('tgtBlock').onchange=()=>fillSub('');
+function mkBlock(){
+  const nm=cleanTxt($('newBlock').value).slice(0,40), msg=$('addMsg');
+  if(!nm){ msg.textContent='Give the block a name first.'; return; }
+  if(blocks.length>=MAXB){ msg.textContent='Limit of '+MAXB+' blocks reached.'; return; }
+  if(blocks.some(b=>b.name.toLowerCase()===nm.toLowerCase())){ msg.textContent='A block with that name already exists.'; return; }
+  blocks.push({id:uid(),name:nm,subs:[]}); $('newBlock').value=''; saveBlocks(); afterCustomChange();
+  msg.textContent='Block “'+nm+'” created. Choose it under “Add to” to put words in it.';
+}
+$('mkBlock').onclick=mkBlock;
+$('newBlock').addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); mkBlock(); } });
+$('mylist').addEventListener('click',e=>{
+  const b=e.target.closest('button[data-act]'); if(!b) return;
+  const act=b.dataset.act, id=b.dataset.id, msg=$('addMsg');
+  if(act==='edit'){
+    const ent=custom.find(x=>x.id===id); if(!ent) return;
+    editId=id; $('bulk').value=entryText(ent,$('order').value);
+    $('addBtn').textContent='Save changes'; $('cancelEdit').hidden=false;
+    msg.textContent='Change the line, then tap Save changes.'; $('bulk').focus(); window.scrollTo(0,0);
+  } else if(act==='del'){
+    arm(b,'Delete',()=>{ custom=custom.filter(x=>x.id!==id); if(editId===id) endEdit(); saveCustom(); afterCustomChange(); msg.textContent='Deleted.'; });
+  } else if(act==='delS'){
+    arm(b,'Delete',()=>{ blocks.forEach(bl=>{ bl.subs=bl.subs.filter(x=>x.id!==id); }); custom.forEach(x=>{ if(x.sb===id) x.sb=''; });
+      saveBlocks(); saveCustom(); afterCustomChange(); msg.textContent='Sub-block deleted – its words are now Unsorted.'; });
+  } else if(act==='delB'){
+    arm(b,'Delete block',()=>{ const bl=blocks.find(x=>x.id===id); if(!bl) return; const ids=new Set(bl.subs.map(x=>x.id));
+      custom.forEach(x=>{ if(ids.has(x.sb)) x.sb=''; }); blocks=blocks.filter(x=>x.id!==id);
+      saveBlocks(); saveCustom(); afterCustomChange(); msg.textContent='Block deleted – its words are now Unsorted.'; });
+  } else if(act==='mkS'){
+    const bl=blocks.find(x=>x.id===id); if(!bl) return;
+    if(bl.subs.length>=MAXS){ msg.textContent='Limit of '+MAXS+' sub-blocks reached.'; return; }
+    bl.subs.push({id:uid(),name:cleanTxt($('ns-'+id).value).slice(0,40)||('Teil '+(bl.subs.length+1))});
+    saveBlocks(); afterCustomChange(); msg.textContent='Sub-block added.';
+  } else if(act==='prB' || act==='prS'){
+    scope=(act==='prB'?'b:':'s:')+id; view='learn'; setMode('mine'); setView('learn');
+  }
+});
+$('mylist').addEventListener('change',e=>{
+  const t=e.target, act=t.dataset && t.dataset.act; if(!act) return;
+  if(act==='rename'){
+    const list=t.dataset.kind==='b' ? blocks : blocks.flatMap(b=>b.subs);
+    const o=list.find(x=>x.id===t.dataset.id); if(!o) return;
+    const nm=cleanTxt(t.value).slice(0,40);
+    if(!nm){ t.value=o.name; return; }
+    o.name=nm; saveBlocks(); renderScope(); renderMyList();
+  } else if(act==='move'){
+    if(t.value==='#') return;
+    const ent=custom.find(x=>x.id===t.dataset.id); if(!ent) return;
+    ent.sb=t.value; saveCustom(); afterCustomChange(); $('addMsg').textContent='Moved.';
+  }
+});
+
+// ---------- start ----------
+$('ans').placeholder=MODES[mode].ph;
+buildChips(); sync(); updateTop(); renderScope(); setView('learn');
+setInterval(()=>{ updateTop(); if(view==='learn' && !run && !$('learnHome').hidden) learnHome(); },30000);
+</script>
+</body>
+</html>
