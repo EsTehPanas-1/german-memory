@@ -142,6 +142,10 @@ select.mv{font-size:16px;padding:4px}
 .sh{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0 2px 14px}
 .srow{display:flex;gap:8px;margin:8px 0 0 14px}
 .sync{margin:0 0 12px}
+a.linkbtn{display:inline-flex;align-items:center;min-height:36px;font-size:16px;padding:2px 12px;border:2px solid var(--rule);border-radius:8px;color:var(--soft);text-decoration:none}
+a.linkbtn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.banner{border:2px solid var(--accent);background:var(--hl);border-radius:10px;padding:8px 14px;margin:0 0 12px}
+.banner p{margin:4px 0}
 .sync[data-s="ok"]{color:var(--ok)}
 .sync[data-s="err"],.sync[data-s="full"]{color:var(--bad)}
 .log{margin-top:32px;color:var(--soft);font-size:17px}
@@ -163,7 +167,7 @@ select.mv{font-size:16px;padding:4px}
 <body>
 
 <main class="sheet">
-  <h1>Mit Präpositionen <span class="ver">v13</span></h1>
+  <h1>Mit Präpositionen <span class="ver">v14</span></h1>
   <p class="today" id="today"></p>
   <div class="gbar" aria-hidden="true"><i id="goalFill"></i></div>
 
@@ -196,6 +200,10 @@ select.mv{font-size:16px;padding:4px}
     <p class="small" id="hint" aria-live="polite"></p>
   </details>
   <p class="small sync" id="sync" role="status">Loading your saved words…</p>
+  <div class="banner" id="inBanner" hidden>
+    <p id="inMsg"></p>
+    <div class="row"><button class="primary" id="inAdd">Add these words</button><button id="inNo">Not now</button></div>
+  </div>
 
   <!-- LEARN HOME -->
   <section id="learnHome">
@@ -340,12 +348,22 @@ select.mv{font-size:16px;padding:4px}
     <div class="tools">
       <label>Daily goal <select id="goal"><option>50</option><option>100</option><option>150</option><option>250</option><option>400</option></select> answers</label>
     </div>
+    <h2>Share your words</h2>
+    <p class="small">Send your own words and blocks to a friend. Your progress is not included.</p>
+    <div class="row"><button class="mini" id="shareLink">Copy share link</button></div>
+    <p class="small" id="shareMsg" aria-live="polite"></p>
+    <textarea id="shareTxt" rows="2" readonly hidden aria-label="Share link"></textarea>
+    <div id="fileBox">
+      <p class="small" style="margin-top:12px">To keep them for everyone who opens this site, put them in the shared list (<b>words.json</b>). Copy the file, open it on GitHub, replace everything with what you copied, and tap “Commit changes”. The site loads it within a minute or two.</p>
+      <div class="row"><button class="mini" id="copyFile">Copy words file</button><a class="mini linkbtn" id="editFile" href="#" target="_blank" rel="noopener">Open words.json on GitHub</a></div>
+      <textarea id="fileTxt" rows="3" readonly hidden aria-label="Words file"></textarea>
+    </div>
     <h2>Backup</h2>
-    <p class="small">A copy of all your words and progress as text. Keep it somewhere safe, or paste it into another copy of this page.</p>
+    <p class="small">A copy of all your words and progress as text. Send it to a friend: they paste it here and tap “Add words from backup” to get your words without touching their own progress.</p>
     <div class="row"><button class="mini" id="expBtn">Show backup text</button><button class="mini" id="copyBtn" hidden>Copy</button></div>
     <textarea id="expTxt" rows="3" readonly hidden aria-label="Backup text"></textarea>
     <textarea id="impTxt" rows="3" placeholder="Paste backup text here" aria-label="Paste backup text" style="margin-top:10px"></textarea>
-    <div class="row" style="margin-top:6px"><button class="mini" id="impBtn">Import backup</button><button class="mini" id="resetBtn">Reset all progress</button></div>
+    <div class="row" style="margin-top:6px"><button class="mini" id="impWords">Add words from backup</button><button class="mini" id="impBtn">Import everything</button><button class="mini" id="resetBtn">Reset all progress</button></div>
     <p class="small" id="bkMsg" aria-live="polite"></p>
   </section>
 
@@ -375,6 +393,7 @@ select.mv{font-size:16px;padding:4px}
 
   <details class="log">
     <summary>Version history</summary>
+    <p><b>v14</b> – Sharing. Stats → “Copy share link” sends your words to a friend; opening the link offers to add them. On the website, words in the shared list (words.json) load for everyone who opens it, read-only, next to their own words. “Add words from backup” adds words without replacing your progress.</p>
     <p><b>v13</b> – Your own words, blocks, progress, memory tricks and settings are saved to your account, so they come back when you reopen the page or open it on another device. This browser keeps a copy too.</p>
     <p><b>v12</b> – Built for fast memorising. <b>Learn</b>: spaced repetition (words return after 5 min, 30 min, 3 h, 12 h, 2 days) and a 3-step ladder for new words (copy → hint → recall); missed words come back a few cards later in the same session. <b>Drill</b>: Type, Pick (tap), Preposition only, Sentence (cloze with example sentences for every built-in word), Meaning (reverse) and Listen, from all / not mastered / missed / trap pairs. <b>Sprint</b> (timed tapping) and <b>Match</b> boards. <b>Review</b> shows case rules, trap pairs, examples and status. Memory tricks per word, read-aloud, daily goal, streak, accuracy per preposition, backup and import. The old weak list is moved into the new system.</p>
     <p><b>v11</b> – Blocks and sub-blocks for Meine Wörter.</p>
@@ -704,7 +723,7 @@ function cleanBlocks(o){
         const sn=cleanTxt(x.name).slice(0,40); if(sn){ seen.add(x.id); subs.push({id:x.id,name:sn}); }
       }
     });
-    out.push({id:b.id,name:nm,subs});
+    const o2={id:b.id,name:nm,subs}; if(b.sh) o2.sh=true; out.push(o2);
   });
   return out;
 }
@@ -713,7 +732,7 @@ function cleanCustom(o, bl){
   // v10 saved newest first and had no sub-blocks; keep words in the order they were added
   if(o.length && !o.some(e=>e && typeof e==='object' && 'sb' in e)) o=o.slice().reverse();
   const subIds=new Set(bl.flatMap(b=>b.subs.map(x=>x.id)));
-  return o.filter(okEntry).slice(0,MAXC).map(e=>({id:e.id,t:e.t,de:cleanTxt(e.de),meaning:cleanTxt(e.meaning),preps:e.preps.map(x=>({p:x.p,c:x.c})),obj:e.obj,note:'',sb:subIds.has(e.sb)?e.sb:'',ex:cleanTxt(e.ex||'').slice(0,200)}));
+  return o.filter(okEntry).slice(0,MAXC*2).map(e=>{ const r={id:e.id,t:e.t,de:cleanTxt(e.de),meaning:cleanTxt(e.meaning),preps:e.preps.map(x=>({p:x.p,c:x.c})),obj:e.obj,note:'',sb:subIds.has(e.sb)?e.sb:'',ex:cleanTxt(e.ex||'').slice(0,200)}; if(e.sh) r.sh=true; return r; });
 }
 function cleanSrs(o){
   const out={};
@@ -746,8 +765,10 @@ const saveBlocks=()=>{ lsSet(BK,blocks); cloudMark('words'); }, saveCustom=()=>{
 
 // ---------- account storage (claude.ai) ----------
 // Words and progress are kept in two private documents per person. This browser's storage stays as a fast cache.
-const cloud={db:null,uid:null,ready:false,touched:false,dirty:{},timer:{},busy:{},retry:{},state:'loading'};
-const cpath=w=>'data/users/'+cloud.uid+'/'+w;
+const cloud={db:null,uid:null,owner:false,ready:false,touched:false,dirty:{},timer:{},busy:{},retry:{},state:'loading',shared:0,unsub:null};
+const SHARED='shared/words'; // the page owner's word list; everyone the page is shared with can read it
+const cpath=w=>(w==='words' && cloud.owner) ? SHARED : 'data/users/'+cloud.uid+'/'+w;
+const mine=a=>a.filter(x=>!x.sh);
 const PK='vq_pending_v1'; // set while this browser has changes your account hasn't confirmed yet
 function cloudMark(which){
   lsSet(PK,1);
@@ -756,8 +777,8 @@ function cloudMark(which){
   cloud.timer[which]=setTimeout(()=>cloudFlush(which),1200);
 }
 function cloudBody(which){
-  return which==='words' ? {v:13,at:Date.now(),custom:JSON.stringify(custom),blocks:JSON.stringify(blocks)}
-                         : {v:13,at:Date.now(),srs:JSON.stringify(srs),stats:JSON.stringify(stats),tricks:JSON.stringify(tricks),set:JSON.stringify(set)};
+  return which==='words' ? {v:14,at:Date.now(),custom:JSON.stringify(mine(custom)),blocks:JSON.stringify(mine(blocks))}
+                         : {v:14,at:Date.now(),srs:JSON.stringify(srs),stats:JSON.stringify(stats),tricks:JSON.stringify(tricks),set:JSON.stringify(set)};
 }
 async function cloudFlush(which){
   if(!cloud.ready || cloud.busy[which] || !cloud.dirty[which]) return;
@@ -783,12 +804,13 @@ function setSync(s){
   cloud.state=s; const el=$('sync'); if(!el) return;
   const T={
     loading:'Loading your saved words…',
-    ok:'Your words and progress are saved to your account.',
+    ok: cloud.owner ? 'Saved to your account. Anyone you share this page with sees your words; progress stays private to each person.'
+       : (cloud.shared ? cloud.shared+' words from the shared list are loaded. Your own words and progress are saved to your account.' : 'Your words and progress are saved to your account.'),
     saving:'Saving…',
     err:'Can’t reach your account right now. Everything is kept in this browser and saves to your account on your next change.',
     full:'Your account storage for this page is full. New changes are kept in this browser only.',
-    readonly:'This view can’t save to your account, so your words stay in this browser.',
-    local: canSave ? 'Your words and progress are saved in this browser.' : 'Saving is blocked in this browser, so progress only lasts until you close the page. Use Stats → Backup to keep it.'
+    readonly:(cloud.shared ? cloud.shared+' words from the shared list are loaded. ' : '')+'Your own words and progress are saved in this browser only (ask the owner to share the page with you as Contributor to save them to your account).',
+    local: (cloud.shared ? cloud.shared+' words from the shared list are loaded. ' : '')+(canSave ? 'Your words and progress are saved in this browser.' : 'Saving is blocked in this browser, so progress only lasts until you close the page. Use Stats → Backup to keep it.')
   };
   el.textContent=T[s]||''; el.dataset.s=s;
 }
@@ -802,25 +824,31 @@ async function cloudInit(){
   let uid=null; try{ uid=await user.id(); }catch(e){}
   if(!uid){ fallback(); return; }
   cloud.db=db; cloud.uid=uid;
-  let w,p;
-  const load=()=>Promise.all([db.doc(cpath('words')).get(),db.doc(cpath('progress')).get()]);
-  try{ [w,p]=await load(); }
+  try{ cloud.owner=!!(await user.isOwner()); }catch(e){ cloud.owner=false; }
+  let sw,w,p;
+  const load=()=>Promise.all([db.doc(SHARED).get(),db.doc('data/users/'+uid+'/words').get(),db.doc(cpath('progress')).get()]);
+  try{ [sw,w,p]=await load(); }
   catch(e){
-    if(e&&e.code==='unavailable'){ await new Promise(r=>setTimeout(r,800+Math.random()*1200)); try{ [w,p]=await load(); }catch(e2){ fallback(); return; } }
+    if(e&&e.code==='unavailable'){ await new Promise(r=>setTimeout(r,800+Math.random()*1200)); try{ [sw,w,p]=await load(); }catch(e2){ fallback(); return; } }
     else{ fallback(); return; }
   }
   const merge=cloud.touched || !!lsGet(PK,0);
   let pushW=false, pushP=false;
-  if(w.exists){
-    const d=w.data()||{}, cb=cleanBlocks(jparse(d.blocks)), cc=cleanCustom(jparse(d.custom),cb);
+  // the owner's list lives in the shared document; an older private copy is moved there once
+  const ownDoc = cloud.owner ? (sw.exists ? sw : w) : w;
+  const localMine=mine(custom), localMineB=mine(blocks);
+  let cb=[], cc=[];
+  if(ownDoc.exists){
+    const d=ownDoc.data()||{}; cb=mine(cleanBlocks(jparse(d.blocks))); cc=mine(cleanCustom(jparse(d.custom),cb));
     if(merge){
-      const bIds=new Set(cb.map(b=>b.id)); blocks.forEach(b=>{ if(!bIds.has(b.id)) cb.push(b); });
+      const bIds=new Set(cb.map(b=>b.id)); localMineB.forEach(b=>{ if(!bIds.has(b.id)) cb.push(b); });
       const cIds=new Set(cc.map(e=>e.id)), sigs=new Set(cc.map(sig));
-      custom.forEach(e=>{ if(!cIds.has(e.id) && !sigs.has(sig(e))) cc.push(e); });
+      localMine.forEach(e=>{ if(!cIds.has(e.id) && !sigs.has(sig(e))) cc.push(e); });
       pushW=true;
     }
-    blocks=cleanBlocks(cb); custom=cleanCustom(cc,blocks).slice(0,MAXC);
-  } else pushW = custom.length>0 || blocks.length>0;
+    if(cloud.owner && !sw.exists) pushW=true;
+  } else { cb=localMineB; cc=localMine; pushW = cc.length>0 || cb.length>0; }
+  setWords(cc,cb, (!cloud.owner && sw.exists) ? sw.data() : null);
   if(p.exists){
     const d=p.data()||{};
     const cs=cleanSrs(jparse(d.srs)), cst=cleanStats(jparse(d.stats)), ct=cleanTricks(jparse(d.tricks)), cset=jparse(d.set);
@@ -837,12 +865,37 @@ async function cloudInit(){
       ['sound','newN','goal','dur','drill','src'].forEach(k=>{ if(k in cset && typeof cset[k]===typeof set[k]) set[k]=cset[k]; });
     }
   } else pushP = Object.keys(srs).length>0 || Object.keys(tricks).length>0 || Object.keys(stats.days).length>0;
-  lsSet(BK,blocks); lsSet(CK,custom); lsSet(SRK,srs); lsSet(STK,stats); lsSet(TK,tricks); lsSet(SETK,set);
+  lsSet(SRK,srs); lsSet(STK,stats); lsSet(TK,tricks); lsSet(SETK,set);
   cloud.ready=true; setSync('ok');
   afterCustomChange();
   if(!run) refresh();
   if(pushW) cloudMark('words');
   if(pushP) cloudMark('progress');
+  // people the page is shared with get the owner's new words while the page is open
+  if(!cloud.owner){
+    try{
+      cloud.unsub=db.doc(SHARED).onSnapshot(snap=>{
+        if(snap.metadata && snap.metadata.fromCache) return;
+        setWords(mine(custom),mine(blocks), snap.exists ? snap.data() : null);
+        afterCustomChange(); if(cloud.ready) setSync(cloud.state==='saving'?'saving':'ok');
+        if(!run && (view==='learn'||view==='review'||view==='manage')) refresh();
+      },()=>{});
+    }catch(e){}
+  }
+}
+// own words + (for people the page is shared with) the owner's words, marked read-only
+function setWords(ownC,ownB,sharedBody){
+  let shB=[], shC=[];
+  if(sharedBody){
+    shB=cleanBlocks(jparse(sharedBody.blocks)).map(b=>Object.assign(b,{sh:true}));
+    const ownIds=new Set(ownB.map(b=>b.id)); shB=shB.filter(b=>!ownIds.has(b.id));
+    shC=cleanCustom(jparse(sharedBody.custom),shB.concat(ownB)).map(e=>Object.assign(e,{sh:true}));
+    const ids=new Set(ownC.map(e=>e.id)); shC=shC.filter(e=>!ids.has(e.id));
+  }
+  cloud.shared=shC.length;
+  blocks=cleanBlocks(shB.concat(ownB));
+  custom=cleanCustom(shC.concat(ownC),blocks);
+  lsSet(BK,blocks); lsSet(CK,custom);
 }
 
 const entryLine=e=>[e.de,e.obj,e.preps.map(x=>x.p+' '+x.c).join(','),e.meaning,e.note,e.sb||'',e.ex||''].join('|');
@@ -1579,11 +1632,11 @@ function renderStats(){
     const id=document.createElement('div'); id.className='id'; id.textContent=label(g); r.append(de,id); H.appendChild(r); });
   $('drillMissed').hidden=!hard.length;
   $('goal').value=String(set.goal);
-  $('expTxt').hidden=true; $('copyBtn').hidden=true; $('bkMsg').textContent='';
+  $('expTxt').hidden=true; $('copyBtn').hidden=true; $('bkMsg').textContent=''; $('shareTxt').hidden=true; $('fileTxt').hidden=true; $('shareMsg').textContent='';
 }
 $('drillMissed').onclick=()=>{ set.src='missed'; saveSet(); if(mode!=='all'){ mode='all'; DATA=dataFor('all'); document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.m==='all')); sel.clear(); buildChips(); sync(); } setView('drill'); };
 $('goal').onchange=()=>{ set.goal=+$('goal').value||150; saveSet(); updateTop(); };
-$('expBtn').onclick=()=>{ $('expTxt').value=JSON.stringify({app:'mit-praep',v:13,srs,tricks,stats,custom,blocks}); $('expTxt').hidden=false; $('copyBtn').hidden=false; $('expTxt').select(); };
+$('expBtn').onclick=()=>{ $('expTxt').value=JSON.stringify({app:'mit-praep',v:14,srs,tricks,stats,custom:custom.map(e=>{ const c=Object.assign({},e); delete c.sh; return c; }),blocks:blocks.map(b=>{ const c=Object.assign({},b); delete c.sh; return c; })}); $('expTxt').hidden=false; $('copyBtn').hidden=false; $('expTxt').select(); };
 $('copyBtn').onclick=()=>{
   const t=$('expTxt'); const fallback=()=>{ t.focus(); t.select(); $('bkMsg').textContent='Selected – copy it with your keyboard or long-press.'; };
   try{ navigator.clipboard.writeText(t.value).then(()=>{ $('bkMsg').textContent='Copied.'; },fallback); }catch(e){ fallback(); }
@@ -1596,11 +1649,97 @@ $('impBtn').onclick=()=>{
   let o; try{ o=JSON.parse($('impTxt').value.trim()); }catch(e){ $('bkMsg').textContent='That text is not a backup from this page.'; return; }
   if(!o || o.app!=='mit-praep'){ $('bkMsg').textContent='That text is not a backup from this page.'; return; }
   arm($('impBtn'),'Import backup',()=>{
-    blocks=cleanBlocks(o.blocks); custom=cleanCustom(o.custom,blocks); srs=cleanSrs(o.srs); stats=cleanStats(o.stats); tricks=cleanTricks(o.tricks);
+    const ob=cleanBlocks(o.blocks).filter(b=>!b.sh);
+    blocks=cleanBlocks(blocks.filter(b=>b.sh).concat(ob));
+    custom=cleanCustom(custom.filter(e=>e.sh).concat(cleanCustom(o.custom,ob).filter(e=>!e.sh)),blocks); srs=cleanSrs(o.srs); stats=cleanStats(o.stats); tricks=cleanTricks(o.tricks);
     saveBlocks(); saveCustom(); saveSrs(); saveStats(); saveTricks(); afterCustomChange();
     $('impTxt').value=''; renderStats(); $('bkMsg').textContent='Backup imported.';
   });
 };
+$('impWords').onclick=()=>{
+  let o; try{ o=JSON.parse($('impTxt').value.trim()); }catch(e){ o=null; }
+  if(!o || o.app!=='mit-praep'){ $('bkMsg').textContent='That text is not a backup from this page.'; return; }
+  const added=addWordsFrom(o); renderStats();
+  $('impTxt').value=''; $('bkMsg').textContent=added ? 'Added '+added+' word'+(added>1?'s':'')+'. Your progress was not changed.' : 'No new words in that backup.';
+};
+// ---------- sharing outside Claude ----------
+const own=()=>({custom:mine(custom).map(e=>{ const c=Object.assign({},e); delete c.sh; return c; }),blocks:mine(blocks).map(b=>{ const c=Object.assign({},b); delete c.sh; return c; })});
+// add words (and their blocks) without touching progress; returns how many were new
+function addWordsFrom(o){
+  const nb=cleanBlocks(o.blocks).map(b=>{ delete b.sh; return b; }), nc=cleanCustom(o.custom,nb).map(e=>{ delete e.sh; return e; });
+  const bIds=new Set(blocks.map(b=>b.id)), sigs=new Set(custom.map(sig));
+  let added=0;
+  nb.forEach(b=>{ if(!bIds.has(b.id) && mine(blocks).length<MAXB){ blocks.push(b); bIds.add(b.id); } });
+  nc.forEach(e=>{ if(!sigs.has(sig(e)) && mine(custom).length<MAXC){ if(custom.some(x=>x.id===e.id)) e.id=uid(); if(!bIds.has(e.sb)) e.sb=''; custom.push(e); sigs.add(sig(e)); added++; } });
+  blocks=cleanBlocks(blocks); custom=cleanCustom(custom,blocks);
+  saveBlocks(); saveCustom(); afterCustomChange();
+  return added;
+}
+// words.json next to the page: everyone who opens the site gets these words (read-only)
+async function loadSharedFile(){
+  if(!/^https?:$/.test(location.protocol)) return;
+  let body=null;
+  try{ const r=await fetch('words.json',{cache:'no-cache'}); if(r.ok) body=await r.json(); }catch(e){ return; }
+  if(!body || typeof body!=='object') return;
+  const asStr=x=>typeof x==='string'?x:JSON.stringify(Array.isArray(x)?x:[]);
+  setWords(mine(custom),mine(blocks),{custom:asStr(body.custom),blocks:asStr(body.blocks)});
+  afterCustomChange(); if(cloud.state==='local') setSync('local');
+  if(!run) refresh();
+}
+const b64u={
+  enc:bytes=>{ let s=''; bytes.forEach(b=>s+=String.fromCharCode(b)); return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); },
+  dec:str=>{ const s=atob(str.replace(/-/g,'+').replace(/_/g,'/')); return Uint8Array.from(s,c=>c.charCodeAt(0)); }
+};
+async function packWords(o){
+  const raw=new TextEncoder().encode(JSON.stringify(o));
+  if(typeof CompressionStream!=='undefined'){
+    try{ const z=await new Response(new Blob([raw]).stream().pipeThrough(new CompressionStream('deflate-raw'))).arrayBuffer(); return 'z'+b64u.enc(new Uint8Array(z)); }catch(e){}
+  }
+  return 'j'+b64u.enc(raw);
+}
+async function unpackWords(t){
+  let bytes=b64u.dec(t.slice(1));
+  if(t[0]==='z') bytes=new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer());
+  return JSON.parse(new TextDecoder().decode(bytes));
+}
+const pageUrl=()=>location.href.split('#')[0];
+function copyText(text,box,msgEl,okMsg){
+  box.value=text; box.hidden=false;
+  const fallback=()=>{ box.focus(); box.select(); msgEl.textContent='Selected – copy it with your keyboard or long-press.'; };
+  try{ navigator.clipboard.writeText(text).then(()=>{ msgEl.textContent=okMsg; },fallback); }catch(e){ fallback(); }
+}
+$('shareLink').onclick=async()=>{
+  const o=own();
+  if(!o.custom.length){ $('shareMsg').textContent='You have no own words yet. Add some under “+ Words” first.'; return; }
+  const link=pageUrl()+'#w='+await packWords(o);
+  copyText(link,$('shareTxt'),$('shareMsg'),'Link copied ('+o.custom.length+' words). Send it to your friend – opening it offers to add your words.');
+};
+$('copyFile').onclick=()=>{
+  const o=own();
+  copyText(JSON.stringify({app:'mit-praep',custom:o.custom,blocks:o.blocks},null,1),$('fileTxt'),$('shareMsg'),'Copied '+o.custom.length+' words. Now open words.json on GitHub and paste it in.');
+};
+(function(){
+  const m=/^([a-z0-9-]+)\.github\.io$/i.exec(location.hostname), repo=location.pathname.split('/').filter(Boolean)[0];
+  if(m && repo){ $('editFile').href='https://github.com/'+m[1]+'/'+repo+'/edit/main/words.json'; }
+  else $('fileBox').hidden=true;
+})();
+let incoming=null;
+async function checkShareLink(){
+  const h=location.hash; if(!h.startsWith('#w=')) return;
+  try{ incoming=await unpackWords(h.slice(3)); }catch(e){ incoming=null; }
+  try{ history.replaceState(null,'',pageUrl()); }catch(e){}
+  if(!incoming || !Array.isArray(incoming.custom)){ $('inMsg').textContent='This share link is damaged. Ask your friend to copy it again.'; $('inAdd').hidden=true; $('inBanner').hidden=false; return; }
+  const n=incoming.custom.length, bl=Array.isArray(incoming.blocks)?incoming.blocks.length:0;
+  $('inMsg').textContent='Someone shared '+n+' word'+(n===1?'':'s')+(bl?' in '+bl+' block'+(bl===1?'':'s'):'')+' with you. Add them to Meine Wörter? Your progress stays as it is.';
+  $('inAdd').hidden=false; $('inBanner').hidden=false;
+}
+$('inAdd').onclick=()=>{
+  if(!incoming) return;
+  const n=addWordsFrom(incoming); incoming=null;
+  $('inMsg').textContent=n ? 'Added '+n+' word'+(n===1?'':'s')+'. Find them under the “Meine Wörter” tab.' : 'You already have all of these words.';
+  $('inAdd').hidden=true; $('inNo').textContent='Close';
+};
+$('inNo').onclick=()=>{ $('inBanner').hidden=true; incoming=null; };
 $('resetBtn').onclick=()=>arm($('resetBtn'),'Reset all progress',()=>{ srs={}; stats=cleanStats({}); saveSrs(); saveStats(); updateTop(); renderStats(); $('bkMsg').textContent='Progress reset. Your own words are kept.'; });
 
 // ---------- own words: blocks, add / edit / delete ----------
@@ -1619,7 +1758,7 @@ function renderScope(){
   $('scopeBox').hidden = !(mode==='mine' && view!=='manage' && view!=='stats');
   const o=[['all','All my words ('+custom.length+')']];
   blocks.forEach(b=>{
-    o.push(['b:'+b.id, b.name+' – whole block ('+b.subs.reduce((a,x)=>a+cnt(x.id),0)+')']);
+    o.push(['b:'+b.id, b.name+(b.sh?' (shared)':'')+' – whole block ('+b.subs.reduce((a,x)=>a+cnt(x.id),0)+')']);
     b.subs.forEach(x=>o.push(['s:'+x.id,'   ↳ '+x.name+' ('+cnt(x.id)+')']));
   });
   if(blocks.length && cnt('')) o.push(['u','Unsorted ('+cnt('')+')']);
@@ -1635,7 +1774,7 @@ function afterCustomChange(){
 }
 function endEdit(){ editId=null; $('addBtn').textContent='Add'; $('cancelEdit').hidden=true; $('bulk').value=''; }
 function fillSub(prev){
-  const ts=$('tgtSub'), b=blocks.find(x=>x.id===$('tgtBlock').value);
+  const ts=$('tgtSub'), b=mine(blocks).find(x=>x.id===$('tgtBlock').value);
   ts.innerHTML='';
   if(b){
     b.subs.forEach(x=>ts.add(new Option(x.name,x.id)));
@@ -1646,8 +1785,8 @@ function fillSub(prev){
 }
 function renderTargets(){
   const tb=$('tgtBlock'), pb=tb.value, ps=$('tgtSub').value;
-  tb.innerHTML=''; tb.add(new Option('Unsorted (no block)','')); blocks.forEach(b=>tb.add(new Option(b.name,b.id)));
-  tb.value=blocks.some(b=>b.id===pb) ? pb : '';
+  tb.innerHTML=''; tb.add(new Option('Unsorted (no block)','')); mine(blocks).forEach(b=>tb.add(new Option(b.name,b.id)));
+  tb.value=mine(blocks).some(b=>b.id===pb) ? pb : '';
   fillSub(ps);
 }
 function mkBtn(lbl,act,id){ const b=document.createElement('button'); b.type='button'; b.className='mini'; b.textContent=lbl; b.dataset.act=act; b.dataset.id=id; return b; }
@@ -1662,12 +1801,13 @@ function entryRow(e){
   const id=document.createElement('div'); id.className='id'; id.textContent=e.meaning+' · '+TYPE[e.t];
   r.append(de,id);
   if(e.ex){ const x=document.createElement('div'); x.className='ex'; x.innerHTML=exHtml(e.ex); r.appendChild(x); }
+  if(e.sh){ r.appendChild(small('From the shared list')); return r; }
   const row=document.createElement('div'); row.className='row'; row.style.marginTop='6px';
   row.append(mkBtn('Edit','edit',e.id), mkBtn('Delete','del',e.id));
-  if(blocks.some(b=>b.subs.length)){
+  if(mine(blocks).some(b=>b.subs.length)){
     const mv=document.createElement('select'); mv.className='mv'; mv.dataset.act='move'; mv.dataset.id=e.id; mv.setAttribute('aria-label','Move to');
     mv.add(new Option('Move to…','#')); mv.add(new Option('Unsorted',''));
-    blocks.forEach(b=>b.subs.forEach(x=>mv.add(new Option(b.name+' › '+x.name,x.id))));
+    mine(blocks).forEach(b=>b.subs.forEach(x=>mv.add(new Option(b.name+' › '+x.name,x.id))));
     mv.value='#'; row.appendChild(mv);
   }
   r.appendChild(row); return r;
@@ -1675,10 +1815,21 @@ function entryRow(e){
 function renderMyList(){
   renderTargets();
   const box=$('mylist'); box.innerHTML='';
-  $('myCount').textContent=custom.length+' own word'+(custom.length===1?'':'s');
+  const nm=mine(custom).length;
+  $('myCount').textContent=nm+' own word'+(nm===1?'':'s')+(cloud.shared?' · '+cloud.shared+' from the shared list':'');
   blocks.forEach(b=>{
     const h=document.createElement('div'); h.className='bh';
-    h.append(nameInput('b',b.id,b.name), small(b.subs.reduce((a,x)=>a+cnt(x.id),0)+' words'), mkBtn('Practise','prB',b.id), mkBtn('Delete block','delB',b.id));
+    const nwords=b.subs.reduce((a,x)=>a+cnt(x.id),0)+' words';
+    if(b.sh){
+      const t=document.createElement('span'); t.textContent=b.name; t.style.fontSize='22px';
+      h.append(t, small(nwords+' · from the shared list'), mkBtn('Practise','prB',b.id)); box.appendChild(h);
+      b.subs.forEach(x=>{ const sh=document.createElement('div'); sh.className='sh';
+        const t2=document.createElement('span'); t2.textContent=x.name;
+        sh.append(t2, small(cnt(x.id)+' words'), mkBtn('Practise','prS',x.id)); box.appendChild(sh);
+        custom.filter(e=>e.sb===x.id).forEach(e=>box.appendChild(entryRow(e))); });
+      return;
+    }
+    h.append(nameInput('b',b.id,b.name), small(nwords), mkBtn('Practise','prB',b.id), mkBtn('Delete block','delB',b.id));
     box.appendChild(h);
     const add=document.createElement('div'); add.className='srow';
     const si=document.createElement('input'); si.type='text'; si.className='sm'; si.maxLength=40; si.id='ns-'+b.id;
@@ -1691,7 +1842,12 @@ function renderMyList(){
       custom.filter(e=>e.sb===x.id).forEach(e=>box.appendChild(entryRow(e)));
     });
   });
-  const un=custom.filter(e=>!e.sb);
+  const unSh=custom.filter(e=>!e.sb && e.sh);
+  if(unSh.length){
+    const h=document.createElement('div'); h.className='bh'; h.appendChild(small('From the shared list ('+unSh.length+')'));
+    box.appendChild(h); unSh.forEach(e=>box.appendChild(entryRow(e)));
+  }
+  const un=custom.filter(e=>!e.sb && !e.sh);
   if(un.length){
     const h=document.createElement('div'); h.className='bh'; h.appendChild(small(blocks.length ? 'Unsorted ('+un.length+')' : 'Your words ('+un.length+')'));
     box.appendChild(h); un.forEach(e=>box.appendChild(entryRow(e)));
@@ -1704,7 +1860,7 @@ function addWords(){
     if(one.length!==1){ msg.textContent='While editing, keep exactly one line.'; return; }
     const r=parseLine(one[0],order);
     if(r.err){ msg.textContent='Cannot save: '+r.err+'.'; return; }
-    const i=custom.findIndex(x=>x.id===editId);
+    const i=custom.findIndex(x=>x.id===editId && !x.sh);
     if(i<0){ endEdit(); msg.textContent='That word no longer exists.'; return; }
     if(custom.some(x=>x.id!==editId && sig(x)===sig(r.e))){ msg.textContent='You already have exactly that word.'; return; }
     r.e.id=editId; r.e.sb=custom[i].sb; custom[i]=r.e; endEdit(); saveCustom(); afterCustomChange(); msg.textContent='Saved changes.'; return;
@@ -1715,12 +1871,12 @@ function addWords(){
     const r=parseLine(ln,order);
     if(r.err){ notes.push('Line '+(idx+1)+': '+r.err); keep.push(ln); return; }
     if(custom.concat(fresh).some(x=>sig(x)===sig(r.e))){ notes.push('Line '+(idx+1)+': already added'); return; }
-    if(custom.length+fresh.length>=MAXC){ notes.push('limit of '+MAXC+' own words reached'); keep.push(ln); return; }
+    if(custom.filter(x=>!x.sh).length+fresh.length>=MAXC){ notes.push('limit of '+MAXC+' own words reached'); keep.push(ln); return; }
     r.e.id=uid(); r.e.sb=''; fresh.push(r.e);
   });
   let where='';
   if(fresh.length){
-    const bl=blocks.find(b=>b.id===$('tgtBlock').value);
+    const bl=mine(blocks).find(b=>b.id===$('tgtBlock').value);
     if(bl){
       if($('autoSplit').checked){
         const n=Math.min(30,Math.max(3,parseInt($('splitN').value,10)||10));
@@ -1745,8 +1901,8 @@ $('tgtBlock').onchange=()=>fillSub('');
 function mkBlock(){
   const nm=cleanTxt($('newBlock').value).slice(0,40), msg=$('addMsg');
   if(!nm){ msg.textContent='Give the block a name first.'; return; }
-  if(blocks.length>=MAXB){ msg.textContent='Limit of '+MAXB+' blocks reached.'; return; }
-  if(blocks.some(b=>b.name.toLowerCase()===nm.toLowerCase())){ msg.textContent='A block with that name already exists.'; return; }
+  if(mine(blocks).length>=MAXB){ msg.textContent='Limit of '+MAXB+' blocks reached.'; return; }
+  if(mine(blocks).some(b=>b.name.toLowerCase()===nm.toLowerCase())){ msg.textContent='A block with that name already exists.'; return; }
   blocks.push({id:uid(),name:nm,subs:[]}); $('newBlock').value=''; saveBlocks(); afterCustomChange();
   msg.textContent='Block “'+nm+'” created. Choose it under “Add to” to put words in it.';
 }
@@ -1756,7 +1912,7 @@ $('mylist').addEventListener('click',e=>{
   const b=e.target.closest('button[data-act]'); if(!b) return;
   const act=b.dataset.act, id=b.dataset.id, msg=$('addMsg');
   if(act==='edit'){
-    const ent=custom.find(x=>x.id===id); if(!ent) return;
+    const ent=custom.find(x=>x.id===id && !x.sh); if(!ent) return;
     editId=id; $('bulk').value=entryText(ent,$('order').value);
     $('addBtn').textContent='Save changes'; $('cancelEdit').hidden=false;
     msg.textContent='Change the line, then tap Save changes.'; $('bulk').focus(); window.scrollTo(0,0);
@@ -1781,14 +1937,14 @@ $('mylist').addEventListener('click',e=>{
 $('mylist').addEventListener('change',e=>{
   const t=e.target, act=t.dataset && t.dataset.act; if(!act) return;
   if(act==='rename'){
-    const list=t.dataset.kind==='b' ? blocks : blocks.flatMap(b=>b.subs);
+    const list=t.dataset.kind==='b' ? mine(blocks) : mine(blocks).flatMap(b=>b.subs);
     const o=list.find(x=>x.id===t.dataset.id); if(!o) return;
     const nm=cleanTxt(t.value).slice(0,40);
     if(!nm){ t.value=o.name; return; }
     o.name=nm; saveBlocks(); renderScope(); renderMyList();
   } else if(act==='move'){
     if(t.value==='#') return;
-    const ent=custom.find(x=>x.id===t.dataset.id); if(!ent) return;
+    const ent=custom.find(x=>x.id===t.dataset.id && !x.sh); if(!ent) return;
     ent.sb=t.value; saveCustom(); afterCustomChange(); $('addMsg').textContent='Moved.';
   }
 });
@@ -1797,6 +1953,8 @@ $('mylist').addEventListener('change',e=>{
 $('ans').placeholder=MODES[mode].ph;
 buildChips(); sync(); updateTop(); renderScope(); setView('learn');
 cloudInit();
+loadSharedFile();
+checkShareLink();
 setInterval(()=>{ updateTop(); if(view==='learn' && !run && !$('learnHome').hidden) learnHome(); },30000);
 </script>
 </body>
