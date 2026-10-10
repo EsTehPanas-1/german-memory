@@ -1,5 +1,28 @@
 {
  "app": "mit-praep",
- "custom": [],
+ "custom": [
+  {
+   "id": "mv2k81df9hicg",
+   "t": "word",
+   "de": "neugierig",
+   "meaning": "kepo",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "sb": "",
+   "ex": ""
+  },
+  {
+   "id": "mv2k8ajlbdc1e",
+   "t": "word",
+   "de": "neidlich",
+   "meaning": "cemburu",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "sb": "",
+   "ex": ""
+  }
+ ],
  "blocks": []
 }
