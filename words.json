@@ -2,28 +2,6 @@
  "app": "mit-praep",
  "custom": [
   {
-   "id": "mv2k81df9hicg",
-   "t": "word",
-   "de": "neugierig",
-   "meaning": "kepo",
-   "preps": [],
-   "obj": "",
-   "note": "",
-   "sb": "",
-   "ex": ""
-  },
-  {
-   "id": "mv2k8ajlbdc1e",
-   "t": "word",
-   "de": "neidlich",
-   "meaning": "cemburu",
-   "preps": [],
-   "obj": "",
-   "note": "",
-   "sb": "",
-   "ex": ""
-  },
-  {
    "t": "word",
    "de": "das Schwein",
    "meaning": "babi (S)",
@@ -31,8 +9,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipc29koz",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdy80qo",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -42,8 +20,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipcgroyo",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdnsuo8",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -53,8 +31,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipcmohke",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdvbkq1",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -64,8 +42,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipcgcyeg",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsd6j6me",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -75,8 +53,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipceu6f8",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdg8bfw",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -86,8 +64,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipcm8v19",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdwkj9p",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -97,8 +75,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipce27kr",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsddg7d3",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -108,8 +86,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipcx92zz",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdcxbyq",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -119,8 +97,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipcgr0xa",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdjbj8t",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -130,8 +108,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipcq7z8k",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdge736",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -141,8 +119,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipco3qj6",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdjeshp",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -152,8 +130,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipc5c3qv",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdr7yve",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -163,8 +141,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipchac0c",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdke92y",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -174,8 +152,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipc0cb8u",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsd0whk5",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -185,8 +163,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipc6hx12",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsd0t96c",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -196,8 +174,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipcynebs",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdmrf4n",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -207,8 +185,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipck3o6w",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdfayyj",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -218,8 +196,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipcgx5pn",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdhag1d",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -229,8 +207,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipci0spq",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsd6fs2j",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -240,8 +218,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipdv1km1",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsddjo72",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -251,8 +229,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipdkrs0k",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdi1dhk",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -262,8 +240,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipd1qygo",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdzny7l",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -273,8 +251,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipdqeqp4",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdqtqfh",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -284,8 +262,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipdx7o5j",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsd64bbe",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -295,8 +273,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipd76ksy",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsd61yzo",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -306,8 +284,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipd1r1si",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdhetyz",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -317,8 +295,8 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipds2yq7",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdmyohd",
+   "sb": "mv2leyu35ztou"
   },
   {
    "t": "word",
@@ -328,18 +306,2638 @@
    "obj": "",
    "note": "",
    "ex": "",
-   "id": "mv2l4ipdjaoni",
-   "sb": "mv2l48r9bgm9t"
+   "id": "mv2lfdsdryx4i",
+   "sb": "mv2leyu35ztou"
+  },
+  {
+   "t": "word",
+   "de": "der Floh",
+   "meaning": "kutu (flea) (F)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4un3upkt",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Biber",
+   "meaning": "berang\" (B)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4un6lvog",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Igel",
+   "meaning": "landak (I)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4unrso5i",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Greifvogel",
+   "meaning": "burung buas (G)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4unce3bu",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Löwe",
+   "meaning": "singa (n-Deklination) (L)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4unkk4z3",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Kriecher",
+   "meaning": "serangga (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4un1ni0b",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Flughund",
+   "meaning": "kalong (F)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4unhwzp0",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Geier",
+   "meaning": "burung pemakan bangkai (G)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4uno9kgf",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Frosch",
+   "meaning": "kodok (F)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4un3asi0",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Elefant",
+   "meaning": "gajah (n-Deklination) (E)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4un25j1x",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Käfer",
+   "meaning": "kumbang (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4und2g6h",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Bär",
+   "meaning": "beruang (B)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4unb1vdu",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Fuchs",
+   "meaning": "fox / rubah (F)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4uox4axd",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Hahn",
+   "meaning": "ayam jantan (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4uocajlc",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Karpfen",
+   "meaning": "ikan mas (koi) (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4uoqg7yf",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Lachs",
+   "meaning": "salmon (L)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4uojcs0a",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Kranich",
+   "meaning": "bangau (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4uo1hirm",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Hai",
+   "meaning": "hiu (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4uoo9qdu",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Blutegel",
+   "meaning": "lintah (B)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4uomi2e5",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Hase",
+   "meaning": "kelinci hutan (hare) (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4uot5it5",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Köder",
+   "meaning": "umpan (bait) (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4uochaeh",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Hund",
+   "meaning": "anjing (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4uooxrhg",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Esel",
+   "meaning": "keledai (E)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4uoi1p0n",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Büffel",
+   "meaning": "banteng (B)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4uoz6rne",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Kadaver",
+   "meaning": "bangkai (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4uolj69g",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Fisch",
+   "meaning": "ikan (F)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4upnfkvk",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Drache",
+   "meaning": "naga (n-Deklination) (D)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4upv19zz",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Delfin",
+   "meaning": "lumba\" (D)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lg4upq064z",
+   "sb": "mv2lg4up1kvxw"
+  },
+  {
+   "t": "word",
+   "de": "der Wasserbüffel",
+   "meaning": "kerbau air (W)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5x9ko4pp",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Rochen",
+   "meaning": "ikan pari (R)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5x9rn378",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Paradiesvogel",
+   "meaning": "burung cenderawasih (P)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5x97e4tl",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Pfau",
+   "meaning": "peacock (P)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5x9uqws0",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Seetang",
+   "meaning": "rumput laut (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5x9rh4ln",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Menschenaffe",
+   "meaning": "ape / gorilla (n-Deklination) (M)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5x9vqfed",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Schmetterling",
+   "meaning": "kupu-kupu (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5x90mmr4",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Tintenfisch",
+   "meaning": "cumi-cumi (T)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5x9d6fk0",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Wolf",
+   "meaning": "serigala (W)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5x9e8aw0",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Seestern",
+   "meaning": "bintang laut (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5x9mk3ws",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Uhu",
+   "meaning": "eagle owl (U)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5x9ngzhb",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Seeigel",
+   "meaning": "bulu babi (sea urchin) (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5x9kndsf",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Wal",
+   "meaning": "paus (whale) (W)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5x9bhd6z",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Tausendfüßler",
+   "meaning": "kaki seribu (T)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5x9rgg3d",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Tunfisch",
+   "meaning": "tuna (T)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5x95kaq0",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Makake",
+   "meaning": "monyet (kera) (M)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5xa4ezud",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Marienkäfer",
+   "meaning": "ladybug (M)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5xa8w40a",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Vogel",
+   "meaning": "burung (V)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5xas67ir",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Schnabel",
+   "meaning": "paruh (beak) (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5xa5ce3h",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Storch",
+   "meaning": "bangau (stork white, Ciconia) (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5xapd0s6",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Tiger",
+   "meaning": "harimau (T)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5xan1956",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Rabe",
+   "meaning": "gagak / raven (n-Deklination) (R)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5xal8spl",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Wurm",
+   "meaning": "cacing (W)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5xa5opp9",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Papagei",
+   "meaning": "kakak tua (parrot) (P)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5xavtioh",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "der Truthahn",
+   "meaning": "turkey (T)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lh5xadfu3p",
+   "sb": "mv2lh5xa7txxq"
+  },
+  {
+   "t": "word",
+   "de": "die Ente",
+   "meaning": "bebek (E)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpnxilce",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Krähe",
+   "meaning": "gagak (crow) (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpnj5qxl",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Qualle",
+   "meaning": "ubur\" (Q)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpn228nz",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Maus",
+   "meaning": "tikus (M)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpnbeuid",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Kakerlake",
+   "meaning": "kecoa (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpnkwu0t",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Ratte",
+   "meaning": "tikus got (R)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpndve6k",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Fliege",
+   "meaning": "lalat (F)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpnkzwou",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Kuh",
+   "meaning": "sapi (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpn46zky",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Echse",
+   "meaning": "lizard (kadal) (E)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpo41p9k",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Eidechse",
+   "meaning": "kadal kecil (E)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpo7qrl0",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Küchenschabe",
+   "meaning": "kecoa (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpo4vol8",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Eule",
+   "meaning": "owl (E)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpo5q0kp",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Ameise",
+   "meaning": "semut (A)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpotbels",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Krake",
+   "meaning": "octopus (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpothfou",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Muschel",
+   "meaning": "kerang (M)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbppmorfs",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Garnele",
+   "meaning": "udang (G)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbppyqzqg",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Baumrinde",
+   "meaning": "kulit pohon (B)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpptnwtq",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Laus",
+   "meaning": "kutu (louse) (L)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpplhzly",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Anchovis",
+   "meaning": "ikan teri (A)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbppkims9",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Fledermaus",
+   "meaning": "kelelawar (F)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbppyqt4w",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Gecko",
+   "meaning": "torek (G)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbppc5stk",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Beute",
+   "meaning": "mangsa (prey) (B)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpp79l18",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Libelle",
+   "meaning": "capung (L)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbppxusck",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Flosse",
+   "meaning": "sirip (F)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpp410fa",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Katze",
+   "meaning": "kucing (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbppgxm06",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Heuschrecke",
+   "meaning": "belalang (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbppojkxc",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Giraffe",
+   "meaning": "jerapah (G)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbppk2kxx",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Plage",
+   "meaning": "hama/swarm (P)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpqvnfoh",
+   "sb": "mv2lhbpqw3fh1"
+  },
+  {
+   "t": "word",
+   "de": "die Biene",
+   "meaning": "lebah (B)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpqyrzky",
+   "sb": "mv2lhbpqv79uu"
+  },
+  {
+   "t": "word",
+   "de": "die Grille",
+   "meaning": "jangkrik (G)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpqey3gg",
+   "sb": "mv2lhbpqv79uu"
+  },
+  {
+   "t": "word",
+   "de": "die Gans",
+   "meaning": "angsa (G)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhbpqydlv1",
+   "sb": "mv2lhbpqv79uu"
+  },
+  {
+   "t": "word",
+   "de": "die Mücke",
+   "meaning": "nyamuk (M)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgrzmle17",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "die Spinne",
+   "meaning": "laba-laba (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgrz2fdsc",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "die Raubkatze",
+   "meaning": "kucing ganas (R)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgrz7bm8z",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "die Krabbe",
+   "meaning": "kepiting (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgrz6brlu",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "die Wasserkröte",
+   "meaning": "penyu (W)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgrz4u0c9",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "die Seuche",
+   "meaning": "wabah (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgs0hch2c",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "der Moskito",
+   "meaning": "nyamuk (M)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgs0x7qqe",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "die Taube",
+   "meaning": "burung merpati (T)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgs034aq0",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "die Schildkröte",
+   "meaning": "kura-kura (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgs0dokqb",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "greifen",
+   "meaning": "menangkap (g)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgs022lli",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "die Schwalbe",
+   "meaning": "swallow / burung walet (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgs086ohe",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "taub",
+   "meaning": "budeg (deaf) (t)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgs0a0zer",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "die Ziege",
+   "meaning": "kambing (Z)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgs03810p",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "die Schnecke",
+   "meaning": "bekicot (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgs0i39to",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "die Riesenechse",
+   "meaning": "komodo (R)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgs0wowkt",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "der Krebs",
+   "meaning": "kepiting (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgs0t3plg",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "die Wabe",
+   "meaning": "honey comb (W)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgs1erhk5",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "die Robbe",
+   "meaning": "anjing laut / singa laut (R)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgs1rcakn",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "die Schlange",
+   "meaning": "ular (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgs1l8u3n",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "die Raupe",
+   "meaning": "kepompong (ulatnya) (R)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lhgs1f6552",
+   "sb": "mv2lhgs1paklp"
+  },
+  {
+   "t": "word",
+   "de": "das Tempo",
+   "meaning": "tissu (T)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nu4iip3",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "der Bikini",
+   "meaning": "bikini (B)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nuyvjab",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "das T-shirt",
+   "meaning": "baju kaos (T)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nu76jlf",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "das Tuch",
+   "meaning": "serbet/kain (T)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nujs3xe",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "der Kittel",
+   "meaning": "jas lab (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nvr4lku",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "das Gepäck",
+   "meaning": "luggage (G)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nv9q0sf",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "der Helm",
+   "meaning": "helm (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nv5i0ns",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "der Anzug",
+   "meaning": "jas (A)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nvu5tla",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "das Hemd",
+   "meaning": "kemeja (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nwf8ns2",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "das Handtuch",
+   "meaning": "handuk (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nw5y6i6",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "das Zelt",
+   "meaning": "tenda (Z)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nwm3cxk",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "der Hut",
+   "meaning": "topi berhias (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nwxcqmp",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "das Dirndl",
+   "meaning": "pakaian tradisional perempuan jerman (D)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nwevcv7",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "der Gürtel",
+   "meaning": "ikat pinggang (G)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nwr30zu",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "das Korsett",
+   "meaning": "corset (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nwl6cad",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "der Handschuh",
+   "meaning": "sarung tangan (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nxpx32x",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "der Hosenträger",
+   "meaning": "suspender (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nxtvaax",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "das Kopftuch",
+   "meaning": "hijab (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nx4a1fa",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "das Armband",
+   "meaning": "gelang (A)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nx7luff",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "der Beutel",
+   "meaning": "kantongan (B)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nxgcf5y",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "das Kleid",
+   "meaning": "dress (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nxmggnc",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "der Büstenhalter",
+   "meaning": "bra (B)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nxhigty",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "der Haushaltgummi",
+   "meaning": "karet gelang (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nye1y0g",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "das Schminkzeug",
+   "meaning": "make up (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nyxrzen",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "das Seil",
+   "meaning": "tali/kabel (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nyyktc3",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "das Leder",
+   "meaning": "leather (L)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nywgygf",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "der Badeanzug",
+   "meaning": "bathrobe (B)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nyduvxu",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "der Haargummi",
+   "meaning": "karet rambut (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2ll5nykqv01",
+   "sb": "mv2ll5ny79854"
+  },
+  {
+   "t": "word",
+   "de": "der Ohrstöpsel",
+   "meaning": "earplug (O)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle90zo763",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Knopf",
+   "meaning": "tombol/kancing (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle91iz5wr",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Rucksack",
+   "meaning": "ransel (R)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle91v12th",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Pyjama",
+   "meaning": "piyama (P)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle917nykb",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Kragen",
+   "meaning": "kerah (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle91q3wxj",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Ring",
+   "meaning": "cincin (R)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle92d4rc1",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Schatt",
+   "meaning": "harta karun (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle92wc2b5",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Strumpf",
+   "meaning": "stocking (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle92k3yqv",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Schurz",
+   "meaning": "apron (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle92oga6o",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Stiefel",
+   "meaning": "sepatu bot selutut (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle9288bwq",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Mantel",
+   "meaning": "mantel (M)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle927ui7d",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Nagellack",
+   "meaning": "kuteks (N)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle921fyyh",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Wanderschuh",
+   "meaning": "sepatu hiking (W)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle93ivnio",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Schuh",
+   "meaning": "sepatu (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle930fsby",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Schal",
+   "meaning": "syal (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle93jy3f6",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Schmuck",
+   "meaning": "perhiasan (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle935z7qw",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Kleideranhänger",
+   "meaning": "gantungan baju (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle9375xwf",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Rock",
+   "meaning": "rok (R)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle93e58h7",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Schatten",
+   "meaning": "bayangan (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle935udwv",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Anorak",
+   "meaning": "wind jacket (A)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle94ys0ax",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Lippenstift",
+   "meaning": "lipstik (L)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle94zd2fu",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Ohrring",
+   "meaning": "anting (O)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle94osy1n",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Koffer",
+   "meaning": "koper (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle94b1oxu",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Pullover",
+   "meaning": "sweater (P)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle94mvh97",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Pelz",
+   "meaning": "fur coat (P)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle94pw3pk",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Nagellackentferner",
+   "meaning": "nail polish remover (N)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle94ijswh",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Reißverschluss",
+   "meaning": "zipper (R)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle95a9gsi",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "der Strampler",
+   "meaning": "onesie (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lle95fdkzw",
+   "sb": "mv2lle95oeo8x"
+  },
+  {
+   "t": "word",
+   "de": "die Tasche",
+   "meaning": "tas (T)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcu1rcsm",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "der Kasten",
+   "meaning": "kotak/crate (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcu60m9p",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Unterwäsche",
+   "meaning": "celana dalam (U)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcveno68",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Kette",
+   "meaning": "rantai (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcvvgddz",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Mütze",
+   "meaning": "beanie (M)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcv1yzcw",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "der Zuschlag",
+   "meaning": "bayaran tambahan / selisih (Z)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcwb3jry",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Kleidung",
+   "meaning": "pakaian (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcw0ufhw",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Damenabteilung",
+   "meaning": "bagian perempuan (D)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcw1gurr",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "der Blazer",
+   "meaning": "blazer (B)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcw87p1t",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Brieftasche",
+   "meaning": "tas kantor (B)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcwpmx6t",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Klamotte",
+   "meaning": "pakaian (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcxhiyz0",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "der Pantoffel",
+   "meaning": "pantofel (P)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcxkvpx2",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "der Flipflop",
+   "meaning": "sandal jepit (F)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcxouam4",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Garderobe",
+   "meaning": "tempat gantungan pakaian (G)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcxisofj",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Zahnspange",
+   "meaning": "behel (Z)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcx9tj8t",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Haarspange",
+   "meaning": "jepitan rambut (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcx261e9",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "der Beleg",
+   "meaning": "struk (B)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcykgae8",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Abteilung",
+   "meaning": "divisi (A)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcyjwie7",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Brille",
+   "meaning": "kacamata (B)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcy1l5n3",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "der Turnschuh",
+   "meaning": "sepatu olahraga (T)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcz7yz1x",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "der Tampon",
+   "meaning": "tampon (T)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllczxpm6z",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Armbanduhr",
+   "meaning": "jam tangan (A)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllcziq05z",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Jacke",
+   "meaning": "jaket (J)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllczt5hzu",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Bluse",
+   "meaning": "blus (B)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllczw2ee0",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "der Klettverschluss",
+   "meaning": "strap sepatu (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lllczadq35",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Herrenabteilung",
+   "meaning": "bagian laki\" (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llld0f8wye",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Daunenjacke",
+   "meaning": "jaket bulu angsa (D)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llld0q7dxv",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Kappe",
+   "meaning": "topi (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llld03sngf",
+   "sb": "mv2llld0om5mt"
+  },
+  {
+   "t": "word",
+   "de": "die Strumpfhose",
+   "meaning": "celana stocking (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozku5iw2",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Umkleidekabine",
+   "meaning": "ruang ganti (U)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozln2wkw",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Quittung",
+   "meaning": "kwitansi (Q)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozlehv1z",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Krawatte",
+   "meaning": "dasi (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozlh2fvf",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Sonnencreme",
+   "meaning": "sunblock (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozl7yuo5",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Wimper",
+   "meaning": "eyelash (W)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozld4tfa",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "das Maß",
+   "meaning": "ukuran (M)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozmbgchy",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Weste",
+   "meaning": "rompi (W)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozmpwzbh",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Tracht",
+   "meaning": "pakaian adat (T)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozmdezca",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Rechnung",
+   "meaning": "kwitansi (R)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozmal4uu",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Kasse",
+   "meaning": "kasir (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozner2vy",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Hosentasche",
+   "meaning": "kantung celana (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lloznpw1c8",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Creme",
+   "meaning": "krim (C)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lloznkt0ob",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Kontaktlinse",
+   "meaning": "kontak lens (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozn5ssm0",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Tüte",
+   "meaning": "kantong kresek (T)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lloznq33q8",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Hose",
+   "meaning": "celana (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozok57nc",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Socke",
+   "meaning": "kaos kaki (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozo4tukf",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Uniform",
+   "meaning": "seragam (U)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozo45phi",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Halskette",
+   "meaning": "kalung (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozomg31r",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Kiste",
+   "meaning": "kotak (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozodtls3",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Sonnenbrille",
+   "meaning": "sunglass (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozpia11g",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Wäsche",
+   "meaning": "pakaian kotor (W)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozpjbkia",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Sandale",
+   "meaning": "sandal (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozpxezty",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Krem",
+   "meaning": "krim (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozp6ow5g",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Sonnenkrem",
+   "meaning": "sunblock (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozpsq5oc",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Jeans",
+   "meaning": "jeans (J)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozqfjpk0",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Regenjacke",
+   "meaning": "jas hujan (R)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozq4s1wp",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Windel",
+   "meaning": "popok (W)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llozq3ab16",
+   "sb": "mv2llozq3p10s"
+  },
+  {
+   "t": "word",
+   "de": "die Naht",
+   "meaning": "jahitan (N)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llueo8b97u",
+   "sb": "mv2lluesijw99"
+  },
+  {
+   "t": "word",
+   "de": "der Geldbeutel",
+   "meaning": "dompet (G)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llueovkmha",
+   "sb": "mv2lluesijw99"
+  },
+  {
+   "t": "word",
+   "de": "das Portemonnaine",
+   "meaning": "dompet (P)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lluepk2xwt",
+   "sb": "mv2lluesijw99"
+  },
+  {
+   "t": "word",
+   "de": "die Damenbinde",
+   "meaning": "pembalut (D)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lluepf3gw7",
+   "sb": "mv2lluesijw99"
+  },
+  {
+   "t": "word",
+   "de": "die Laus",
+   "meaning": "kutu (L)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lluepivmfp",
+   "sb": "mv2lluesijw99"
+  },
+  {
+   "t": "word",
+   "de": "die Wange",
+   "meaning": "pipi (W)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lluep1jcqo",
+   "sb": "mv2lluesijw99"
+  },
+  {
+   "t": "word",
+   "de": "nähen",
+   "meaning": "menjahit (n)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llueq1vcul",
+   "sb": "mv2lluesijw99"
+  },
+  {
+   "t": "word",
+   "de": "rausmachen",
+   "meaning": "mengeluarkan (r)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llueqxf5sj",
+   "sb": "mv2lluesijw99"
+  },
+  {
+   "t": "word",
+   "de": "die Nadel",
+   "meaning": "jarum (N)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llueq8ujr5",
+   "sb": "mv2lluesijw99"
+  },
+  {
+   "t": "word",
+   "de": "die Augenbraue",
+   "meaning": "alis (A)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lluerjl2nl",
+   "sb": "mv2lluesijw99"
+  },
+  {
+   "t": "word",
+   "de": "der Faden",
+   "meaning": "benang (F)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lluerltgzg",
+   "sb": "mv2lluesijw99"
+  },
+  {
+   "t": "word",
+   "de": "die Schuhschnur",
+   "meaning": "tali sepatu (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lluerzi65u",
+   "sb": "mv2lluesijw99"
+  },
+  {
+   "t": "word",
+   "de": "das Papiertaschentuch",
+   "meaning": "tissue (P)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lluerseyub",
+   "sb": "mv2lluesijw99"
+  },
+  {
+   "t": "word",
+   "de": "die Perücke",
+   "meaning": "wig (P)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lluerkv2bd",
+   "sb": "mv2lluesijw99"
+  },
+  {
+   "t": "word",
+   "de": "rein machen",
+   "meaning": "memasukkan (r)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lluest9vlf",
+   "sb": "mv2lluesijw99"
+  },
+  {
+   "t": "word",
+   "de": "die Schnur",
+   "meaning": "benang (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lluest34em",
+   "sb": "mv2lluesijw99"
+  },
+  {
+   "t": "word",
+   "de": "die Schnürsenkel",
+   "meaning": "tali sepatu (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2lluesr85uw",
+   "sb": "mv2lluesijw99"
+  },
+  {
+   "t": "word",
+   "de": "stricken",
+   "meaning": "menyulam (s)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2llueswhu3l",
+   "sb": "mv2lluesijw99"
   }
  ],
  "blocks": [
   {
-   "id": "mv2l46osmrrc6",
-   "name": "Das Tier 1",
+   "id": "mv2lesajqo974",
+   "name": "Das TIer",
    "subs": [
     {
-     "id": "mv2l48r9bgm9t",
+     "id": "mv2leyu35ztou",
      "name": "Teil 1"
+    },
+    {
+     "id": "mv2lg4up1kvxw",
+     "name": "Teil 2"
+    },
+    {
+     "id": "mv2lh5xa7txxq",
+     "name": "Teil 3"
+    },
+    {
+     "id": "mv2lhbpqw3fh1",
+     "name": "Teil 4"
+    },
+    {
+     "id": "mv2lhbpqv79uu",
+     "name": "Teil 5"
+    },
+    {
+     "id": "mv2lhgs1paklp",
+     "name": "Teil 6"
+    }
+   ]
+  },
+  {
+   "id": "mv2ljq2wrv2t5",
+   "name": "Die Kleidung",
+   "subs": [
+    {
+     "id": "mv2ll5ny79854",
+     "name": "Teil 1"
+    },
+    {
+     "id": "mv2lle95oeo8x",
+     "name": "Teil 2"
+    },
+    {
+     "id": "mv2llld0om5mt",
+     "name": "Teil 3"
+    },
+    {
+     "id": "mv2llozq3p10s",
+     "name": "Teil 4"
+    },
+    {
+     "id": "mv2lluesijw99",
+     "name": "Teil 5"
     }
    ]
   }
