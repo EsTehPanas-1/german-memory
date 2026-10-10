@@ -141,6 +141,9 @@ select.mv{font-size:16px;padding:4px}
 .bh{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:20px;padding-top:10px;border-top:3px solid var(--rule)}
 .sh{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0 2px 14px}
 .srow{display:flex;gap:8px;margin:8px 0 0 14px}
+.sync{margin:0 0 12px}
+.sync[data-s="ok"]{color:var(--ok)}
+.sync[data-s="err"],.sync[data-s="full"]{color:var(--bad)}
 .log{margin-top:32px;color:var(--soft);font-size:17px}
 .log summary{cursor:pointer}
 .log p{margin:6px 0}
@@ -160,7 +163,7 @@ select.mv{font-size:16px;padding:4px}
 <body>
 
 <main class="sheet">
-  <h1>Mit Präpositionen <span class="ver">v12</span></h1>
+  <h1>Mit Präpositionen <span class="ver">v13</span></h1>
   <p class="today" id="today"></p>
   <div class="gbar" aria-hidden="true"><i id="goalFill"></i></div>
 
@@ -192,7 +195,7 @@ select.mv{font-size:16px;padding:4px}
     <div class="filter" id="filter" role="group" aria-label="Prepositions"></div>
     <p class="small" id="hint" aria-live="polite"></p>
   </details>
-  <p class="small" id="wkwarn" hidden>Saving is blocked in this browser, so progress only lasts until you close the page.</p>
+  <p class="small sync" id="sync" role="status">Loading your saved words…</p>
 
   <!-- LEARN HOME -->
   <section id="learnHome">
@@ -338,7 +341,7 @@ select.mv{font-size:16px;padding:4px}
       <label>Daily goal <select id="goal"><option>50</option><option>100</option><option>150</option><option>250</option><option>400</option></select> answers</label>
     </div>
     <h2>Backup</h2>
-    <p class="small">Your progress lives in this browser only. Copy this text somewhere safe, or paste it on another device.</p>
+    <p class="small">A copy of all your words and progress as text. Keep it somewhere safe, or paste it into another copy of this page.</p>
     <div class="row"><button class="mini" id="expBtn">Show backup text</button><button class="mini" id="copyBtn" hidden>Copy</button></div>
     <textarea id="expTxt" rows="3" readonly hidden aria-label="Backup text"></textarea>
     <textarea id="impTxt" rows="3" placeholder="Paste backup text here" aria-label="Paste backup text" style="margin-top:10px"></textarea>
@@ -372,6 +375,7 @@ select.mv{font-size:16px;padding:4px}
 
   <details class="log">
     <summary>Version history</summary>
+    <p><b>v13</b> – Your own words, blocks, progress, memory tricks and settings are saved to your account, so they come back when you reopen the page or open it on another device. This browser keeps a copy too.</p>
     <p><b>v12</b> – Built for fast memorising. <b>Learn</b>: spaced repetition (words return after 5 min, 30 min, 3 h, 12 h, 2 days) and a 3-step ladder for new words (copy → hint → recall); missed words come back a few cards later in the same session. <b>Drill</b>: Type, Pick (tap), Preposition only, Sentence (cloze with example sentences for every built-in word), Meaning (reverse) and Listen, from all / not mastered / missed / trap pairs. <b>Sprint</b> (timed tapping) and <b>Match</b> boards. <b>Review</b> shows case rules, trap pairs, examples and status. Memory tricks per word, read-aloud, daily goal, streak, accuracy per preposition, backup and import. The old weak list is moved into the new system.</p>
     <p><b>v11</b> – Blocks and sub-blocks for Meine Wörter.</p>
     <p><b>v10</b> – “+ Add words” for your own words.</p>
@@ -736,8 +740,110 @@ let srs=cleanSrs(lsGet(SRK,{}));
 let stats=cleanStats(lsGet(STK,{}));
 let tricks=cleanTricks(lsGet(TK,{}));
 let set=Object.assign({sound:false,newN:8,goal:150,dur:2,drill:'mix',src:'all'},lsGet(SETK,{}));
-const saveBlocks=()=>lsSet(BK,blocks), saveCustom=()=>lsSet(CK,custom), saveSrs=()=>lsSet(SRK,srs),
-      saveStats=()=>lsSet(STK,stats), saveTricks=()=>lsSet(TK,tricks), saveSet=()=>lsSet(SETK,set);
+const saveBlocks=()=>{ lsSet(BK,blocks); cloudMark('words'); }, saveCustom=()=>{ lsSet(CK,custom); cloudMark('words'); },
+      saveSrs=()=>{ lsSet(SRK,srs); cloudMark('progress'); }, saveStats=()=>{ lsSet(STK,stats); cloudMark('progress'); },
+      saveTricks=()=>{ lsSet(TK,tricks); cloudMark('progress'); }, saveSet=()=>{ lsSet(SETK,set); cloudMark('progress'); };
+
+// ---------- account storage (claude.ai) ----------
+// Words and progress are kept in two private documents per person. This browser's storage stays as a fast cache.
+const cloud={db:null,uid:null,ready:false,touched:false,dirty:{},timer:{},busy:{},retry:{},state:'loading'};
+const cpath=w=>'data/users/'+cloud.uid+'/'+w;
+const PK='vq_pending_v1'; // set while this browser has changes your account hasn't confirmed yet
+function cloudMark(which){
+  lsSet(PK,1);
+  if(!cloud.ready){ cloud.touched=true; return; }
+  cloud.dirty[which]=true; clearTimeout(cloud.timer[which]);
+  cloud.timer[which]=setTimeout(()=>cloudFlush(which),1200);
+}
+function cloudBody(which){
+  return which==='words' ? {v:13,at:Date.now(),custom:JSON.stringify(custom),blocks:JSON.stringify(blocks)}
+                         : {v:13,at:Date.now(),srs:JSON.stringify(srs),stats:JSON.stringify(stats),tricks:JSON.stringify(tricks),set:JSON.stringify(set)};
+}
+async function cloudFlush(which){
+  if(!cloud.ready || cloud.busy[which] || !cloud.dirty[which]) return;
+  cloud.busy[which]=true; cloud.dirty[which]=false; setSync('saving');
+  try{
+    await cloud.db.doc(cpath(which)).set(cloudBody(which)); cloud.retry[which]=0; setSync('ok');
+    if(!cloud.dirty.words && !cloud.dirty.progress && !cloud.busy[which==='words'?'progress':'words']){ try{ localStorage.removeItem(PK); }catch(e){} }
+  }
+  catch(e){
+    const c=e&&e.code;
+    if(c==='quota_exceeded') setSync('full');
+    else if(c==='invalid_argument'||c==='transform_error'){ cloud.ready=false; setSync('readonly'); }
+    else if(c==='revoked'||c==='not_granted'||c==='capability_disabled'||c==='capability_removed'){ cloud.ready=false; setSync('local'); }
+    else{
+      cloud.dirty[which]=true; setSync('err');
+      if(!cloud.retry[which]){ cloud.retry[which]=1; cloud.timer[which]=setTimeout(()=>cloudFlush(which),1500+Math.random()*2000); }
+    }
+  }
+  finally{ cloud.busy[which]=false; if(cloud.ready && cloud.dirty[which] && cloud.state!=='err') cloudFlush(which); }
+}
+function jparse(s){ try{ return typeof s==='string' ? JSON.parse(s) : null; }catch(e){ return null; } }
+function setSync(s){
+  cloud.state=s; const el=$('sync'); if(!el) return;
+  const T={
+    loading:'Loading your saved words…',
+    ok:'Your words and progress are saved to your account.',
+    saving:'Saving…',
+    err:'Can’t reach your account right now. Everything is kept in this browser and saves to your account on your next change.',
+    full:'Your account storage for this page is full. New changes are kept in this browser only.',
+    readonly:'This view can’t save to your account, so your words stay in this browser.',
+    local: canSave ? 'Your words and progress are saved in this browser.' : 'Saving is blocked in this browser, so progress only lasts until you close the page. Use Stats → Backup to keep it.'
+  };
+  el.textContent=T[s]||''; el.dataset.s=s;
+}
+async function cloudInit(){
+  setSync('loading');
+  const fallback=()=>{ cloud.ready=false; setSync('local'); };
+  if(!window.claude || typeof window.claude.use!=='function'){ fallback(); return; }
+  let db=null,user=null;
+  try{ [db,user]=await Promise.all([window.claude.use('db'),window.claude.use('user')]); }catch(e){}
+  if(!db||!user){ fallback(); return; }
+  let uid=null; try{ uid=await user.id(); }catch(e){}
+  if(!uid){ fallback(); return; }
+  cloud.db=db; cloud.uid=uid;
+  let w,p;
+  const load=()=>Promise.all([db.doc(cpath('words')).get(),db.doc(cpath('progress')).get()]);
+  try{ [w,p]=await load(); }
+  catch(e){
+    if(e&&e.code==='unavailable'){ await new Promise(r=>setTimeout(r,800+Math.random()*1200)); try{ [w,p]=await load(); }catch(e2){ fallback(); return; } }
+    else{ fallback(); return; }
+  }
+  const merge=cloud.touched || !!lsGet(PK,0);
+  let pushW=false, pushP=false;
+  if(w.exists){
+    const d=w.data()||{}, cb=cleanBlocks(jparse(d.blocks)), cc=cleanCustom(jparse(d.custom),cb);
+    if(merge){
+      const bIds=new Set(cb.map(b=>b.id)); blocks.forEach(b=>{ if(!bIds.has(b.id)) cb.push(b); });
+      const cIds=new Set(cc.map(e=>e.id)), sigs=new Set(cc.map(sig));
+      custom.forEach(e=>{ if(!cIds.has(e.id) && !sigs.has(sig(e))) cc.push(e); });
+      pushW=true;
+    }
+    blocks=cleanBlocks(cb); custom=cleanCustom(cc,blocks).slice(0,MAXC);
+  } else pushW = custom.length>0 || blocks.length>0;
+  if(p.exists){
+    const d=p.data()||{};
+    const cs=cleanSrs(jparse(d.srs)), cst=cleanStats(jparse(d.stats)), ct=cleanTricks(jparse(d.tricks)), cset=jparse(d.set);
+    if(merge){
+      Object.keys(srs).forEach(k=>{ const a=cs[k], b=srs[k]; if(!a || (b.r+b.w)>(a.r+a.w)) cs[k]=b; });
+      Object.keys(stats.days).forEach(k=>{ if(!cst.days[k] || stats.days[k].n>cst.days[k].n) cst.days[k]=stats.days[k]; });
+      Object.keys(stats.pp).forEach(k=>{ const a=cst.pp[k], b=stats.pp[k]; if(!a || (b.r+b.w)>(a.r+a.w)) cst.pp[k]=b; });
+      Object.keys(stats.best).forEach(k=>{ cst.best[k]=Math.max(cst.best[k]||0,stats.best[k]); });
+      Object.assign(ct,tricks);
+      pushP=true;
+    }
+    srs=cs; stats=cst; tricks=ct;
+    if(cset && typeof cset==='object' && !Array.isArray(cset)){
+      ['sound','newN','goal','dur','drill','src'].forEach(k=>{ if(k in cset && typeof cset[k]===typeof set[k]) set[k]=cset[k]; });
+    }
+  } else pushP = Object.keys(srs).length>0 || Object.keys(tricks).length>0 || Object.keys(stats.days).length>0;
+  lsSet(BK,blocks); lsSet(CK,custom); lsSet(SRK,srs); lsSet(STK,stats); lsSet(TK,tricks); lsSet(SETK,set);
+  cloud.ready=true; setSync('ok');
+  afterCustomChange();
+  if(!run) refresh();
+  if(pushW) cloudMark('words');
+  if(pushP) cloudMark('progress');
+}
 
 const entryLine=e=>[e.de,e.obj,e.preps.map(x=>x.p+' '+x.c).join(','),e.meaning,e.note,e.sb||'',e.ex||''].join('|');
 function scopeSubs(){
@@ -919,7 +1025,7 @@ function updateTop(){
   const due=DATA.filter(g=>isDue(g.key,now)).length;
   $('today').innerHTML='<span>Today <b>'+d.n+'</b> / '+set.goal+' answers</span>'+(st?'<span>Streak <b>'+st+'</b> day'+(st>1?'s':'')+'</span>':'')+'<span><b>'+due+'</b> due now</span>';
   $('goalFill').style.width=Math.min(100,d.n/set.goal*100)+'%';
-  $('wkwarn').hidden=canSave;
+  if(cloud.state==='local') setSync('local');
 }
 
 // ---------- selection (deck, scope, prepositions, case) ----------
@@ -1477,7 +1583,7 @@ function renderStats(){
 }
 $('drillMissed').onclick=()=>{ set.src='missed'; saveSet(); if(mode!=='all'){ mode='all'; DATA=dataFor('all'); document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.m==='all')); sel.clear(); buildChips(); sync(); } setView('drill'); };
 $('goal').onchange=()=>{ set.goal=+$('goal').value||150; saveSet(); updateTop(); };
-$('expBtn').onclick=()=>{ $('expTxt').value=JSON.stringify({app:'mit-praep',v:12,srs,tricks,stats,custom,blocks}); $('expTxt').hidden=false; $('copyBtn').hidden=false; $('expTxt').select(); };
+$('expBtn').onclick=()=>{ $('expTxt').value=JSON.stringify({app:'mit-praep',v:13,srs,tricks,stats,custom,blocks}); $('expTxt').hidden=false; $('copyBtn').hidden=false; $('expTxt').select(); };
 $('copyBtn').onclick=()=>{
   const t=$('expTxt'); const fallback=()=>{ t.focus(); t.select(); $('bkMsg').textContent='Selected – copy it with your keyboard or long-press.'; };
   try{ navigator.clipboard.writeText(t.value).then(()=>{ $('bkMsg').textContent='Copied.'; },fallback); }catch(e){ fallback(); }
@@ -1690,6 +1796,7 @@ $('mylist').addEventListener('change',e=>{
 // ---------- start ----------
 $('ans').placeholder=MODES[mode].ph;
 buildChips(); sync(); updateTop(); renderScope(); setView('learn');
+cloudInit();
 setInterval(()=>{ updateTop(); if(view==='learn' && !run && !$('learnHome').hidden) learnHome(); },30000);
 </script>
 </body>

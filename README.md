@@ -2,7 +2,7 @@
 
 A single-page trainer for German verbs and adjectives with their prepositions and cases (e.g. *warten auf A*, *abhängig sein von D*), with Indonesian meanings.
 
-Open `index.html` in a browser. No build step. Progress is stored in the browser (localStorage).
+Open `index.html` in a browser. No build step. On GitHub Pages or as a file, your words and progress are saved in that browser (localStorage); use Stats → Backup to move them between devices. The claude.ai version saves them to your account.
 
 Features: spaced repetition, a copy → hint → recall ladder for new words, drills (type, pick, preposition only, sentence, meaning, listen), sprint, match, review with case rules and trap pairs, own words and blocks, stats, and backup/import.
 
