@@ -354,7 +354,7 @@ a.linkbtn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
     <p class="small" id="shareMsg" aria-live="polite"></p>
     <textarea id="shareTxt" rows="2" readonly hidden aria-label="Share link"></textarea>
     <div id="fileBox">
-      <p class="small" style="margin-top:12px">To keep them for everyone who opens this site, put them in the shared list (<b>words.json</b>). Copy the file, open it on GitHub, replace everything with what you copied, and tap “Commit changes”. The site loads it within a minute or two.</p>
+      <p class="small" style="margin-top:12px">To keep them for everyone who opens this site, add them to the shared list (<b>words.json</b>). The copied file already contains the current shared list plus your own words. Open it on GitHub, replace everything with what you copied, and tap “Commit changes”. Anyone the repo owner adds as a collaborator can do this. The site loads it within a minute or two.</p>
       <div class="row"><button class="mini" id="copyFile">Copy words file</button><a class="mini linkbtn" id="editFile" href="#" target="_blank" rel="noopener">Open words.json on GitHub</a></div>
       <textarea id="fileTxt" rows="3" readonly hidden aria-label="Words file"></textarea>
     </div>
@@ -1714,9 +1714,14 @@ $('shareLink').onclick=async()=>{
   const link=pageUrl()+'#w='+await packWords(o);
   copyText(link,$('shareTxt'),$('shareMsg'),'Link copied ('+o.custom.length+' words). Send it to your friend – opening it offers to add your words.');
 };
+// the file holds the current shared list plus your own words, so nobody's words get lost
 $('copyFile').onclick=()=>{
-  const o=own();
-  copyText(JSON.stringify({app:'mit-praep',custom:o.custom,blocks:o.blocks},null,1),$('fileTxt'),$('shareMsg'),'Copied '+o.custom.length+' words. Now open words.json on GitHub and paste it in.');
+  const strip=x=>{ const c=Object.assign({},x); delete c.sh; return c; };
+  const sigs=new Set(), out=[];
+  custom.filter(e=>e.sh).concat(mine(custom)).forEach(e=>{ const k=sig(e); if(!sigs.has(k)){ sigs.add(k); out.push(strip(e)); } });
+  const bl=blocks.map(strip);
+  const nOwn=out.length-custom.filter(e=>e.sh).length;
+  copyText(JSON.stringify({app:'mit-praep',custom:out,blocks:bl},null,1),$('fileTxt'),$('shareMsg'),'Copied '+out.length+' words ('+(nOwn>0?nOwn+' of yours added to the shared list':'nothing new from you')+'). Now open words.json on GitHub, replace everything with it, and commit.');
 };
 (function(){
   const m=/^([a-z0-9-]+)\.github\.io$/i.exec(location.hostname), repo=location.pathname.split('/').filter(Boolean)[0];

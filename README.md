@@ -7,7 +7,7 @@ Open `index.html` in a browser, or the GitHub Pages site. No build step.
 ## Where words are saved
 
 - **Your own words and progress** are saved in your browser (localStorage). Use Stats → Backup to move them to another device.
-- **The shared list, `words.json`**, loads for everyone who opens the site. These words are read-only and appear next to each person's own words. To update it, go to Stats → "Copy words file", then open `words.json` on GitHub, paste over everything, and commit.
+- **The shared list, `words.json`**, loads for everyone who opens the site, read-only, next to their own words. To add words to it: Stats → "Copy words file" (it already includes the current shared list plus your own words), then open `words.json` on GitHub, paste over everything and commit. Anyone added as a collaborator on the repo can do this.
 - **Share link:** Stats → "Copy share link" makes a link with your own words in it. When a friend opens the link, the site offers to add those words to their own list.
 
 ## Features
