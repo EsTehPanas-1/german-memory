@@ -22,7 +22,326 @@
    "note": "",
    "sb": "",
    "ex": ""
+  },
+  {
+   "t": "word",
+   "de": "das Schwein",
+   "meaning": "babi (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipc29koz",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Kamel",
+   "meaning": "unta (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipcgroyo",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Pferd",
+   "meaning": "kuda (P)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipcmohke",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Geflügel",
+   "meaning": "unggas (G)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipcgcyeg",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Tier",
+   "meaning": "binatang (T)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipceu6f8",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "der Affe",
+   "meaning": "monyet (n-Deklination) (A)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipcm8v19",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Küken",
+   "meaning": "anak unggas (itik) (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipce27kr",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Rentier",
+   "meaning": "reindeer (R)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipcx92zz",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Seepferdchen",
+   "meaning": "kuda laut (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipcgr0xa",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Eichhörnchen",
+   "meaning": "tupai (E)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipcq7z8k",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Raubtier",
+   "meaning": "binatang buas (predator) (R)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipco3qj6",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Krokodil",
+   "meaning": "buaya (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipc5c3qv",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Säugetier",
+   "meaning": "mamalia (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipchac0c",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "der Aal",
+   "meaning": "belut (A)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipc0cb8u",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Glühwürmchen",
+   "meaning": "kunang\" (G)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipc6hx12",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Lebewesen",
+   "meaning": "mahluk hidup (L)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipcynebs",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Kaninchen",
+   "meaning": "kelinci (K)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipck3o6w",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Haustier",
+   "meaning": "pet (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipcgx5pn",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Huhn",
+   "meaning": "ayam betina (H)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipci0spq",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Nashorn",
+   "meaning": "badak (N)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipdv1km1",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "der Adler",
+   "meaning": "elang (A)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipdkrs0k",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Lamm",
+   "meaning": "domba (L)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipd1qygo",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Reh",
+   "meaning": "rusa (R)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipdqeqp4",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Nest",
+   "meaning": "sarang (N)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipdx7o5j",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Insekt",
+   "meaning": "insect (I)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipd76ksy",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Nilpferd",
+   "meaning": "kuda nil (N)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipd1r1si",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Meerschweinchen",
+   "meaning": "hamster/marmut (M)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipds2yq7",
+   "sb": "mv2l48r9bgm9t"
+  },
+  {
+   "t": "word",
+   "de": "das Schnabeltier",
+   "meaning": "platipus (S)",
+   "preps": [],
+   "obj": "",
+   "note": "",
+   "ex": "",
+   "id": "mv2l4ipdjaoni",
+   "sb": "mv2l48r9bgm9t"
   }
  ],
- "blocks": []
+ "blocks": [
+  {
+   "id": "mv2l46osmrrc6",
+   "name": "Das Tier 1",
+   "subs": [
+    {
+     "id": "mv2l48r9bgm9t",
+     "name": "Teil 1"
+    }
+   ]
+  }
+ ]
 }
